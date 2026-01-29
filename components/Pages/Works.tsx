@@ -1,6 +1,9 @@
 import { motion, useScroll, useTransform, useMotionValue, useSpring } from "framer-motion";
 import { Link } from "react-router";
+import FluidButton from "../FluidButton";
+import MarqueeTitle from "components/Animation/MarqueeTitle";
 import { useRef, useState } from "react";
+
 
 const projects = [
     {
@@ -146,13 +149,13 @@ export default function Works() {
         <section id="works" className="relative w-full bg-black py-32 px-6 md:px-12 overflow-hidden">
 
             {/* Header Section */}
-            <div className="w-full mb-24 md:mb-32 border-b border-white/10 pb-12">
+            <div className="w-full mb-12 md:mb-20 border-b border-white/10 pb-12">
 
                 {/* Meta Utility Bar - Reference Style */}
                 <div className="w-full flex justify-between items-center border-b border-white/10 pb-4 mb-8">
                     <span className="text-white/40 text-[10px] md:text-xs font-mono uppercase tracking-[0.2em] flex items-center gap-2">
                         <span className="w-1.5 h-1.5 bg-[#ff4d29] rounded-full inline-block" />
-                        Featured Projects
+                        Selected Works
                     </span>
                     <span className="hidden md:block text-white/40 text-[10px] md:text-xs font-mono uppercase tracking-[0.2em]">
                         (WDX® — 03)
@@ -163,28 +166,7 @@ export default function Works() {
                 </div>
 
                 {/* Massive Infinite Marquee Title - Refined Size */}
-                <div className="w-full overflow-hidden flex mb-12 relative">
-                    {/* Gradient Overlays for Fade Effect (Cheaper than Mask) */}
-                    <div className="absolute left-0 top-0 bottom-0 w-24 z-10 bg-gradient-to-r from-black to-transparent pointer-events-none" />
-                    <div className="absolute right-0 top-0 bottom-0 w-24 z-10 bg-gradient-to-l from-black to-transparent pointer-events-none" />
-
-                    <motion.div
-                        className="flex whitespace-nowrap gap-12 md:gap-24"
-                        animate={{ x: ["0%", "-50%"] }}
-                        transition={{
-                            duration: 35,
-                            repeat: Infinity,
-                            ease: "linear"
-                        }}
-                    >
-                        <h2 className="text-[6vw] md:text-[8vw] font-black uppercase text-white leading-none tracking-tighter flex items-center gap-12 md:gap-24 opacity-90">
-                            Featured Works <span className="text-orange-500 text-[3vw] align-top">©</span>
-                        </h2>
-                        <h2 className="text-[6vw] md:text-[8vw] font-black uppercase text-white leading-none tracking-tighter flex items-center gap-12 md:gap-24 opacity-90">
-                            Featured Works <span className="text-orange-500 text-[3vw] align-top">©</span>
-                        </h2>
-                    </motion.div>
-                </div>
+                <MarqueeTitle text="SELECTED WORKS" number="03" />
 
                 {/* Sub-header Content (Text Left, Button Right) */}
                 <div className="max-w-[90rem] mx-auto px-4 md:px-0 flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
@@ -194,10 +176,14 @@ export default function Works() {
                         —built with intent, speed, and visual clarity.
                     </p>
 
-                    <button className="group flex items-center gap-3 px-8 py-3 rounded-full border border-white/20 hover:border-[#ff4d29] text-white text-xs font-bold uppercase tracking-widest hover:bg-[#ff4d29] transition-all duration-300">
+                    {/* @ts-ignore */}
+                    {/* @ts-ignore */}
+                    <FluidButton
+                        to="/work"
+                        className="border-white/30 text-white"
+                    >
                         See All Works
-                        <svg className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
-                    </button>
+                    </FluidButton>
                 </div>
             </div>
 

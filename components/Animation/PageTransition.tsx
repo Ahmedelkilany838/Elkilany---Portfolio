@@ -13,7 +13,7 @@ export default function PageTransition({ children }: PageTransitionProps) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -50 }}
             transition={{
-                duration: 1.2,
+                duration: 0.8,
                 ease: [0.22, 1, 0.36, 1], // Heavy, cinematic cubic-bezier
             }}
         >

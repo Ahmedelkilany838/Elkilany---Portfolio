@@ -10,10 +10,19 @@ export default function GlobalCursor() {
     const [cursor, setCursor] = useState<CursorPosition>({
         x: 0,
         y: 0,
-        visible: true, // Default visible or false then set true on first move
+        visible: false, // Start hidden until first mouse move
     });
 
     useEffect(() => {
+        // Detect touch devices - if touch, don't show custom cursor
+        const isTouchDevice = () => {
+            return (('ontouchstart' in window) ||
+                (navigator.maxTouchPoints > 0) ||
+                (window.matchMedia("(pointer: coarse)").matches));
+        };
+
+        if (isTouchDevice()) return;
+
         const handleMouseMove = (event: MouseEvent) => {
             setCursor({
                 x: event.clientX,

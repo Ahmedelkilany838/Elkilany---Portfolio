@@ -18,6 +18,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@400;500;600;700&display=swap" rel="stylesheet" />
       </head>
       <body>
         {children}
@@ -33,14 +36,21 @@ import Navbar from "components/Navbar";
 import { AnimatePresence, motion } from "framer-motion";
 import { useLocation } from "react-router";
 
+import Preloader from "components/Preloader";
+import { useState } from "react";
+
 // Heavy premium ease
 const premiumEase: [number, number, number, number] = [0.76, 0, 0.24, 1];
 
 export default function App() {
   const location = useLocation();
+  const [loading, setLoading] = useState(true);
 
   return (
     <>
+      <AnimatePresence>
+        {loading && <Preloader onComplete={() => setLoading(false)} />}
+      </AnimatePresence>
       <GlobalCursor />
       <Navbar />
 

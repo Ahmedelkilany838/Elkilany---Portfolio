@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+
 import { Link, useLocation } from "react-router";
+import GlassyButton from "./GlassyButton";
+import WavyText from "./WavyText";
 
 // Menu items with their routes
 const menuItems = [
@@ -49,10 +52,13 @@ export default function Navbar() {
                     </span>
                 </button>
 
+
                 {/* Contact CTA */}
-                <Link to="/contact" className="text-base md:text-lg uppercase tracking-wider font-medium text-white hover:opacity-70 transition-opacity">
-                    Contact
-                </Link>
+                <div className="hidden md:block">
+                    <Link to="/contact" className="font-bold text-base md:text-lg tracking-tight text-white uppercase hover:opacity-70 transition-opacity">
+                        Contact
+                    </Link>
+                </div>
             </motion.nav>
 
             {/* Backdrop to close menu when clicking outside */}
@@ -100,11 +106,11 @@ export default function Navbar() {
                                                 to={item.path}
                                                 onClick={() => setMenuOpen(false)}
                                                 className={`text-2xl md:text-3xl font-bold uppercase tracking-wide transition-colors duration-300 ${isActive
-                                                        ? "text-[#f9452c]"
-                                                        : "text-white hover:text-[#f9452c]"
+                                                    ? "text-[#f9452c]"
+                                                    : "text-white hover:text-[#f9452c]"
                                                     }`}
                                             >
-                                                {item.label}
+                                                <WavyText text={item.label} />
                                             </Link>
                                         </motion.div>
                                     );
