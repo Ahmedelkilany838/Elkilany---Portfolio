@@ -62,7 +62,7 @@ export default function Experience() {
                     >
                         <img
                             src="/images/freepik recreate.png"
-                            alt="Ahmed Elkilany"
+                            alt="Ahmed Kilany"
                             className="w-full h-full object-cover object-top"
                         />
                         {/* Cinematic Grain Overlay */}

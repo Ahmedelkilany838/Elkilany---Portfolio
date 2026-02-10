@@ -1,0 +1,233 @@
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
+import FluidButton from "../FluidButton";
+import MarqueeTitle from "../Animation/MarqueeTitle";
+import { ArrowDownRight, Circle, Diamond, Square, Triangle } from "lucide-react";
+
+const steps = [
+    {
+        id: "01",
+        title: "Understand",
+        category: "Discovery",
+        description: "I begin by understanding the brand, the brief, and the core message behind the project collecting insights and defining a clear, grounded objective.",
+        shape: Circle
+    },
+    {
+        id: "02",
+        title: "Think",
+        category: "Strategy",
+        description: "I explore creative directions, translate ideas into visual logic, and form the strategic foundation that guides the design.",
+        shape: Diamond
+    },
+    {
+        id: "03",
+        title: "Design",
+        category: "Creation",
+        description: "I craft key visuals, visual systems, and communication-driven designs built on clarity, intention, and strong visual structure.",
+        shape: Square
+    },
+    {
+        id: "04",
+        title: "Develop",
+        category: "Execution",
+        description: "I adapt the direction across different formats — branding, key visuals, social media, and digital assets ensuring consistency and impact throughout.",
+        shape: Triangle
+    },
+    {
+        id: "05",
+        title: "Deliver",
+        category: "Handover",
+        description: "I refine, finalize, and prepare high-quality outputs that maintain clarity, accuracy, and strong, consistent brand communication.",
+        shape: ArrowDownRight
+    },
+];
+
+export default function Process() {
+    const containerRef = useRef<HTMLDivElement>(null);
+
+    const { scrollYProgress } = useScroll({
+        target: containerRef,
+        offset: ["start end", "end start"]
+    });
+
+    return (
+        <section ref={containerRef} className="relative bg-[#020202] py-32 overflow-hidden">
+
+            {/* Noise Background */}
+            <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.04] pointer-events-none" />
+
+            {/* Header */}
+            <div className="w-full mb-32">
+                <MarqueeTitle text="HOW I DO" number="05" className="mb-0" />
+            </div>
+
+            <div className="w-full max-w-[90rem] mx-auto px-4 md:px-8 relative">
+
+                {/* Timeline Line - Fixed on Left */}
+                <div className="hidden md:block absolute left-16 top-32 bottom-32 w-[2px]">
+                    {/* Base Line */}
+                    <div className="absolute inset-0 bg-white/10" />
+
+                    {/* Progress Line */}
+                    <motion.div
+                        style={{
+                            scaleY: scrollYProgress,
+                            transformOrigin: "top"
+                        }}
+                        className="absolute inset-0 bg-gradient-to-b from-[#ff4d29] to-[#ff8a29] shadow-[0_0_20px_#ff4d29]"
+                    />
+                </div>
+
+                {/* Steps */}
+                <div className="space-y-32 md:space-y-48 relative">
+                    {steps.map((step, index) => (
+                        <ProcessCard
+                            key={step.id}
+                            step={step}
+                            index={index}
+                            scrollProgress={scrollYProgress}
+                        />
+                    ))}
+                </div>
+
+                {/* Bottom CTA */}
+                <div className="flex justify-center mt-32 pt-16 border-t border-white/5">
+                    <FluidButton to="/contact" className="border-white/20 text-white hover:border-[#ff4d29] px-16 h-16 text-sm tracking-widest uppercase">
+                        Start Collaboration
+                    </FluidButton>
+                </div>
+
+            </div>
+        </section>
+    );
+}
+
+function ProcessCard({
+    step,
+    index,
+    scrollProgress
+}: {
+    step: any;
+    index: number;
+    scrollProgress: any;
+}) {
+    const cardRef = useRef<HTMLDivElement>(null);
+    const Icon = step.shape;
+
+    const { scrollYProgress } = useScroll({
+        target: cardRef,
+        offset: ["start 0.9", "end 0.3"]
+    });
+
+    // Card animations
+    const opacity = useTransform(scrollYProgress, [0, 0.3, 0.8, 1], [0, 1, 1, 0.3]);
+    const scale = useTransform(scrollYProgress, [0, 0.3, 0.8, 1], [0.8, 1, 1, 0.95]);
+    const y = useTransform(scrollYProgress, [0, 0.3, 0.8, 1], [100, 0, 0, -50]);
+
+    // Number parallax
+    const numberY = useTransform(scrollYProgress, [0, 1], [100, -100]);
+
+    const isEven = index % 2 === 0;
+
+    return (
+        <div ref={cardRef} className="relative">
+
+            {/* Timeline Node (Desktop) */}
+            <motion.div
+                style={{ opacity }}
+                className="hidden md:block absolute left-16 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20"
+            >
+                <div className="relative">
+                    {/* Outer Ring */}
+                    <div className="w-6 h-6 rounded-full border-2 border-[#ff4d29] bg-[#020202] flex items-center justify-center">
+                        {/* Inner Dot */}
+                        <div className="w-3 h-3 rounded-full bg-[#ff4d29] shadow-[0_0_15px_#ff4d29]" />
+                    </div>
+
+                    {/* Pulse Effect */}
+                    <motion.div
+                        style={{
+                            opacity: useTransform(scrollYProgress, [0.2, 0.5], [0, 1])
+                        }}
+                        className="absolute inset-0 w-6 h-6 rounded-full border-2 border-[#ff4d29] animate-ping"
+                    />
+                </div>
+            </motion.div>
+
+            {/* Card */}
+            <motion.div
+                style={{ opacity, scale, y }}
+                className={`relative ml-0 md:ml-32 ${isEven ? 'md:mr-0' : 'md:ml-48'}`}
+            >
+                {/* Massive Background Number */}
+                <motion.div
+                    style={{ y: numberY }}
+                    className="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none"
+                >
+                    <span className="text-[300px] md:text-[400px] font-black text-white/[0.02] leading-none select-none whitespace-nowrap">
+                        {step.id}
+                    </span>
+                </motion.div>
+
+                {/* Main Card */}
+                <div className="relative bg-[#0a0a0a]/90 backdrop-blur-2xl border border-white/10 rounded-3xl overflow-hidden shadow-[0_50px_100px_rgba(0,0,0,0.8)] group">
+
+                    {/* Glossy Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-transparent pointer-events-none" />
+
+                    {/* Active Glow */}
+                    <motion.div
+                        style={{
+                            opacity: useTransform(scrollYProgress, [0.2, 0.5, 0.7], [0, 1, 0])
+                        }}
+                        className="absolute -inset-[2px] bg-gradient-to-br from-[#ff4d29]/30 to-transparent rounded-3xl blur-xl pointer-events-none"
+                    />
+
+                    <div className="relative p-8 md:p-16 grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12">
+
+                        {/* Left: Icon Section */}
+                        <div className="md:col-span-4 flex items-center justify-center md:justify-start">
+                            <div className="relative">
+                                {/* Icon */}
+                                <div className="text-[#ff4d29]/30 group-hover:text-[#ff4d29]/50 transition-colors duration-500">
+                                    <Icon size={160} strokeWidth={1} />
+                                </div>
+
+                                {/* Number Badge */}
+                                <div className="absolute -top-4 -right-4 bg-[#ff4d29] text-black font-black text-2xl w-16 h-16 rounded-full flex items-center justify-center shadow-[0_0_30px_#ff4d29]">
+                                    {step.id}
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Right: Content Section */}
+                        <div className="md:col-span-8 flex flex-col justify-center space-y-6">
+
+                            {/* Category */}
+                            <div className="inline-flex items-center gap-3">
+                                <span className="w-2 h-2 bg-[#ff4d29] rounded-full shadow-[0_0_10px_#ff4d29]" />
+                                <span className="text-[#ff4d29] font-mono text-xs tracking-[0.3em] uppercase">
+                                    {step.category}
+                                </span>
+                            </div>
+
+                            {/* Title */}
+                            <h3 className="text-5xl md:text-7xl font-black text-white uppercase tracking-tighter leading-[0.9]">
+                                {step.title}
+                            </h3>
+
+                            {/* Description */}
+                            <p className="text-white/60 text-lg md:text-2xl leading-relaxed font-light max-w-3xl">
+                                {step.description}
+                            </p>
+
+                            {/* Decorative Line */}
+                            <div className="w-24 h-1 bg-gradient-to-r from-[#ff4d29] to-transparent" />
+                        </div>
+
+                    </div>
+                </div>
+            </motion.div>
+        </div>
+    );
+}

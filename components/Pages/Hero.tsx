@@ -1,171 +1,139 @@
-import { motion, useSpring } from "framer-motion";
-import { useRef, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
+import { useState, useEffect } from "react";
 
 export default function Hero() {
-    const heroRef = useRef<HTMLElement>(null);
-    const imageRef = useRef<HTMLDivElement>(null);
+    const currentYear = new Date().getFullYear();
+    const [time, setTime] = useState("");
 
-    // Mouse position for magnetic effect - subtle translation
-    const imageX = useSpring(0, { stiffness: 80, damping: 40 });
-    const imageY = useSpring(0, { stiffness: 80, damping: 40 });
-
-    // Layer offsets (follow with more lag/delay but fast movement)
-    const layer1X = useSpring(0, { stiffness: 60, damping: 40 });
-    const layer1Y = useSpring(0, { stiffness: 60, damping: 40 });
-    const layer2X = useSpring(0, { stiffness: 50, damping: 40 });
-    const layer2Y = useSpring(0, { stiffness: 50, damping: 40 });
-    const layer3X = useSpring(0, { stiffness: 40, damping: 40 });
-    const layer3Y = useSpring(0, { stiffness: 40, damping: 40 });
-    const layer4X = useSpring(0, { stiffness: 30, damping: 40 });
-    const layer4Y = useSpring(0, { stiffness: 30, damping: 40 });
+    // Rotating Text Logic
+    const phrases = [
+        ["Visualizing", "Intent"],
+        ["Crafting", "Clarity"],
+        ["Designing", "Impact"],
+        ["Building", "Connection"],
+    ];
+    const [index, setIndex] = useState(0);
 
     useEffect(() => {
-        const handleMouseMove = (e: MouseEvent) => {
-            // Calculate based on window center since it's a full screen hero
-            const centerX = window.innerWidth / 2;
-            const centerY = window.innerHeight / 2;
+        const interval = setInterval(() => {
+            setIndex((prev) => (prev + 1) % phrases.length);
+        }, 3000);
+        return () => clearInterval(interval);
+    }, []);
 
-            // Normalize delta (-1 to 1) based on screen dimensions
-            const deltaX = (e.clientX - centerX) / (window.innerWidth / 2);
-            const deltaY = (e.clientY - centerY) / (window.innerHeight / 2);
-
-            // Main image moves WIDER (max ~80px)
-            imageX.set(deltaX * 80);
-            imageY.set(deltaY * 80);
-
-            // Layers move closer to main image speed (tucked in) but with delay
-            layer1X.set(deltaX * 72);
-            layer1Y.set(deltaY * 72);
-            layer2X.set(deltaX * 64);
-            layer2Y.set(deltaY * 64);
-            layer3X.set(deltaX * 56);
-            layer3Y.set(deltaY * 56);
-            layer4X.set(deltaX * 48);
-            layer4Y.set(deltaY * 48);
+    useEffect(() => {
+        const updateTime = () => {
+            const now = new Date();
+            setTime(now.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true }));
         };
-
-        window.addEventListener("mousemove", handleMouseMove);
-        return () => window.removeEventListener("mousemove", handleMouseMove);
-    }, [imageX, imageY, layer1X, layer1Y, layer2X, layer2Y, layer3X, layer3Y, layer4X, layer4Y]);
+        updateTime();
+        const timer = setInterval(updateTime, 1000);
+        return () => clearInterval(timer);
+    }, []);
 
     return (
-        <section
-            ref={heroRef}
-            className="relative w-full h-screen overflow-hidden bg-black text-white font-sans flex flex-col items-center justify-center"
-        >
+        <section className="relative w-full h-screen overflow-hidden bg-[#050505] text-[#E0E0E0] font-['Inter_Display'] selection:bg-white/20">
 
-            {/* --- Background Name (Seamless Infinite Marquee) --- */}
-            <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 2, ease: "easeOut" }}
-                className="absolute inset-0 flex items-center z-0 pointer-events-none overflow-hidden"
-            >
-                {/* Left Fade */}
-                <div className="absolute left-0 top-0 bottom-0 w-32 md:w-48 bg-gradient-to-r from-black to-transparent z-10" />
-                {/* Right Fade */}
-                <div className="absolute right-0 top-0 bottom-0 w-32 md:w-48 bg-gradient-to-l from-black to-transparent z-10" />
-
+            {/* --- Background Image Layer (Full Screen) --- */}
+            <div className="absolute inset-0 z-0 overflow-hidden">
                 <motion.div
-                    className="flex gap-24 whitespace-nowrap"
-                    animate={{ x: ["-50%", "0%"] }}
-                    transition={{
-                        duration: 40,
-                        repeat: Infinity,
-                        ease: "linear",
-                    }}
+                    className="relative w-full h-full"
+                    initial={{ scale: 1.4 }}
+                    animate={{ scale: 1 }}
+                    transition={{ duration: 5, ease: [0.16, 1, 0.3, 1] }}
                 >
-                    <h1 className="text-[14vw] font-black tracking-tight text-white/[0.08] select-none uppercase">
-                        ELKILANY - SENIOR DESIGNER
-                    </h1>
-                    <h1 className="text-[14vw] font-black tracking-tight text-white/[0.08] select-none uppercase">
-                        ELKILANY - SENIOR DESIGNER
-                    </h1>
+                    <motion.img
+                        src="/images/hero.png"
+                        alt="Ahmed Kilany"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 1.5, ease: "easeOut" }}
+                        className="w-full h-full object-cover object-center"
+                    />
+                    {/* Dark Gradients for Text Readability */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/20 to-black/80"></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/60"></div>
                 </motion.div>
-            </motion.div>
 
-            {/* --- Main Hero Content --- */}
-            <div className="relative z-10 w-full h-full flex flex-col items-center justify-center pb-24 md:pb-0 px-4 md:px-8">
+                {/* Scanline/Texture */}
+                <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.04] mix-blend-overlay"></div>
+            </div>
 
-                {/* Image with Layered Background - Magnetic Effect */}
-                <div
-                    ref={imageRef}
-                    className="relative"
-                    style={{ perspective: 1000 }}
-                >
-                    {/* Background Image Layers (Initial hidden, peek on move) */}
-                    <motion.div
-                        className="absolute inset-0 w-full h-full rounded-lg -z-10 overflow-hidden opacity-[0.12]"
-                        style={{ x: layer1X, y: layer1Y, willChange: "transform" }}
-                    />
-                    <motion.div
-                        className="absolute inset-0 w-full h-full rounded-lg -z-20 overflow-hidden opacity-[0.08]"
-                        style={{ x: layer2X, y: layer2Y, willChange: "transform" }}
-                    />
-                    <motion.div
-                        className="absolute inset-0 w-full h-full rounded-lg -z-30 overflow-hidden opacity-[0.05]"
-                        style={{ x: layer3X, y: layer3Y, willChange: "transform" }}
-                    />
-                    <motion.div
-                        className="absolute inset-0 w-full h-full rounded-lg -z-40 overflow-hidden opacity-[0.02]"
-                        style={{ x: layer4X, y: layer4Y, willChange: "transform" }}
-                    />
+            {/* --- Top Navigation Bar --- */}
+            <div className="absolute top-0 left-0 w-full z-50 flex justify-between items-start p-6 md:p-10 pointer-events-none">
 
-                    {/* Main Image Container - Magnetic Movement */}
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.85, y: 50, filter: "blur(10px)" }}
-                        animate={{ opacity: 1, scale: 1, y: 0, filter: "blur(0px)" }}
-                        transition={{
-                            duration: 1.8,
-                            ease: [0.22, 1, 0.36, 1] // Heavy, premium ease
-                        }}
-                        style={{
-                            x: imageX,
-                            y: imageY,
-                            willChange: "transform"
-                        }}
-                        className="relative w-[85vw] max-w-[360px] md:w-[480px] h-[50vh] max-h-[480px] md:h-[580px] overflow-hidden rounded-lg shadow-2xl"
-                    >
-                        {/* Portrait Image - Clean, no effects */}
-                        <img
-                            src="/images/hero.png"
-                            alt="Portrait"
-                            className="w-full h-full object-cover object-top"
-                        />
-                    </motion.div>
+
+
+            </div>
+
+            {/* --- Middle Right Text --- */}
+            <div className="absolute top-[35%] right-6 md:right-16 z-20 text-right pointer-events-none flex flex-col items-end drop-shadow-xl font-['Outfit']">
+
+                {/* Line 1 */}
+                <div className="overflow-hidden h-[1.1em] flex items-center justify-end text-white/80 text-5xl md:text-7xl font-black uppercase tracking-tighter leading-[0.9]">
+                    <AnimatePresence mode="wait">
+                        <motion.div
+                            key={index}
+                            initial={{ y: "100%" }}
+                            animate={{ y: 0 }}
+                            exit={{ y: "-100%" }}
+                            transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
+                        >
+                            {phrases[index][0]}
+                        </motion.div>
+                    </AnimatePresence>
+                </div>
+
+                {/* Line 2 */}
+                <div className="overflow-hidden h-[1.1em] flex items-center justify-end text-white/80 text-5xl md:text-7xl font-black uppercase tracking-tighter leading-[0.9]">
+                    <AnimatePresence mode="wait">
+                        <motion.div
+                            key={index}
+                            initial={{ y: "100%" }}
+                            animate={{ y: 0 }}
+                            exit={{ y: "-100%" }}
+                            transition={{ duration: 0.8, delay: 0.1, ease: [0.76, 0, 0.24, 1] }}
+                        >
+                            {phrases[index][1]}<span className="text-[#ff4d29]">.</span>
+                        </motion.div>
+                    </AnimatePresence>
                 </div>
 
             </div>
 
-            {/* --- Bottom Technical Bar --- */}
-            <motion.div
-                initial={{ opacity: 0, y: 50 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1, delay: 1, ease: "easeOut" }}
-                className="absolute bottom-12 w-full max-w-[90rem] px-6 md:px-12 flex justify-between items-end z-20"
-            >
-                {/* Left: Role */}
-                <div className="flex flex-col gap-2">
-                    <span className="text-white/40 text-[10px] uppercase tracking-[0.2em] font-mono">Role / Spec</span>
-                    <div className="flex items-center gap-3 text-white">
-                        <span className="text-sm md:text-base font-bold uppercase tracking-widest">Senior Designer</span>
-                        <span className="w-1 h-1 bg-white/40 rounded-full" />
-                        <span className="text-sm md:text-base font-bold uppercase tracking-widest">Advertising Specialist</span>
-                    </div>
-                </div>
+            {/* --- Bottom Left Content --- */}
+            <div className="absolute bottom-10 left-6 md:left-16 z-30 max-w-2xl pointer-events-auto">
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 1, duration: 0.8 }}
+                >
+                    <p className="text-lg md:text-2xl font-light leading-relaxed mb-8 font-['Outfit'] drop-shadow-lg tracking-tight text-left">
+                        <span className="text-white">I craft visual identities and advertising concepts that bridge the gap between business objectives and human connection </span>
+                        <span className="text-white/30">—designed with clarity, logic, and intent.</span>
+                    </p>
 
-                {/* Center: Scroll Indicator (Hidden on Mobile) */}
-                <div className="hidden md:flex flex-col items-center gap-2 opacity-50">
-                    <div className="w-[1px] h-12 bg-gradient-to-b from-white to-transparent" />
-                    <span className="text-[10px] uppercase tracking-[0.2em]">Scroll</span>
-                </div>
+                    {/* Logos */}
 
-                {/* Right: Location */}
-                <div className="flex flex-col gap-2 text-right">
-                    <span className="text-white/40 text-[10px] uppercase tracking-[0.2em] font-mono">Location</span>
-                    <span className="text-sm md:text-base font-bold uppercase tracking-widest text-white">Cairo, Egypt © {new Date().getFullYear()}</span>
-                </div>
-            </motion.div>
+                </motion.div>
+            </div>
+
+            {/* --- Bottom Right CTA --- */}
+            <div className="absolute bottom-10 right-6 md:right-10 z-30 pointer-events-auto">
+                <motion.button
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 1.2, duration: 0.5 }}
+                    className="group relative px-6 py-2 md:px-8 md:py-3 bg-black/40 backdrop-blur-md border border-[#ff4d29] text-[#ff4d29] font-bold text-xs md:text-sm tracking-widest uppercase rounded-full overflow-hidden hover:text-white transition-colors duration-300"
+                >
+                    <div className="absolute inset-0 bg-[#ff4d29] translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-[0.76,0,0.24,1]"></div>
+                    <span className="relative z-10 flex items-center gap-2">
+                        Start A Project
+                        <ArrowUpRight className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                    </span>
+                </motion.button>
+            </div>
 
         </section>
     );
