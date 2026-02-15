@@ -1,7 +1,5 @@
-import { motion, AnimatePresence, useSpring, useMotionValue } from "framer-motion";
 import MarqueeTitle from "components/Animation/MarqueeTitle";
-import { useState, useEffect } from "react";
-import { createPortal } from "react-dom";
+import { useState } from "react";
 
 // Service Data
 const services = [
@@ -33,64 +31,9 @@ const services = [
 
 export default function Services() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  // Mouse Position Logic
-  const cursorX = useMotionValue(0);
-  const cursorY = useMotionValue(0);
-
-  // Smooth Spring for "Premium" feel
-  const springConfig = { damping: 20, stiffness: 150, mass: 0.1 };
-  const smoothX = useSpring(cursorX, springConfig);
-  const smoothY = useSpring(cursorY, springConfig);
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    // Center the smaller card (240x300)
-    cursorX.set(e.clientX - 120);
-    cursorY.set(e.clientY - 150);
-  };
 
   return (
-    <section
-      onMouseMove={handleMouseMove}
-      className="relative w-full bg-black py-24 md:py-32 overflow-hidden cursor-default"
-    >
-
-      {/* --- Floating Hover Image (Portal) --- */}
-      {mounted && createPortal(
-        <motion.div
-          className="fixed top-0 left-0 w-[240px] h-[300px] rounded-lg border border-white/20 shadow-2xl overflow-hidden pointer-events-none z-[9999] hidden md:block"
-          style={{
-            x: smoothX,
-            y: smoothY,
-            opacity: hoveredIndex !== null ? 1 : 0
-          }}
-          transition={{ duration: 0.3 }}
-        >
-          <AnimatePresence mode="popLayout">
-            {hoveredIndex !== null && (
-              <motion.img
-                key={hoveredIndex}
-                src={services[hoveredIndex].image}
-                alt={services[hoveredIndex].title}
-                className="absolute inset-0 w-full h-full object-cover"
-                initial={{ y: "100%" }}
-                animate={{ y: "0%" }}
-                exit={{ y: "-100%" }}
-                transition={{
-                  duration: 0.4,
-                  ease: [0.22, 1, 0.36, 1]
-                }}
-              />
-            )}
-          </AnimatePresence>
-        </motion.div>,
-        document.body
-      )}
+    <section className="relative w-full bg-black py-24 md:py-32 overflow-hidden cursor-default">
 
       {/* Header Meta Bar - Contained */}
       <div className="w-full px-6 md:px-12 mb-12">
@@ -130,7 +73,7 @@ export default function Services() {
             key={index}
             onMouseEnter={() => setHoveredIndex(index)}
             onMouseLeave={() => setHoveredIndex(null)}
-            className="group w-full border-t border-white/20 py-12 md:py-16 grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-0 items-center transition-all duration-500 hover:bg-white/5 relative"
+            className="group w-full border-t border-white/20 py-12 md:py-16 grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-0 items-center transition-colors duration-300 hover:bg-white/5 relative"
           >
             {/* Number - Added Indentation */}
             <div className="md:col-span-2 pl-4 md:pl-8">
@@ -147,11 +90,13 @@ export default function Services() {
             </div>
 
             {/* Description */}
-            <div className="md:col-span-6 flex justify-end">
+            <div className="md:col-span-6 flex justify-start md:justify-end">
               <p className="text-white/60 text-sm md:text-base leading-relaxed max-w-md group-hover:text-white/90 transition-colors">
                 {service.description}
               </p>
             </div>
+
+            {/* Simple Hover Image Reveal (Optional, static position or just hidden if total simplifiction is desired. Let's keep it simple: no floating image) */}
           </div>
         ))}
         {/* Bottom Border */}

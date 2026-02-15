@@ -55,57 +55,10 @@ export default function App() {
       <GlobalCursor />
       <Navbar />
 
-      {/* Orange Wipe - Global Overlay Sequence */}
-      {/* Runs independent of page lifecycle to bridge the gap */}
-      <AnimatePresence>
-        <motion.div
-          key={location.pathname + "-wipe"}
-          initial={{ y: "100%" }}
-          animate={{
-            y: ["100%", "0%", "-100%"],
-            transition: {
-              duration: 1.5,
-              times: [0, 0.4, 1], // 40% time to cover, then exit
-              ease: premiumEase,
-            }
-          }}
-          className="fixed inset-0 z-50 bg-[#ff4d29] pointer-events-none"
-        />
-      </AnimatePresence>
-
       <SmoothScroll>
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={location.pathname}
-            className="w-full min-h-screen bg-black"
-            initial={location.pathname === "/" ? { opacity: 0 } : { y: "30%", opacity: 0 }}
-            animate={location.pathname === "/"
-              ? { opacity: 1, transition: { duration: 0.8, delay: 0.5 } }
-              : {
-                y: 0,
-                opacity: 1,
-                transition: {
-                  duration: 0.8,
-                  ease: "easeOut",
-                  delay: 0.2
-                }
-              }
-            }
-            exit={location.pathname === "/"
-              ? { opacity: 0, transition: { duration: 0.5 } }
-              : {
-                y: "-30%",
-                opacity: 0,
-                transition: {
-                  duration: 0.5,
-                  ease: "easeIn"
-                }
-              }
-            }
-          >
-            <Outlet />
-          </motion.div>
-        </AnimatePresence>
+        <div className="w-full min-h-screen bg-black">
+          <Outlet />
+        </div>
       </SmoothScroll>
     </>
   );

@@ -6,8 +6,8 @@ interface SpaceLayoutProps {
 
 export default function SpaceLayout({ children }: SpaceLayoutProps) {
   return (
-    <div className="space-layout">
-      <div className="space-layout-content">{children}</div>
+    <div className="bg-black min-h-screen w-full text-white">
+      {children}
     </div>
   );
 }

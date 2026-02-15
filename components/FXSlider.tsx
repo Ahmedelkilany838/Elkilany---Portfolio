@@ -76,7 +76,7 @@ export default function FXSlider() {
                                     className="flex items-center gap-6 whitespace-nowrap font-['Syne'] font-bold text-sm md:text-lg text-white/80 uppercase tracking-wider"
                                     animate={{ x: "-50%" }}
                                     transition={{ duration: 30, ease: "linear", repeat: Infinity }}
-                                    style={{ width: "fit-content" }}
+                                    style={{ width: "fit-content", willChange: "transform" }}
                                 >
                                     {/* Duplicated content for seamless loop */}
                                     {[...Array(4)].map((_, i) => (

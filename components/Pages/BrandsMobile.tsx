@@ -153,8 +153,8 @@ const BrandsMobile = () => {
   }, [currentIndex, goToSlide]);
 
   return (
-    <div className="flex flex-col items-center gap-6 w-full">
-      <div className="relative w-[90%] h-60 bg-gray-100 shadow-md rounded-lg flex items-center justify-center">
+    <div className="flex flex-col items-center gap-6 w-full py-12">
+      <div className="relative w-full max-w-[90%] h-40 bg-gray-100/5 border border-white/10 shadow-md rounded-lg flex items-center justify-center backdrop-blur-sm">
         <div className="relative w-full h-full overflow-hidden">
           {logos.map((logo, index) => (
             <div

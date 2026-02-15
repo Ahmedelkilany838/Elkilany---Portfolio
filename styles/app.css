@@ -122,15 +122,14 @@ body,
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  cursor: none;
-  /* Hide native cursor globally */
+  cursor: auto;
+  /* Default cursor */
 }
 
 * {
   box-sizing: border-box;
   -webkit-font-smoothing: inherit;
-  cursor: none;
-  /* Enforce cursor none on all elements */
+  /* Removed cursor: none */
 }
 
 h1,
@@ -153,24 +152,7 @@ button {
   font-size: 12px;
 }
 
-::-webkit-scrollbar {
-  width: 8px;
-  background: #1a1a1a;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #fc452d;
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #fc452d;
-}
-
-* {
-  scrollbar-width: thin;
-  scrollbar-color: #fc452d #1a1a1a;
-}
+/* Removed Custom Scrollbar */
 
 .nav-link {
   position: relative;
@@ -181,134 +163,68 @@ button {
   opacity: 1 !important;
 }
 
-.nav-text-animated {
-  overflow: hidden;
-  height: 22px;
+
+/* --- Elite-Level Responsive Overrides --- */
+
+/* 1. Advanced Fluid Typography - Refined for Mobile "KILANY" fit */
+:root {
+  --fs-hero: clamp(2rem, 8vw, 7.5rem);
+  /* Smaller min size for mobile to prevent overflow */
+  --fs-h1: clamp(2rem, 5vw + 1rem, 6rem);
+  /* Section Titles */
+  --fs-h2: clamp(1.75rem, 4vw + 1rem, 4.5rem);
+  /* Sub-headings */
+  --fs-h3: clamp(1.25rem, 3vw + 0.5rem, 3rem);
+  /* Card Titles */
+  --fs-body: clamp(0.875rem, 1vw + 0.5rem, 1.125rem);
+  /* Body Text */
 }
 
-.nav-text-line {
-  transition: transform 0.35s cubic-bezier(0.25, 0.1, 0.25, 1);
+/* Apply Fluid sizes */
+.text-fluid-hero {
+  font-size: var(--fs-hero);
+  line-height: 0.9;
 }
 
-.nav-text-line-1 {
-  transform: translateY(0%);
-  z-index: 1;
+.text-fluid-h1 {
+  font-size: var(--fs-h1);
+  line-height: 1.1;
 }
 
-.nav-text-line-2 {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  transform: translateY(120%);
-  z-index: 2;
+.text-fluid-h2 {
+  font-size: var(--fs-h2);
+  line-height: 1.1;
 }
 
-.nav-link:hover .nav-text-line-1 {
-  transform: translateY(-100%);
+.text-fluid-h3 {
+  font-size: var(--fs-h3);
+  line-height: 1.2;
 }
 
-.nav-link:hover .nav-text-line-2 {
-  transform: translateY(0%);
+/* 2. Vertical Rhythm & Safe Areas */
+.section-padding {
+  padding-top: clamp(4rem, 10vh, 10rem);
+  padding-bottom: clamp(4rem, 10vh, 10rem);
 }
 
-.space-layout {
-  position: relative;
+/* Global DVH Fix */
+.min-h-screen {
   min-height: 100vh;
-  width: 100%;
-  overflow: hidden;
-  background-color: #050505;
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    radial-gradient(circle at 50% 0%, rgba(50, 50, 50, 0.1) 0%, transparent 60%);
-  background-size: 50px 50px, 50px 50px, 100% 100%;
-  color: var(--token-fe9d93ed-b3f8-4dd5-a542-7dee2ff95478);
+  min-height: 100dvh;
 }
 
-.space-layout-content {
+.h-screen {
+  height: 100vh;
+  height: 100dvh;
+}
+
+
+/* 4. Utilities */
+/* Zero Horizontal Scroll Fix */
+body {
+  overflow-x: hidden;
+  width: 100%;
   position: relative;
-  z-index: 2;
-}
-
-/* ... scrollbar ... */
-
-.space-layout-cursor-dot {
-  position: fixed;
-  /* Fixed to viewport prevents scroll drift */
-  width: 20px;
-  /* Slightly larger for visibility */
-  height: 20px;
-  border-radius: 9999px;
-  background: #ffffff;
-  /* White cursor */
-  transform: translate3d(-100px, -100px, 0);
-  opacity: 0;
-  pointer-events: none;
-  z-index: 9999;
-  /* Topmost */
-  transition: opacity 160ms ease-out;
-  /* No transform lag */
-  mix-blend-mode: difference;
-  /* Invert colors over content */
-}
-
-.space-layout-cursor-dot--visible {
-  opacity: 1;
-}
-
-@keyframes space-layout-waves-move {
-  0% {
-    transform: translate3d(-4%, -3%, 0) scale(1.05);
-  }
-
-  50% {
-    transform: translate3d(3%, 4%, 0) scale(1.08);
-  }
-
-  100% {
-    transform: translate3d(-3%, 2%, 0) scale(1.03);
-  }
-}
-
-/* Cinematic Grain Overlay */
-.noise-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 50;
-  opacity: 0.05;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-}
-
-/* Scroll Indicator Animation */
-.scroll-indicator {
-  animation: scroll-bounce 2s infinite;
-}
-
-@keyframes scroll-bounce {
-
-  0%,
-  20%,
-  50%,
-  80%,
-  100% {
-    transform: translateY(0);
-  }
-
-  40% {
-    transform: translateY(-10px);
-  }
-
-  60% {
-    transform: translateY(-5px);
-  }
-}
-
-/* Hide global cursor when hovering a project card */
-body:has([data-hide-global-cursor="true"]) .space-layout-cursor-dot {
-  opacity: 0 !important;
+  background-color: #050505;
+  /* Seamless background */
 }
