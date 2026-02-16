@@ -1,96 +1,97 @@
-import FluidButton from "../FluidButton";
-import MarqueeTitle from "../Animation/MarqueeTitle";
-import { ArrowUpRight, CheckCircle2, Flag, Lightbulb, PenTool, Search } from "lucide-react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 
 const steps = [
     {
-        id: "01",
-        title: "Understand",
-        category: "Discovery",
-        description: "We start by breaking down the brief, analyzing the market, and defining the core problem to solve.",
-        icon: Search
+        id: "1",
+        title: "Discovery Phase",
+        description: "Understanding your goals, pain points, audience, and what sets you apart.",
     },
     {
-        id: "02",
-        title: "Think",
-        category: "Strategy",
-        description: "Translating insights into a solid creative strategy. We define the 'What', 'Why', and 'How'.",
-        icon: Lightbulb
+        id: "2",
+        title: "Project Kickoff",
+        description: "Setting up projects, aligning on scope and milestones, and diving into the work.",
     },
     {
-        id: "03",
-        title: "Design",
-        category: "Creation",
-        description: "Building the visual language. From logos to systems, we craft every pixel with intent.",
-        icon: PenTool
+        id: "3",
+        title: "Design Concept",
+        description: "Exploring visual directions and creating initial design systems.",
     },
     {
-        id: "04",
-        title: "Develop",
-        category: "Execution",
-        description: "Rolling out the brand across all touchpoints—print, digital, social, and web.",
-        icon: CheckCircle2
+        id: "4",
+        title: "Development",
+        description: "Building robust, scalable code structures that bring the design to life.",
     },
     {
-        id: "05",
-        title: "Deliver",
-        category: "Handover",
-        description: "Finalizing files, creating guidelines, and ensuring you have everything to launch.",
-        icon: Flag
+        id: "5",
+        title: "Final Delivery",
+        description: "Testing, refining, and launching the final product to the world.",
     },
 ];
 
 export default function Process() {
+    const targetRef = useRef<HTMLDivElement>(null);
+    const { scrollYProgress } = useScroll({
+        target: targetRef,
+    });
+
+    const x = useTransform(scrollYProgress, [0, 1], ["0%", "-75%"]);
+
     return (
-        <section className="relative w-full bg-[#050505] py-32 px-6 md:px-12 border-t border-white/5 overflow-hidden">
+        <section ref={targetRef} className="relative h-[300vh] bg-[#050505] text-white mt-24 md:mt-32">
 
-            <div className="max-w-[90rem] mx-auto">
-                <MarqueeTitle text="MY PROCESS" number="05" className="mb-24" />
+            {/* Sticky Container */}
+            <div className="sticky top-0 h-screen overflow-hidden flex items-center">
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+                {/* Everything scrolls together */}
+                <motion.div style={{ x }} className="flex w-max items-start px-6 md:px-12" style={{ x, height: '75vh' }}>
+
+                    {/* FIRST PANEL: Title — top-aligned with cards */}
+                    <div className="w-[90vw] md:w-[40vw] h-full flex flex-col justify-between flex-shrink-0 pr-8 md:pr-16 relative">
+
+                        {/* Top: Label */}
+                        <div className="flex justify-end pt-2">
+                            <span className="text-white/40 text-[10px] md:text-xs font-mono uppercase tracking-[0.2em]">
+                                (PROCESS)
+                            </span>
+                        </div>
+
+                        {/* Bottom: Big title */}
+                        <div className="pb-4">
+                            <h2 className="text-[18vw] md:text-[10vw] font-black leading-[0.85] tracking-tighter uppercase text-[#e6e6e6]">
+                                <span className="block">HOW I</span>
+                                <span className="block">WORK</span>
+                            </h2>
+                        </div>
+                    </div>
+
+                    {/* CARDS */}
                     {steps.map((step, index) => (
-                        <div key={index} className="group relative bg-[#0a0a0a] border border-white/10 p-8 h-[500px] flex flex-col justify-between overflow-hidden hover:border-[#ff4d29] transition-all duration-500 hover:bg-[#0f0f0f]">
-
-                            {/* Hover Glow */}
-                            <div className="absolute inset-0 bg-gradient-to-b from-[#ff4d29]/0 via-[#ff4d29]/0 to-[#ff4d29]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-                            {/* Top */}
-                            <div className="relative z-10">
-                                <span className="block text-4xl font-black text-white/10 mb-6 group-hover:text-[#ff4d29] transition-colors duration-500">
-                                    {step.id}
-                                </span>
-                                <div className="text-white/40 mb-4 group-hover:text-white transition-colors duration-300">
-                                    <step.icon size={32} strokeWidth={1.5} />
-                                </div>
-                                <span className="inline-block py-1 px-3 rounded-full border border-white/10 text-[10px] font-mono uppercase tracking-widest text-white/60 bg-white/5">
-                                    {step.category}
-                                </span>
+                        <div
+                            key={index}
+                            className="w-[75vw] md:w-[26vw] h-full bg-[#0a0a0a] border border-white/10 rounded-xl flex flex-col justify-between p-6 md:p-10 transition-all duration-500 hover:bg-[#111111] hover:border-white/20 flex-shrink-0 relative group mx-1.5 md:mx-2.5"
+                        >
+                            {/* Top: Step Number */}
+                            <div>
+                                <h3 className="text-xl md:text-2xl font-bold text-white/50 font-mono tracking-[0.1em] uppercase">
+                                    STEP {step.id}<span className="text-[#ff4d29] font-bold">.</span>
+                                </h3>
                             </div>
 
-                            {/* Bottom */}
-                            <div className="relative z-10">
-                                <h3 className="text-2xl font-bold text-white mb-4 group-hover:translate-x-1 transition-transform duration-300">
+                            {/* Bottom: Title + Description */}
+                            <div>
+                                <h4 className="text-3xl md:text-[2.8rem] font-black mb-5 md:mb-6 tracking-tight leading-[1.05] text-white">
                                     {step.title}
-                                </h3>
-                                <p className="text-white/50 text-sm leading-relaxed group-hover:text-white/80 transition-colors duration-300">
+                                </h4>
+                                <p className="text-white/50 text-sm md:text-base leading-relaxed max-w-sm group-hover:text-white/70 transition-colors duration-300">
                                     {step.description}
                                 </p>
                             </div>
-
-                            {/* Corner Icon */}
-                            <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 -translate-x-2 translate-y-2 group-hover:translate-x-0 group-hover:translate-y-0 transition-all duration-300 text-[#ff4d29]">
-                                <ArrowUpRight size={20} />
-                            </div>
-
                         </div>
                     ))}
-                </div>
 
-                <div className="flex justify-center mt-24">
-                    <FluidButton to="/services" className="border-white/20 text-white hover:border-[#ff4d29] px-12 h-16 text-sm tracking-widest uppercase">
-                        View Detailed Services
-                    </FluidButton>
-                </div>
+                </motion.div>
+
             </div>
         </section>
     );
