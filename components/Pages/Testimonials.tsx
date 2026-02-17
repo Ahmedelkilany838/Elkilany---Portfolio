@@ -1,65 +1,100 @@
-import MarqueeTitle from "components/Animation/MarqueeTitle";
-import { Star } from "lucide-react";
+import { motion, useMotionValue, animate } from "framer-motion";
+import { useEffect, useState } from "react";
+
+import { Quote } from "lucide-react";
 
 const reviews = [
     {
         name: "Sarah Jenkins",
-        role: "CMO, TechFlow",
-        text: "Ahmed transformed our brand identity completely. The visual system he created wasn't just beautiful—it was strategic. Our conversion rates increased by 40% within the first month of the rebrand.",
-        highlight: "40% Increase in Conversions"
+        role: "CMO, MG Motors MENA",
+        text: "Ahmed transformed our regional identity completely. The visual system he created wasn't just beautiful—it was strategic. Our engagement rates soared by 40% within the first month.",
     },
     {
         name: "David Chen",
-        role: "Founder, Zenith",
+        role: "Head of Digital, Chevrolet",
         text: "I've worked with many designers, but Elkilany is in a league of his own. His understanding of motion and typography created a digital experience that feels alive. Absolute mastery.",
-        highlight: "World-Class Execution"
     },
     {
         name: "Marcus Thorne",
-        role: "Director, Apex Media",
-        text: "We needed a high-end, cinematic web presence. Ahmed delivered exactly that. The site is fast, fluid, and visually stunning. He's not just a designer; he's a visual engineer.",
-        highlight: "Cinematic & High-End"
+        role: "Creative Director, Apex Media",
+        text: "We needed a high-end, cinematic web presence for the BMW launch. Ahmed delivered exactly that. The site is fast, fluid, and visually stunning. He's a visual engineer.",
+    },
+    {
+        name: "Elena Rodriguez",
+        role: "Brand Manager, Range Rover",
+        text: "A rare talent who understands luxury. The digital campaign he crafted perfectly balanced our heritage with modern innovation. The results spoke for themselves.",
     }
 ];
 
 export default function Testimonials() {
+    const [activeIndex, setActiveIndex] = useState(0);
+
     return (
-        <section className="relative w-full bg-black py-32 px-6 md:px-12 border-t border-white/10">
+        <section className="relative w-full bg-[#050505] py-[140px] px-[8%] overflow-hidden border-b border-white/5">
 
-            <MarqueeTitle text="CLIENT WORDS" number="06" className="mb-24" />
-
-            <div className="max-w-[90rem] mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
-                {reviews.map((review, index) => (
-                    <div key={index} className="flex flex-col justify-between border-l border-white/20 pl-8 py-4 hover:border-[#ff4d29] transition-colors duration-500 group">
-
-                        <div className="mb-8">
-                            <div className="flex gap-1 mb-6 text-[#ff4d29]">
-                                {[...Array(5)].map((_, i) => (
-                                    <Star key={i} size={16} fill="currentColor" strokeWidth={0} />
-                                ))}
-                            </div>
-                            <h4 className="text-white font-bold text-xl md:text-2xl mb-2 tracking-tight">
-                                "{review.highlight}"
-                            </h4>
-                            <p className="text-white/60 text-lg leading-relaxed font-light">
-                                {review.text}
-                            </p>
-                        </div>
-
-                        <div>
-                            <div className="w-12 h-[1px] bg-white/20 mb-6 group-hover:bg-[#ff4d29] transition-colors" />
-                            <h5 className="text-white font-bold uppercase tracking-wider text-sm">
-                                {review.name}
-                            </h5>
-                            <span className="text-white/40 text-xs font-mono uppercase tracking-widest">
-                                {review.role}
-                            </span>
-                        </div>
-
-                    </div>
-                ))}
+            {/* Header DNA */}
+            <div className="w-full mb-[64px] border-b border-white/5 pb-8 flex items-end justify-between">
+                <h2 className="font-['Syne'] font-extrabold text-[8vw] md:text-[5rem] leading-[1.1] tracking-[-0.01em] uppercase text-white">
+                    CLIENT VOICES<span className="text-[#ff4d29]">.</span>
+                </h2>
+                <span className="text-white/50 font-['Syne'] text-xl tracking-normal hidden md:block">(05)</span>
             </div>
 
+            <div className="max-w-[100rem] mx-auto">
+
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+
+                    {/* Left Controls/List */}
+                    <div className="lg:col-span-4 flex flex-col gap-4">
+                        {reviews.map((review, index) => (
+                            <button
+                                key={index}
+                                onClick={() => setActiveIndex(index)}
+                                className={`text-left py-6 border-b transition-all duration-300 group ${activeIndex === index
+                                    ? 'border-[#ff4d29] opacity-100 pl-4'
+                                    : 'border-white/10 opacity-40 hover:opacity-70 hover:pl-2'
+                                    }`}
+                            >
+                                <span className={`block text-xs font-mono uppercase tracking-[0.2em] mb-2 ${activeIndex === index ? 'text-[#ff4d29]' : 'text-white/50'}`}>
+                                    0{index + 1}
+                                </span>
+                                <h4 className="font-['Syne'] font-extrabold text-xl md:text-2xl text-white uppercase tracking-[-0.05em]">
+                                    {review.name}
+                                </h4>
+                                <span className="text-sm text-white/50 font-light">
+                                    {review.role}
+                                </span>
+                            </button>
+                        ))}
+                    </div>
+
+                    {/* Right Content Display */}
+                    <div className="lg:col-span-8 relative min-h-[400px] flex flex-col justify-center">
+                        <Quote className="text-[#ff4d29]/20 w-32 h-32 absolute -top-10 -left-10" />
+
+                        <motion.div
+                            key={activeIndex}
+                            initial={{ opacity: 0, x: 20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            exit={{ opacity: 0, x: -20 }}
+                            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                            className="relative z-10"
+                        >
+                            <p className="text-3xl md:text-5xl lg:text-[3.5rem] font-light text-white leading-[1.2] tracking-tight">
+                                "{reviews[activeIndex].text}"
+                            </p>
+
+                            <div className="mt-12 flex items-center gap-4">
+                                <div className="w-12 h-[2px] bg-[#ff4d29]" />
+                                <span className="text-white/80 font-mono text-sm uppercase tracking-widest">
+                                    {reviews[activeIndex].role}
+                                </span>
+                            </div>
+                        </motion.div>
+                    </div>
+
+                </div>
+            </div>
         </section>
     );
 }

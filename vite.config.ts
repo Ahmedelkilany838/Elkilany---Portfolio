@@ -1,3 +1,4 @@
+// Force Restart: Design System 2.1
 import { reactRouter } from "@react-router/dev/vite";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "vite";

@@ -1,3 +1,4 @@
+/* Refresh System 2.1 */
 @import "tailwindcss";
 @import "./framer.css";
 @import "./fonts.css";
@@ -5,8 +6,7 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --font-outfit: "Outfit", sans-serif;
-  --font-oswald: "Oswald", sans-serif;
+  --font-syne: "Syne", sans-serif;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -148,8 +148,13 @@ input,
 textarea,
 select,
 button {
-  font-family: "Inter", "Inter Placeholder", sans-serif;
+  font-family: "Syne", sans-serif;
   font-size: 12px;
+  font-weight: 500;
+  letter-spacing: normal;
+  font-stretch: normal;
+  transform: none;
+  /* Disable global text stretching */
 }
 
 /* Removed Custom Scrollbar */

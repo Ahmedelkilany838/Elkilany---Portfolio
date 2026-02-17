@@ -9,7 +9,7 @@ const brands = [
 
 export default function BrandsMarquee() {
     return (
-        <section className="relative w-full bg-black py-24 px-6 md:px-12 border-y border-white/5">
+        <section className="relative w-full bg-[#050505] py-[140px] px-[8%] border-b border-white/5">
             <div className="max-w-7xl mx-auto">
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-12 items-center justify-items-center">
                     {brands.map((logo, index) => (

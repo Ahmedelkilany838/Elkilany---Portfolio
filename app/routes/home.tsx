@@ -1,50 +1,59 @@
 import type { Route } from "./+types/home";
 import Hero from "components/Pages/Hero";
-import About from "components/Pages/About";
-import Works from "components/Pages/Works";
-import SpaceLayout from "components/Animation/SpaceLayout";
 import BrandsMarquee from "components/BrandsMarquee";
+import Works from "components/Pages/Works";
+import About from "components/Pages/About";
 import Services from "components/Pages/Services";
 import Experience from "components/Pages/Experience";
 import Process from "components/Pages/Process";
-import Testimonials from "components/Pages/Testimonials";
+import Testimonials from "components/Pages/Testimonials"; // Client Voices
+import FAQ from "components/Pages/FAQ"; // Strategic FAQ
+import FinalCTA from "components/Pages/FinalCTA"; // The Closer
 import Contact from "components/Pages/Contact";
 
 export function meta({ }: Route.MetaArgs) {
-  return [{ title: "Elkilany" }, { name: "description", content: "Elkilany" }];
+  return [{ title: "Elkilany | Senior Brand & Advertising Specialist" }, { name: "description", content: "Building visual legacies for visionary brands." }];
 }
 
 export default function Home() {
   return (
-    <SpaceLayout>
-      <div className="relative">
+    <div className="relative bg-[#050505] min-h-screen">
+
+      {/* 1. Hero Section: Visualizing Intent */}
+      <div className="relative z-10">
         <Hero />
       </div>
 
-      {/* Brands Marquee - Client Logos */}
+      {/* 2. Social Proof: Immediate Credibility */}
       <BrandsMarquee />
 
-      {/* About Section - Seamless Transition */}
+      {/* 3. Selected Works: Top Case Studies */}
+      <Works key="works-grid" />
+
+      {/* 4. The Philosophy: Why we do this */}
       <About />
 
-      {/* Works Section - Selected Projects */}
-      <Works key="final-works-redraw" />
-
-      {/* Services Section - Capabilities */}
+      {/* 5. Services: Dynamic Accordion */}
       <Services />
 
-      {/* Experience Section - Stats & Impact */}
+      {/* 6. The Proof: Stats & Impact */}
       <Experience />
 
-      {/* Process Section - Methodology */}
+      {/* 7. The Workflow: 5-step strategic map */}
       <Process />
 
-      {/* Testimonials - Social Proof */}
+      {/* 8. Client Voices: Minimalist Slider */}
       <Testimonials />
 
-      {/* Contact - CTA & Footer */}
+      {/* 9. Strategic FAQ: Common Objections */}
+      <FAQ />
+
+      {/* 10. Final CTA: The Closer */}
+      <FinalCTA />
+
+      {/* Footer / Contact */}
       <Contact />
 
-    </SpaceLayout>
+    </div>
   );
 }

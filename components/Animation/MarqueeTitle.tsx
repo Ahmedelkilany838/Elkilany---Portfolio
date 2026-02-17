@@ -11,7 +11,7 @@ export default function MarqueeTitle({
 }: MarqueeTitleProps) {
     return (
         <div className={`w-full overflow-hidden flex mb-12 relative ${className}`}>
-            <h2 className="text-[12vw] font-black tracking-tighter text-white leading-none uppercase flex items-start gap-4">
+            <h2 className="font-['Syne'] font-extrabold text-[12vw] tracking-[-0.05em] text-white leading-none uppercase flex items-start gap-4">
                 {text}
                 {number && (
                     <span className="align-top text-[4vw] font-light opacity-50 font-mono tracking-normal">
