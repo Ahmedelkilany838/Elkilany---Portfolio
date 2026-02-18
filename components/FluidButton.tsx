@@ -19,8 +19,8 @@ export default function FluidButton({
 }: FluidButtonProps) {
 
     // 1. Unified Geometry & Shape
-    // rounded-[4px], px-10 (40px), py-[18px] (18px)
-    const geometry = "rounded-[4px] px-10 py-[18px] flex items-center justify-center whitespace-nowrap w-fit";
+    // rounded-full, px-10 (40px), py-[18px] (18px)
+    const geometry = "rounded-full px-10 py-[18px] flex items-center justify-center whitespace-nowrap w-fit";
 
     // 2. Interaction & Animation
     // transition-all duration-300 ease-out group relative overflow-hidden cursor-pointer
@@ -28,25 +28,22 @@ export default function FluidButton({
 
     // 3. Variant Styling
     // Default (Outline): Border 1px solid white/20. Hover: bg-[#ff4d29] border-[#ff4d29].
-    // Primary (Filled): bg-[#ff4d29] border-[#ff4d29]. Hover: brightness/shift? Or strictly solid orange.
-    // User: "Main CTA... should be pre-filled... All other... outlined."
-    // User: "Hover State: Background shifts to a solid #ff4d29". (Applied to Outline).
-    // Primary Hover: Keep consistent. Maybe lighten slightly to show interaction?
-    const outlineStyles = "bg-transparent border border-white/20 hover:border-[#ff4d29] text-white";
+    const outlineStyles = "bg-transparent border border-white/20 hover:bg-[#ff4d29] hover:border-[#ff4d29] text-white";
     // Slide effect for Outline
-    const slideEffect = "before:absolute before:inset-0 before:bg-[#ff4d29] before:translate-y-full hover:before:translate-y-0 before:transition-transform before:duration-300 before:ease-[cubic-bezier(0.4,0,0.2,1)]";
+    const slideEffect = ""; // Removed complex slide effect for cleaner interaction, or keep if preferred. User asked for "Unified Design System... premium". Simple fade is often more premium. I'll stick to simple hover for now as per "Visual Highlights".
 
-    const primaryStyles = "bg-[#ff4d29] border border-[#ff4d29] text-white hover:bg-[#ff3300] hover:border-[#ff3300]"; // Simple hover for primary
+    // Primary: White background, Black text -> Hover: Orange background, White text.
+    const primaryStyles = "bg-white text-black border border-white hover:bg-[#ff4d29] hover:text-white hover:border-[#ff4d29]";
 
     const variantClasses = variant === 'primary'
         ? primaryStyles
-        : `${outlineStyles} ${slideEffect}`;
+        : outlineStyles;
 
     const baseClasses = `${geometry} ${behavior} ${variantClasses} ${className}`;
 
     // 4. Typography
-    // Syne Bold, Uppercase, 14px (text-sm), tracking 0.05em
-    const textClasses = "relative z-10 font-['Syne'] font-bold uppercase tracking-[0.05em] text-sm text-white group-hover:text-white transition-colors duration-300";
+    // Removed Syne. Using global Plus Jakarta Sans.
+    const textClasses = "relative z-10 font-bold uppercase tracking-[0.05em] text-sm transition-colors duration-300";
 
     const content = <span className={textClasses}>{children}</span>;
 

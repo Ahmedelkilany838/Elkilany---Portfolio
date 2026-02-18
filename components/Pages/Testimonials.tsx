@@ -34,10 +34,10 @@ export default function Testimonials() {
 
             {/* Header DNA */}
             <div className="w-full mb-[64px] border-b border-white/5 pb-8 flex items-end justify-between">
-                <h2 className="font-['Syne'] font-extrabold text-[8vw] md:text-[5rem] leading-[1.1] tracking-[-0.01em] uppercase text-white">
+                <h2 className="font-extrabold text-[6.8vw] md:text-[4.25rem] leading-[1.1] tracking-[-0.02em] uppercase text-white">
                     CLIENT VOICES<span className="text-[#ff4d29]">.</span>
                 </h2>
-                <span className="text-white/50 font-['Syne'] text-xl tracking-normal hidden md:block">(05)</span>
+                <span className="text-white/50 text-xl tracking-normal hidden md:block">(05)</span>
             </div>
 
             <div className="max-w-[100rem] mx-auto">
@@ -51,14 +51,14 @@ export default function Testimonials() {
                                 key={index}
                                 onClick={() => setActiveIndex(index)}
                                 className={`text-left py-6 border-b transition-all duration-300 group ${activeIndex === index
-                                    ? 'border-[#ff4d29] opacity-100 pl-4'
+                                    ? 'border-white opacity-100 pl-4'
                                     : 'border-white/10 opacity-40 hover:opacity-70 hover:pl-2'
                                     }`}
                             >
-                                <span className={`block text-xs font-mono uppercase tracking-[0.2em] mb-2 ${activeIndex === index ? 'text-[#ff4d29]' : 'text-white/50'}`}>
+                                <span className={`block text-xs font-mono uppercase tracking-[0.2em] mb-2 ${activeIndex === index ? 'text-white' : 'text-white/50'}`}>
                                     0{index + 1}
                                 </span>
-                                <h4 className="font-['Syne'] font-extrabold text-xl md:text-2xl text-white uppercase tracking-[-0.05em]">
+                                <h4 className="font-extrabold text-xl md:text-2xl text-white uppercase tracking-[-0.05em]">
                                     {review.name}
                                 </h4>
                                 <span className="text-sm text-white/50 font-light">
@@ -70,7 +70,7 @@ export default function Testimonials() {
 
                     {/* Right Content Display */}
                     <div className="lg:col-span-8 relative min-h-[400px] flex flex-col justify-center">
-                        <Quote className="text-[#ff4d29]/20 w-32 h-32 absolute -top-10 -left-10" />
+                        <Quote className="text-white/10 w-32 h-32 absolute -top-10 -left-10" />
 
                         <motion.div
                             key={activeIndex}
@@ -85,7 +85,7 @@ export default function Testimonials() {
                             </p>
 
                             <div className="mt-12 flex items-center gap-4">
-                                <div className="w-12 h-[2px] bg-[#ff4d29]" />
+                                <div className="w-12 h-[2px] bg-white" />
                                 <span className="text-white/80 font-mono text-sm uppercase tracking-widest">
                                     {reviews[activeIndex].role}
                                 </span>

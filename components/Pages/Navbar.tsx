@@ -40,9 +40,9 @@ const Navbar = () => {
       <nav className="flex items-center justify-between px-10 py-5 relative z-20">
         {/* Logo */}
         <Link to="/">
-          <h1 className="text-white text-[clamp(1.75rem,_5vw,_3.5rem)] font-extrabold tracking-tight">
+          <h1 className="text-white text-[clamp(2.5rem,8vw,8rem)] font-extrabold tracking-tight leading-none mix-blend-exclusion">
             ELKILANY
-            <span className="text-red-500">*</span>
+            <span className="text-[#ff4d29]">*</span>
           </h1>
         </Link>
 

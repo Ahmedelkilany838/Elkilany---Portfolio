@@ -9,8 +9,7 @@ const stats = [
 export default function Experience() {
     return (
         <section className="relative w-full bg-[#050505] border-b border-white/5">
-            <div className="relative w-full py-[140px] flex flex-col justify-end overflow-hidden">
-
+            <div className="relative w-full py-[80px] md:py-[140px] flex flex-col justify-end overflow-hidden">
                 {/* Background Image */}
                 <div className="absolute inset-0 w-full h-full z-0 pointer-events-none">
                     <img
@@ -30,20 +29,19 @@ export default function Experience() {
                 <div className="relative z-20 w-full max-w-[100rem] mx-auto px-[8%] pb-10 md:pb-16 pt-24 flex flex-col justify-end h-full">
 
                     {/* Top Section: Heading & Description - Compact Spacing */}
-                    <div className="flex flex-col xl:flex-row justify-between items-end mb-20 lg:mb-24 gap-12 xl:gap-0">
+                    <div className="flex flex-col xl:flex-row justify-between items-end mb-16 gap-10 xl:gap-0">
 
                         {/* Huge Heading - Modern Sans Serif */}
-                        <div className="flex flex-col leading-[1.1] select-none mix-blend-screen font-['Syne']">
-                            <h2 className="text-[9vw] xl:text-[7.5rem] font-extrabold text-white uppercase tracking-[-0.01em]">
-                                NUMBERS
-                            </h2>
-                            <h2 className="text-[9vw] xl:text-[7.5rem] font-extrabold text-white uppercase tracking-[-0.01em]">
+                        {/* Huge Heading - Modern Sans Serif */}
+                        <div className="flex flex-col leading-[0.9] select-none mix-blend-screen">
+                            <h2 className="font-['Syne'] text-[9.5vw] xl:text-[8rem] font-extrabold text-white uppercase tracking-[-0.04em]">
+                                NUMBERS<br />
                                 DON'T LIE<span className="text-[#ff4d29]">.</span>
                             </h2>
                         </div>
 
                         {/* Description Text - Elegantly placed */}
-                        <div className="xl:max-w-md w-full text-white/80 text-lg md:text-xl font-light leading-relaxed border-l-2 border-[#ff4d29] pl-6 mb-2">
+                        <div className="xl:max-w-md w-full text-white/80 text-lg md:text-xl font-medium leading-relaxed border-l-2 border-white/20 pl-6 mb-2">
                             With years of expertise, specialized in crafting
                             bold brands and high-impact digital
                             experiences that get results.
@@ -75,11 +73,11 @@ export default function Experience() {
                                 className={`flex flex-col gap-1 px-6 ${index !== 0 ? 'md:border-l border-white/10' : ''
                                     }`}
                             >
-                                <div className="flex items-start">
-                                    <span className="text-7xl lg:text-9xl font-black text-white tracking-tighter leading-[0.8]">
+                                <div className="flex items-baseline gap-1">
+                                    <span className="text-6xl lg:text-8xl font-black text-white tracking-tighter leading-[0.8]">
                                         {item.value}
                                     </span>
-                                    <span className="text-[#ff4d29] ml-2 text-4xl lg:text-5xl font-bold mt-1">
+                                    <span className="text-[#ff4d29] text-3xl lg:text-4xl font-bold">
                                         {item.suffix}
                                     </span>
                                 </div>

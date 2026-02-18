@@ -47,12 +47,12 @@ export default function FXSlider() {
                 {/* Positioned to be visible but not interfere with the bottom heavy title */}
                 <div className="w-full flex justify-end mt-24 md:mt-40">
                     <div className="flex flex-col items-end text-right z-20 max-w-xl">
-                        <h2 className="font-['Inter_Display'] font-bold text-3xl md:text-5xl leading-[1.1] text-white">
+                        <h2 className="font-extrabold text-2xl md:text-4xl leading-[1.1] text-white">
                             CRAFTING DIGITAL <br />
-                            <span className="text-[#ff4d29]">EXPERIENCES</span> THAT <br />
+                            <span className="text-white">EXPERIENCES</span> THAT <br />
                             DEFY EXPECTATIONS.
                         </h2>
-                        <p className="font-['Inter'] text-white/60 text-sm md:text-lg mt-6 max-w-md leading-relaxed">
+                        <p className="text-white/60 text-sm md:text-lg mt-6 max-w-md leading-relaxed">
                             I specialize in building immersive visual identities and digital ecosystems that leave a lasting impact.
                         </p>
                     </div>
@@ -73,7 +73,7 @@ export default function FXSlider() {
                                 className="w-full flex"
                             >
                                 <motion.div
-                                    className="flex items-center gap-6 whitespace-nowrap font-['Syne'] font-bold text-sm md:text-lg text-white/80 uppercase tracking-wider"
+                                    className="flex items-center gap-6 whitespace-nowrap font-bold text-sm md:text-lg text-white/80 uppercase tracking-wider"
                                     animate={{ x: "-50%" }}
                                     transition={{ duration: 30, ease: "linear", repeat: Infinity }}
                                     style={{ width: "fit-content", willChange: "transform" }}
@@ -82,7 +82,7 @@ export default function FXSlider() {
                                     {[...Array(4)].map((_, i) => (
                                         <div key={i} className="flex items-center gap-6">
                                             {specialties.map((text, index) => (
-                                                <span key={index} className={text === "•" ? "text-[#ff4d29]" : ""}>{text}</span>
+                                                <span key={index} className={text === "•" ? "text-white/40" : ""}>{text}</span>
                                             ))}
                                         </div>
                                     ))}
@@ -96,7 +96,7 @@ export default function FXSlider() {
                         initial={{ opacity: 0, y: 40 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 1.2, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                        className="font-['Inter_Display'] font-black text-[15vw] leading-[0.8] tracking-tighter uppercase text-white mix-blend-overlay opacity-90 -ml-2"
+                        className="font-black text-[12.75vw] leading-[0.8] tracking-tighter uppercase text-white mix-blend-overlay opacity-90 -ml-2"
                     >
                         ELKILANY<span className="text-2xl md:text-5xl align-top opacity-50 font-normal">®</span>
                     </motion.h1>

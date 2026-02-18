@@ -31,38 +31,50 @@ export default function Navbar() {
 
     return (
         <>
-            {/* Fixed Navbar */}
-            <nav className={`fixed top-0 left-0 w-full px-4 md:px-8 py-6 z-[1000] flex items-center justify-between transition-all duration-300 ${isScrolled ? 'py-4 bg-black/80 backdrop-blur-md border-b border-white/5' : 'bg-transparent'}`}>
+            {/* --- Backdrop Layer (Fixed & animated) --- */}
+            <div
+                className={`fixed top-0 left-0 w-full z-[1000] transition-all duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] ${isScrolled ? 'h-[80px] bg-black/90 backdrop-blur-sm shadow-2xl' : 'h-0 bg-transparent'
+                    }`}
+            />
 
-                {/* Logo */}
-                <div className="z-[1002]">
-                    <Link to="/" onClick={() => setMenuOpen(false)}>
-                        <h1 className="font-extrabold font-['Syne'] tracking-tighter uppercase text-white whitespace-nowrap leading-none text-3xl md:text-4xl">
-                            KILANY
-                        </h1>
+            {/* --- Decoupled Logo Layer (Independent Movement) --- */}
+            <div className={`fixed z-[1002] left-4 md:left-8 transition-all duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] ${isScrolled ? 'top-6' : 'top-4 md:top-6'
+                }`}>
+                <Link to="/" onClick={() => setMenuOpen(false)}>
+                    <h1 className={`font-extrabold tracking-tighter uppercase text-white whitespace-nowrap leading-none transition-all duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] ${isScrolled ? 'text-3xl md:text-4xl' : 'text-[clamp(3.5rem,10vw,9rem)]'
+                        }`}>
+                        KILANY
+                    </h1>
+                </Link>
+            </div>
+
+            {/* --- Decoupled Right Actions Layer (Static Position) --- */}
+            <div className="fixed top-6 right-4 md:right-8 z-[1002] flex items-center gap-3">
+                {/* Let's Talk - Pill Shape */}
+                <div className="hidden md:block origin-right">
+                    <Link
+                        to="/contact"
+                        className="flex items-center justify-center rounded-full border border-white/20 px-7 py-3 text-xs md:text-sm font-bold uppercase tracking-widest text-white transition-all duration-300 hover:bg-white/10 hover:border-white/40 hover:shadow-[0_0_15px_rgba(255,255,255,0.1)] bg-black/20 backdrop-blur-sm"
+                    >
+                        Let's Talk
                     </Link>
                 </div>
 
-                {/* Right Actions */}
-                <div className="flex items-center gap-4 z-[1002]">
-                    {/* Let's Talk Button - Standardized */}
-                    <div className="hidden md:block origin-right">
-                        <FluidButton to="/contact" variant="outline">
-                            Let's Talk
-                        </FluidButton>
-                    </div>
+                {/* Menu Toggle - Perfect Circle */}
+                <button
+                    onClick={() => setMenuOpen(!menuOpen)}
+                    className="group relative w-[46px] h-[46px] flex items-center justify-center rounded-full border border-white/20 text-white transition-all duration-300 hover:bg-white/10 hover:border-white/40 hover:shadow-[0_0_15px_rgba(255,255,255,0.1)] bg-black/20 backdrop-blur-sm"
+                >
+                    {menuOpen ? <X className="w-5 h-5" /> : (
+                        <div className="flex flex-col gap-[5px]">
+                            <span className="w-5 h-[2px] bg-white rounded-full group-hover:w-4 transition-all duration-300 origin-right"></span>
+                            <span className="w-5 h-[2px] bg-white rounded-full group-hover:w-6 transition-all duration-300 origin-right"></span>
+                        </div>
+                    )}
+                </button>
+            </div>
 
-                    {/* Menu Button - Standardized Shape */}
-                    <button
-                        onClick={() => setMenuOpen(!menuOpen)}
-                        className="w-12 h-12 flex items-center justify-center border border-white/20 rounded-[4px] text-white hover:bg-[#ff4d29] hover:border-[#ff4d29] transition-colors duration-300 bg-black/50 backdrop-blur-sm"
-                    >
-                        {menuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-                    </button>
-                </div>
-            </nav>
-
-            {/* Mobile Menu Overlay */}
+            {/* --- Mobile Menu Overlay --- */}
             <div
                 className={`fixed inset-0 bg-black/95 z-[1001] flex flex-col justify-center items-center transition-opacity duration-300 ${menuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}
             >
@@ -72,14 +84,14 @@ export default function Navbar() {
                             key={item.label}
                             to={item.path}
                             onClick={() => setMenuOpen(false)}
-                            className="text-4xl md:text-6xl font-extrabold uppercase text-white hover:text-[#ff4d29] transition-colors duration-300 font-['Syne']"
+                            className="text-4xl md:text-6xl font-extrabold uppercase text-white/60 hover:text-white transition-colors duration-300"
                         >
                             {item.label}
                         </Link>
                     ))}
                 </nav>
 
-                <div className="absolute bottom-10 text-white/30 text-xs uppercase tracking-widest font-['Syne']">
+                <div className="absolute bottom-10 text-white/30 text-xs uppercase tracking-widest">
                     © {new Date().getFullYear()} Ahmed Kilany
                 </div>
             </div>

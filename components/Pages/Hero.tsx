@@ -1,53 +1,63 @@
-import { ArrowUpRight } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useRef } from "react";
 import { Link } from "react-router";
-
 import FluidButton from "../FluidButton";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 export default function Hero() {
+    const containerRef = useRef<HTMLElement>(null);
+    const { scrollY } = useScroll();
+    const y = useTransform(scrollY, [0, 1000], [0, 200]); // Reduced parallax
+    const scale = useTransform(scrollY, [0, 1000], [1.15, 1]); // Zoom out effect
+
     return (
-        <section className="relative w-full h-screen overflow-hidden bg-[#050505] text-[#E0E0E0] font-['Syne'] flex flex-col justify-end pb-[140px] px-[8%] border-b border-white/5">
+        <section ref={containerRef} className="relative w-full h-screen overflow-hidden bg-[#050505] text-white flex flex-col justify-end px-[4%] pb-[40px] md:pb-[60px] border-b border-white/5">
 
-            {/* --- Background Image Layer (Full Screen) --- */}
-            <div className="absolute inset-0 z-0 overflow-hidden">
+            {/* --- Background Layer --- */}
+            <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
                 <div className="relative w-full h-full">
-                    <img
+                    <motion.img
+                        style={{ scale }}
                         src="/images/hero.png"
-                        alt="Ahmed Kilany"
+                        alt="Hero"
                         className="w-full h-full object-cover object-center"
-                        // @ts-ignore
-                        fetchPriority="high"
                     />
-                    {/* Dark Gradients for Text Readability */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/20 to-black/80"></div>
-                    <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/60"></div>
+                    <div className="absolute inset-0 opacity-[0.03] mix-blend-overlay" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }} />
+                    {/* Subtle bottom fade only */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent"></div>
                 </div>
             </div>
 
-            {/* --- Content --- */}
-            <div className="relative z-10 w-full max-w-[90rem] mx-auto flex flex-col md:flex-row items-end justify-between gap-[64px]">
+            {/* --- Bottom Content Grid (Framer Replica) --- */}
+            <div className="relative z-10 w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-end mb-12 md:mb-0">
 
-                {/* Left: Intro Text */}
-                <div className="max-w-2xl">
-                    <p className="text-xl md:text-2xl font-medium leading-relaxed mb-32 font-['Syne'] drop-shadow-lg tracking-normal text-white/80">
-                        I craft visual identities and advertising concepts that bridge the gap between business objectives and human connection — designed with clarity, logic, and intent.
+                {/* --- LEFT COLUMN: Description & Trust --- */}
+                <div className="flex flex-col items-start gap-8 order-2 md:order-1">
+                    {/* Description Text */}
+                    <p className="max-w-md text-lg md:text-xl font-medium leading-[1.4] tracking-tight text-white/90">
+                        We build brands, websites, and digital experiences with <span className="text-white/50">intention, clarity and care.</span>
                     </p>
-                    <FluidButton to="/contact" variant="primary">
-                        Start A Project
-                    </FluidButton>
+
+                    {/* Trust / Logos */}
+                    <div className="flex flex-col gap-4 w-full">
+                        <span className="text-white/40 text-xs font-mono uppercase tracking-[0.2em]">TRUSTED BY:</span>
+                        {/* Simplified Logo Row */}
+                        <div className="flex items-center gap-8 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
+                            <div className="h-6 w-20 bg-white/20 rounded-sm"></div>
+                            <div className="h-6 w-20 bg-white/20 rounded-sm"></div>
+                            <div className="h-6 w-20 bg-white/20 rounded-sm"></div>
+                        </div>
+                    </div>
                 </div>
 
-            </div>
+                {/* --- RIGHT COLUMN: Headline (Lifted Up) --- */}
+                <div className="flex flex-col items-start md:items-end text-left md:text-right gap-8 order-1 md:order-2 h-full justify-end pb-[200px] md:pb-[320px]">
+                    {/* Headline */}
+                    <h1 className="font-extrabold uppercase text-[clamp(2rem,4vw,3.5rem)] leading-[1.1] tracking-tight">
+                        Beyond Visuals.<br />
+                        <span className="text-white/40">Built with<br />Vision.</span>
+                    </h1>
+                </div>
 
-            {/* Title (Aligned Top LEFT now per guidelines) */}
-            <div className="absolute top-[30%] left-[8%] z-10 text-left pointer-events-none">
-                <h1 className="font-['Syne'] font-extrabold uppercase text-white leading-[1.1] tracking-[-0.01em] text-[clamp(2.5rem,7vw,6.5rem)] text-left"
-                    style={{ textShadow: "0 10px 30px rgba(0,0,0,0.5)" }}
-                >
-                    Visualizing<br />
-                    <span className="text-white">Intent</span>
-                    <span className="text-[#ff4d29]">.</span>
-                </h1>
             </div>
 
         </section>

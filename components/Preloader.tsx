@@ -100,7 +100,7 @@ export default function Preloader({ onComplete }: { onComplete?: () => void }) {
                                 className="w-2.5 h-2.5 md:w-3.5 md:h-3.5 bg-[#ff4d29] rounded-full"
                             />
                             <h1
-                                className="text-[#ff4d29] font-medium text-4xl md:text-6xl uppercase tracking-tighter"
+                                className="text-white font-medium text-4xl md:text-6xl uppercase tracking-tighter"
                                 style={words[index] === "مرحباً" ? { fontFamily: "'Reem Kufi', sans-serif", fontWeight: 700 } : {}}
                             >
                                 {words[index]}
@@ -117,13 +117,13 @@ export default function Preloader({ onComplete }: { onComplete?: () => void }) {
             <AnimatePresence>
                 {!isExiting && (
                     <motion.div
-                        className="absolute bottom-0 left-0 w-full h-1 z-50 bg-[#ff4d29]/10"
+                        className="absolute bottom-0 left-0 w-full h-1 z-50 bg-white/10"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                     >
                         <motion.div
-                            className="h-full bg-[#ff4d29]"
+                            className="h-full bg-white"
                             initial={{ width: "0%" }}
                             animate={{ width: `${((index + 1) / words.length) * 100}%` }}
                             transition={{ duration: 0.2, ease: "linear" }}

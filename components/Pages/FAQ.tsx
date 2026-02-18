@@ -26,23 +26,23 @@ export default function FAQ() {
     const [openIndex, setOpenIndex] = useState<number | null>(0);
 
     return (
-        <section className="relative w-full bg-[#050505] py-[140px] px-[8%] border-b border-white/5">
+        <section className="relative w-full bg-[#050505] py-[80px] md:py-[140px] px-[8%] border-b border-white/5">
             <div className="max-w-[100rem] mx-auto">
 
                 {/* Header DNA */}
                 <div className="w-full mb-[64px] border-b border-white/5 pb-8 flex items-end justify-between">
-                    <h2 className="font-['Syne'] font-extrabold text-[8vw] md:text-[5rem] leading-[1.1] tracking-[-0.01em] uppercase text-white">
+                    <h2 className="font-['Syne'] font-extrabold text-[8.5vw] md:text-[5.3rem] leading-[0.9] tracking-[-0.04em] uppercase text-white">
                         FAQ<span className="text-[#ff4d29]">.</span>
                     </h2>
-                    <span className="text-white/50 font-['Syne'] text-xl tracking-normal hidden md:block">(08)</span>
+                    <span className="text-white/50 text-xl tracking-normal hidden md:block">(08)</span>
                 </div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
                     {/* Left: Title/Context */}
                     <div className="lg:col-span-4">
-                        <h3 className="font-['Syne'] font-extrabold text-3xl md:text-5xl text-white uppercase leading-tight mb-[64px] tracking-[-0.04em]">
+                        <h3 className="font-extrabold text-2xl md:text-4xl text-white uppercase leading-tight mb-[64px] tracking-[-0.02em]">
                             COMMON <br />
-                            <span className="text-[#ff4d29]">QUESTIONS<span className="text-[#ff4d29] opacity-100">.</span></span>
+                            <span className="text-white">QUESTIONS<span className="text-[#ff4d29] opacity-100">.</span></span>
                         </h3>
                         <p className="text-white/60 text-lg leading-relaxed max-w-sm">
                             Clear answers to help you decide. No hidden details, just transparent professional partnership.
@@ -60,10 +60,11 @@ export default function FAQ() {
                                     onClick={() => setOpenIndex(project => project === index ? null : index)}
                                     className="w-full py-8 flex items-center justify-between text-left group"
                                 >
-                                    <span className={`font-['Syne'] font-extrabold text-xl md:text-2xl uppercase transition-colors duration-300 tracking-[-0.05em] ${openIndex === index ? 'text-white' : 'text-white/50 group-hover:text-white'}`}>
+                                    <span className={`font-extrabold text-xl md:text-2xl uppercase transition-colors duration-300 tracking-[-0.05em] flex items-center gap-3 ${openIndex === index ? 'text-white' : 'text-white/50 group-hover:text-white'}`}>
                                         {faq.question}
+                                        {openIndex === index && <span className="w-1.5 h-1.5 rounded-full bg-[#ff4d29]" />}
                                     </span>
-                                    <div className={`w-8 h-8 flex items-center justify-center rounded-full border transition-all duration-300 ${openIndex === index ? 'border-[#ff4d29] bg-[#ff4d29] text-white' : 'border-white/20 text-white/50 group-hover:border-white group-hover:text-white'}`}>
+                                    <div className={`w-8 h-8 flex items-center justify-center rounded-full border transition-all duration-300 ${openIndex === index ? 'border-white bg-white text-black' : 'border-white/20 text-white/50 group-hover:border-white group-hover:text-white'}`}>
                                         {openIndex === index ? <Minus size={16} /> : <Plus size={16} />}
                                     </div>
                                 </button>
