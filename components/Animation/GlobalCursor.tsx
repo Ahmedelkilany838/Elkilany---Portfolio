@@ -18,9 +18,16 @@ export default function GlobalCursor() {
             target.current.x = e.clientX;
             target.current.y = e.clientY;
 
-            if (!isVisible.current) {
-                isVisible.current = true;
-                cursor.style.opacity = "1";
+            const shouldHide = (e.target as HTMLElement).closest("[data-hide-cursor]");
+
+            if (shouldHide) {
+                cursor.style.opacity = "0";
+                isVisible.current = false; // logic state
+            } else {
+                if (!isVisible.current || cursor.style.opacity === "0") {
+                    isVisible.current = true;
+                    cursor.style.opacity = "1";
+                }
             }
         };
 

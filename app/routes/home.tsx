@@ -24,22 +24,22 @@ export default function Home() {
   return (
     <div ref={containerRef} className="relative bg-[#050505] min-h-screen">
 
-      {/* 1. Hero Cluster: Sticky (Hero + Brands) - No Fade */}
-      <div
+      {/* 1. Hero Cluster: Sticky (Hero) */}
+      <motion.div
+        style={{ opacity: useTransform(scrollY, [400, 1000], [1, 0]) }}
         className="sticky top-0 z-0 w-full flex flex-col items-center justify-start min-h-screen"
       >
         <Hero />
-        {/* 2. Social Proof: Immediate Credibility - Tucked under sticky hero */}
-        <div className="w-full relative z-10 -mt-20 md:-mt-32 pb-20">
-          <BrandsMarquee />
-        </div>
-      </div>
+      </motion.div>
 
       {/* Rest of the Site: Rising Cover Layer */}
       <div className="relative z-20 bg-[#050505] mt-[50vh]">
 
-        {/* 3. The Narrative: Why we do this */}
+        {/* 2. The Narrative: Why we do this */}
         <About />
+
+        {/* 3. The Brands/Logos Section: Immediate Validation */}
+        <BrandsMarquee />
 
         {/* 4. The Results: Selected Works */}
         <Works key="works-grid" />

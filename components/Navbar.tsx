@@ -33,7 +33,7 @@ export default function Navbar() {
         <>
             {/* --- Backdrop Layer (Fixed & animated) --- */}
             <div
-                className={`fixed top-0 left-0 w-full z-[1000] transition-all duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] ${isScrolled ? 'h-[80px] bg-black/90 backdrop-blur-sm shadow-2xl' : 'h-0 bg-transparent'
+                className={`fixed top-0 left-0 w-full z-[1000] transition-all duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] ${isScrolled ? 'h-[80px] bg-black/40 backdrop-blur-xl border-b border-white/5 shadow-sm' : 'h-0 bg-transparent'
                     }`}
             />
 
