@@ -30,7 +30,7 @@ export default function Testimonials() {
     const [activeIndex, setActiveIndex] = useState(0);
 
     return (
-        <section className="relative w-full bg-[#050505] py-[140px] px-[8%] overflow-hidden border-b border-white/5">
+        <section className="relative w-full bg-[#050505] py-[80px] md:py-[140px] px-[4%] md:px-[6%] lg:px-[8%] overflow-hidden border-b border-white/5">
 
             {/* Header DNA */}
             <div className="w-full mb-[64px] border-b border-white/5 pb-8 flex items-end justify-between">

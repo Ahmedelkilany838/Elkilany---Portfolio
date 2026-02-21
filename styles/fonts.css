@@ -1,1 +1,72 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;800;900&family=Syne:wght@700;800&display=swap');
+@font-face {
+    font-family: 'Mona-Sans';
+    src: url('/mona-sans/TTF/Mona-Sans-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Mona-Sans';
+    src: url('/mona-sans/TTF/Mona-Sans-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Mona-Sans';
+    src: url('/mona-sans/TTF/Mona-Sans-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Mona-Sans';
+    src: url('/mona-sans/TTF/Mona-Sans-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Mona-Sans';
+    src: url('/mona-sans/TTF/Mona-Sans-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Mona-Sans';
+    src: url('/mona-sans/TTF/Mona-Sans-ExtraBold.ttf') format('truetype');
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Mona-Sans';
+    src: url('/mona-sans/TTF/Mona-Sans-Black.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Redefine 'Syne' to point to Mona-Sans so existing classes immediately inherit the new font without needing to alter every file */
+@font-face {
+    font-family: 'Syne';
+    src: url('/mona-sans/TTF/Mona-Sans-BoldNarrow.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Syne';
+    src: url('/mona-sans/TTF/Mona-Sans-ExtraBoldNarrow.ttf') format('truetype');
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+}

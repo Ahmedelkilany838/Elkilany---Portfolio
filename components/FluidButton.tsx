@@ -19,8 +19,8 @@ export default function FluidButton({
 }: FluidButtonProps) {
 
     // 1. Unified Geometry & Shape
-    // rounded-full, px-10 (40px), py-[18px] (18px)
-    const geometry = "rounded-full px-10 py-[18px] flex items-center justify-center whitespace-nowrap w-fit";
+    // rounded-full, custom responsive padding
+    const geometry = "rounded-full px-12 py-[22px] md:px-14 md:py-[26px] flex items-center justify-center whitespace-nowrap w-fit shadow-[0_0_40px_rgba(255,255,255,0.05)] hover:scale-105";
 
     // 2. Interaction & Animation
     // transition-all duration-300 ease-out group relative overflow-hidden cursor-pointer
@@ -42,8 +42,8 @@ export default function FluidButton({
     const baseClasses = `${geometry} ${behavior} ${variantClasses} ${className}`;
 
     // 4. Typography
-    // Removed Syne. Using global Plus Jakarta Sans.
-    const textClasses = "relative z-10 font-bold uppercase tracking-[0.05em] text-sm transition-colors duration-300";
+    // Applying global Syne font alias and adjusting sizes
+    const textClasses = "relative z-10 font-['Syne'] font-extrabold uppercase tracking-[0.08em] text-sm md:text-lg transition-colors duration-300";
 
     const content = <span className={textClasses}>{children}</span>;
 

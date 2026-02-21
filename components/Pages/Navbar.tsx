@@ -40,9 +40,9 @@ const Navbar = () => {
       <nav className="flex items-center justify-between px-10 py-5 relative z-20">
         {/* Logo */}
         <Link to="/">
-          <h1 className="text-white text-[clamp(2.5rem,8vw,8rem)] font-extrabold tracking-tight leading-none mix-blend-exclusion">
-            ELKILANY
-            <span className="text-[#ff4d29]">*</span>
+          <h1 className="text-white text-[clamp(5.5rem,16vw,20rem)] font-extrabold tracking-[-0.04em] leading-[0.85] mix-blend-exclusion font-['Syne'] flex items-start">
+            KILANY
+            <span className="text-[#ff4d29] text-[clamp(3rem,7vw,9rem)] leading-none mt-2 md:mt-4">*</span>
           </h1>
         </Link>
 
@@ -60,10 +60,10 @@ const Navbar = () => {
                   >
                     <div>
                       <div className="nav-text-line nav-text-line-1">
-                        <p className="text-[20px] font-bold">{item.label}</p>
+                        <p className="text-[20px] font-bold font-['Syne'] uppercase">{item.label}</p>
                       </div>
                       <div className="nav-text-line nav-text-line-2">
-                        <p className="text-[20px] font-bold">{item.label}</p>
+                        <p className="text-[20px] font-bold font-['Syne'] uppercase">{item.label}</p>
                       </div>
                     </div>
                     <div>
@@ -125,9 +125,6 @@ const Navbar = () => {
                     : "border-b border-white/15"
                     } ${active ? "opacity-100" : "opacity-90"}`}
                   onClick={toggleMobileMenu}
-                  style={{
-                    fontFamily: '"Inter", "Inter Placeholder", sans-serif',
-                  }}
                 >
                   <span className="inline-block">
                     {item.label}{" "}

@@ -15,7 +15,7 @@ const brandSet = [...brands, ...brands, ...brands];
 
 export default function BrandsMarquee() {
     return (
-        <section className="relative w-full bg-[#050505] pt-[32px] pb-[80px] overflow-hidden">
+        <section className="relative w-full bg-[#050505] py-[40px] md:py-[80px] overflow-hidden">
             {/* Gradient Fades for Smooth Entrance/Exit */}
             <div className="absolute top-0 left-0 h-full w-[15%] md:w-[20%] bg-gradient-to-r from-[#050505] to-transparent z-10 pointer-events-none" />
             <div className="absolute top-0 right-0 h-full w-[15%] md:w-[20%] bg-gradient-to-l from-[#050505] to-transparent z-10 pointer-events-none" />

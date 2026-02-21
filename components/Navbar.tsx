@@ -41,7 +41,7 @@ export default function Navbar() {
             <div className={`fixed z-[1002] left-4 md:left-8 transition-all duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] ${isScrolled ? 'top-6' : 'top-4 md:top-6'
                 }`}>
                 <Link to="/" onClick={() => setMenuOpen(false)}>
-                    <h1 className={`font-extrabold tracking-tighter uppercase text-white whitespace-nowrap leading-none transition-all duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] ${isScrolled ? 'text-3xl md:text-4xl' : 'text-[clamp(3.5rem,10vw,9rem)]'
+                    <h1 className={`font-['Syne'] font-extrabold tracking-tighter uppercase text-white whitespace-nowrap leading-none transition-all duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] ${isScrolled ? 'text-3xl md:text-4xl' : 'text-[clamp(4.5rem,10vw,12rem)]'
                         }`}>
                         KILANY
                     </h1>
@@ -54,7 +54,7 @@ export default function Navbar() {
                 <div className="hidden md:block origin-right">
                     <Link
                         to="/contact"
-                        className="flex items-center justify-center rounded-full border border-white/20 px-7 py-3 text-xs md:text-sm font-bold uppercase tracking-widest text-white transition-all duration-300 hover:bg-white/10 hover:border-white/40 hover:shadow-[0_0_15px_rgba(255,255,255,0.1)] bg-black/20 backdrop-blur-sm"
+                        className="font-['Syne'] flex items-center justify-center rounded-full border border-white/20 px-7 py-3 text-xs md:text-sm font-bold uppercase tracking-widest text-white transition-all duration-300 hover:bg-white/10 hover:border-white/40 hover:shadow-[0_0_15px_rgba(255,255,255,0.1)] bg-black/20 backdrop-blur-sm"
                     >
                         Let's Talk
                     </Link>
@@ -84,7 +84,7 @@ export default function Navbar() {
                             key={item.label}
                             to={item.path}
                             onClick={() => setMenuOpen(false)}
-                            className="text-4xl md:text-6xl font-extrabold uppercase text-white/60 hover:text-white transition-colors duration-300"
+                            className="font-['Syne'] text-4xl md:text-6xl font-extrabold uppercase text-white/60 hover:text-white transition-colors duration-300 tracking-tight"
                         >
                             {item.label}
                         </Link>

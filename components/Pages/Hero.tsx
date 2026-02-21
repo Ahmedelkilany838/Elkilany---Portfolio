@@ -8,10 +8,8 @@ export default function Hero() {
     const { scrollY } = useScroll();
     const y = useTransform(scrollY, [0, 1000], [0, 200]); // Reduced parallax
     const scale = useTransform(scrollY, [0, 1000], [1.15, 1]); // Zoom out effect
-
     return (
-        <section ref={containerRef} className="relative w-full h-screen overflow-hidden bg-[#050505] text-white flex flex-col justify-end px-[4%] pb-[40px] md:pb-[60px] border-b border-white/5">
-
+        <section ref={containerRef} className="relative w-full h-screen overflow-hidden bg-[#050505] text-white flex flex-col justify-end px-[4%] md:px-[6%] lg:px-[8%] pb-[40px] md:pb-[60px] border-b border-white/5">
             {/* --- Background Layer --- */}
             <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
                 <div className="relative w-full h-full">
@@ -34,17 +32,16 @@ export default function Hero() {
                 <div className="flex flex-col items-start gap-8 order-2 md:order-1">
                     {/* Description Text */}
                     <p className="max-w-md text-lg md:text-xl font-medium leading-[1.4] tracking-tight text-white/90">
-                        We build brands, websites, and digital experiences with <span className="text-white/50">intention, clarity and care.</span>
+                        I shape visual systems, key visuals, and communication-driven designs with <span className="text-white/50">clarity, strategy, and intention.</span>
                     </p>
 
-                    {/* Trust / Logos */}
-                    <div className="flex flex-col gap-4 w-full">
-                        <span className="text-white/40 text-xs font-mono uppercase tracking-[0.2em]">TRUSTED BY:</span>
-                        {/* Simplified Logo Row */}
-                        <div className="flex items-center gap-8 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
-                            <div className="h-6 w-20 bg-white/20 rounded-sm"></div>
-                            <div className="h-6 w-20 bg-white/20 rounded-sm"></div>
-                            <div className="h-6 w-20 bg-white/20 rounded-sm"></div>
+                    {/* Expertise / Focus Areas */}
+                    <div className="flex flex-col gap-4 w-full mt-2">
+                        <span className="text-white/40 text-[10px] md:text-xs font-mono uppercase tracking-[0.2em]">CORE EXPERTISE:</span>
+                        <div className="flex flex-wrap items-center gap-3 text-xs md:text-sm font-['Syne'] font-bold text-white uppercase tracking-[0.05em] mix-blend-difference">
+                            <span className="px-4 py-1.5 border border-white/20 rounded-full hover:bg-white hover:text-black transition-colors cursor-default">Branding</span>
+                            <span className="px-4 py-1.5 border border-white/20 rounded-full hover:bg-white hover:text-black transition-colors cursor-default">Advertising</span>
+                            <span className="px-4 py-1.5 border border-white/20 rounded-full hover:bg-white hover:text-black transition-colors cursor-default">Visual Direction</span>
                         </div>
                     </div>
                 </div>
@@ -52,9 +49,9 @@ export default function Hero() {
                 {/* --- RIGHT COLUMN: Headline (Lifted Up) --- */}
                 <div className="flex flex-col items-start md:items-end text-left md:text-right gap-8 order-1 md:order-2 h-full justify-end pb-[200px] md:pb-[320px]">
                     {/* Headline */}
-                    <h1 className="font-extrabold uppercase text-[clamp(2rem,4vw,3.5rem)] leading-[1.1] tracking-tight">
-                        Beyond Visuals.<br />
-                        <span className="text-white/40">Built with<br />Vision.</span>
+                    <h1 className="font-['Syne'] font-extrabold uppercase text-[clamp(3.5rem,7vw,7rem)] leading-[0.95] tracking-[-0.04em]">
+                        Beyond Aesthetics.<br />
+                        <span className="text-white/40">Built with<br />Strategy.</span>
                     </h1>
                 </div>
 

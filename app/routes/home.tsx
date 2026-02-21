@@ -8,9 +8,8 @@ import About from "components/Pages/About";
 import Services from "components/Pages/Services";
 import Experience from "components/Pages/Experience";
 import Process from "components/Pages/Process";
-import Testimonials from "components/Pages/Testimonials"; // Client Voices
 import FAQ from "components/Pages/FAQ"; // Strategic FAQ
-import FinalCTA from "components/Pages/FinalCTA"; // The Closer
+import FinalCTA from "components/Pages/FinalCTA";
 import Contact from "components/Pages/Contact";
 
 export function meta({ }: Route.MetaArgs) {
@@ -53,13 +52,10 @@ export default function Home() {
         {/* 7. The Workflow: 5-step strategic map */}
         <Process />
 
-        {/* 8. Client Voices: Minimalist Slider */}
-        <Testimonials />
-
         {/* 9. Strategic FAQ: Common Objections */}
         <FAQ />
 
-        {/* 10. Final CTA: The Closer */}
+        {/* 10. The Closer CTA */}
         <FinalCTA />
 
         {/* Footer / Contact */}
