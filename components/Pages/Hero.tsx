@@ -51,7 +51,7 @@ export default function Hero() {
                     {/* Headline */}
                     <h1 className="font-['Syne'] font-extrabold uppercase text-[clamp(3.5rem,7vw,7rem)] leading-[0.95] tracking-[-0.04em]">
                         Beyond Aesthetics.<br />
-                        <span className="text-white/40">Built with<br />Strategy.</span>
+                        <span className="text-white/40">Built with Strategy.</span>
                     </h1>
                 </div>
 
