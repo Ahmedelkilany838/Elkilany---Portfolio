@@ -58,7 +58,7 @@ export default function FAQ() {
                 <div className="flex flex-col md:items-end">
                     <div className="max-w-md text-left flex flex-col items-start">
                         <p className="text-white/60 text-lg md:text-xl leading-[1.6] mb-8 md:mb-12">
-                            Explore helpful answers to frequent questions about our services and working approach.
+                            Explore helpful answers to frequent questions about my services and working approach.
                         </p>
 
                         <Link to="/contact" className="inline-flex items-center gap-2 text-base md:text-lg font-['Syne'] font-bold uppercase tracking-[0.05em] group mt-2 md:mt-4">

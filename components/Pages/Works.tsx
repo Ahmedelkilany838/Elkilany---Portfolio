@@ -105,8 +105,8 @@ export default function Works() {
                             transition={{ repeat: Infinity, ease: "linear", duration: 15 }}
                             className="flex"
                         >
-                            <span className="mr-4">Our Portfolio — Our Portfolio — Our Portfolio — Our Portfolio — </span>
-                            <span className="mr-4">Our Portfolio — Our Portfolio — Our Portfolio — Our Portfolio — </span>
+                            <span className="mr-4">My Portfolio — My Portfolio — My Portfolio — My Portfolio — </span>
+                            <span className="mr-4">My Portfolio — My Portfolio — My Portfolio — My Portfolio — </span>
                         </motion.div>
                     </div>
                 </div>
@@ -151,7 +151,7 @@ export default function Works() {
             {/* View All Button */}
             <div className="w-full flex justify-center mt-10 md:mt-14 relative z-50">
                 <Link
-                    to="/work"
+                    to="/works"
                     className="group relative overflow-hidden rounded-full border border-white/20 min-w-[320px] md:min-w-[500px] px-[80px] py-[24px] md:py-[28px] flex items-center justify-center gap-4 transition-all duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] hover:bg-[#ff4d29] hover:border-[#ff4d29] hover:scale-105 shadow-[0_0_40px_rgba(255,255,255,0.05)] text-white bg-transparent"
                 >
                     <span className="font-['Syne'] font-extrabold uppercase tracking-[0.05em] text-base md:text-lg relative z-10">

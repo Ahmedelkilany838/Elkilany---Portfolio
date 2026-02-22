@@ -18,11 +18,11 @@ export default function FooterSection() {
                     Reach out if you're ready to make something amazing together.
                 </p>
                 <a
-                    href="mailto:hello@elkilany.com"
+                    href="mailto:hello@kilany.com"
                     className="font-['Syne'] font-black uppercase text-white tracking-[-0.02em] transition-colors duration-300 hover:text-[#ff4d29]"
                     style={{ fontSize: "clamp(3rem, 7.5vw, 7.5rem)" }}
                 >
-                    hello@elkilany.com
+                    hello@kilany.com
                 </a>
             </div>
 
@@ -63,7 +63,7 @@ export default function FooterSection() {
                         {[
                             { name: "Home", href: "/" },
                             { name: "About", href: "/about" },
-                            { name: "Works", href: "/work" },
+                            { name: "Works", href: "/works" },
                             { name: "Contact", href: "/contact" },
                         ].map((l) => (
                             <a
@@ -105,7 +105,7 @@ export default function FooterSection() {
                 <div className="flex flex-col md:flex-row justify-between items-center gap-4 pt-8 text-white/40 text-[13px] font-mono uppercase tracking-[0.1em]">
                     <div className="flex items-center gap-1">
                         <span className="text-[#ff4d29]">©</span>
-                        <span>2026 Elkilany®</span>
+                        <span>2026 Kilany®</span>
                     </div>
                     <div className="flex items-center gap-5">
                         <a href="#" className="hover:text-white transition-colors">License</a>
@@ -114,7 +114,7 @@ export default function FooterSection() {
                     </div>
                     <div>
                         Designed &amp; Developed by{" "}
-                        <span className="text-white font-bold font-['Syne']">Ahmed Elkilany</span>
+                        <span className="text-white font-bold font-['Syne']">Ahmed Kilany</span>
                     </div>
                 </div>
             </div>
@@ -131,7 +131,7 @@ export default function FooterSection() {
                             <StarSVG />
                             PORTFOLIO
                             <StarSVG />
-                            ELKILANY
+                            KILANY
                             <StarSVG />
                         </span>
                     ))}

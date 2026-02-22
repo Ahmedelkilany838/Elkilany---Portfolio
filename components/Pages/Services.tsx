@@ -92,8 +92,8 @@ export default function Services() {
               transition={{ repeat: Infinity, ease: "linear", duration: 15 }}
               className="flex"
             >
-              <span className="mr-4">Our Services — Our Services — Our Services — Our Services — </span>
-              <span className="mr-4">Our Services — Our Services — Our Services — Our Services — </span>
+              <span className="mr-4">My Services — My Services — My Services — My Services — </span>
+              <span className="mr-4">My Services — My Services — My Services — My Services — </span>
             </motion.div>
           </div>
         </div>

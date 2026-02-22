@@ -107,7 +107,7 @@ const Navbar = () => {
           <div className="flex justify-between items-center mb-12 w-full">
             {/* <Link to="/" className="block shrink-0" onClick={toggleMobileMenu}>
               <h1 className="text-white text-3xl md:text-4xl lg:text-5xl font-extrabold">
-                ELKILANY
+                KILANY
                 <span className="text-red-500">*</span>
               </h1>
             </Link> */}

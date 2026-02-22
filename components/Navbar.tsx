@@ -7,8 +7,7 @@ import FluidButton from "./FluidButton";
 const menuItems = [
     { label: "Home", path: "/" },
     { label: "About", path: "/about" },
-    { label: "Work", path: "/works" },
-    { label: "Services", path: "/services" },
+    { label: "Works", path: "/works" },
     { label: "Contact", path: "/contact" },
 ];
 

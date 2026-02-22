@@ -89,21 +89,21 @@ export default function About() {
           </h2>
 
           {/* Sub-Texts & Button Grid */}
-          <div className="mt-10 md:mt-12 flex flex-col md:flex-row gap-8 md:gap-16 w-full lg:w-[85%]">
+          <div className="mt-10 md:mt-12 flex flex-col md:flex-row gap-8 md:gap-16 w-full lg:w-full xl:w-[95%]">
 
             {/* Left Sub-Column */}
-            <div className="flex flex-col gap-10 md:w-1/2">
-              <p className="text-white/60 text-base md:text-lg font-['Syne'] leading-relaxed font-medium">
+            <div className="flex flex-col gap-10 md:w-[55%] lg:w-[60%]">
+              <p className="text-white/60 text-base md:text-lg font-['Syne'] leading-relaxed font-medium max-w-xl">
                 Approaching every project with a mix of strategic thinking and visual sensitivity, I create cohesive design systems that
               </p>
 
               {/* Buttons */}
-              <div className="flex flex-wrap items-center gap-6 md:gap-8 mt-2">
+              <div className="flex items-center gap-6 md:gap-8 mt-2 whitespace-nowrap">
 
                 {/* Button 1: Solid Pill */}
-                <Link to="/about" className="relative inline-flex items-center justify-center gap-4 px-10 py-4 md:px-14 md:py-6 bg-white text-black rounded-full overflow-hidden group hover:scale-105 transition-transform duration-500 shadow-[0_0_40px_rgba(255,255,255,0.1)]">
+                <Link to="/about" className="relative inline-flex items-center justify-center gap-3 px-8 py-4 md:px-10 md:py-5 lg:px-12 lg:py-6 bg-white text-black rounded-full overflow-hidden group hover:scale-105 transition-transform duration-500 shadow-[0_0_40px_rgba(255,255,255,0.1)] shrink-0">
                   <div className="absolute inset-0 w-full h-full bg-[#ff4d29] scale-y-0 origin-bottom transition-transform duration-[600ms] ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:scale-y-100 rounded-full"></div>
-                  <span className="relative z-10 flex overflow-hidden font-['Syne'] font-bold text-base md:text-lg tracking-[0.05em] uppercase">
+                  <span className="relative z-10 flex overflow-hidden font-['Syne'] font-bold text-sm md:text-base lg:text-lg tracking-[0.05em] uppercase">
                     {"MORE ABOUT ME".split('').map((char, i) => (
                       <span key={i} className="relative inline-block leading-none">
                         <span className="block transition-transform duration-[600ms] ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:-translate-y-full text-black" style={{ transitionDelay: `${i * 10}ms` }}>
@@ -117,13 +117,13 @@ export default function About() {
                   </span>
 
                   {/* Spark Icon with rotation hover */}
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" className="relative z-10 transition-all duration-[600ms] ease-[cubic-bezier(0.76,0,0.24,1)] text-black group-hover:text-white group-hover:rotate-180">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" className="relative z-10 transition-all duration-[600ms] ease-[cubic-bezier(0.76,0,0.24,1)] text-black group-hover:text-white group-hover:rotate-180 shrink-0">
                     <path d="M12 0L13.5 10.5L24 12L13.5 13.5L12 24L10.5 13.5L0 12L10.5 10.5L12 0Z" />
                   </svg>
                 </Link>
 
                 {/* Button 2: Underline Link */}
-                <Link to="/contact" className="inline-flex items-center gap-2 text-base md:text-lg font-['Syne'] font-bold uppercase tracking-[0.05em] group">
+                <Link to="/contact" className="inline-flex items-center gap-2 text-sm md:text-base lg:text-lg font-['Syne'] font-bold uppercase tracking-[0.05em] group shrink-0">
                   <span className="relative pb-1">
                     <span className="relative flex overflow-hidden">
                       {"CONTACT ME".split('').map((char, i) => (
@@ -149,7 +149,7 @@ export default function About() {
                     </span>
                   </span>
 
-                  <span className="relative overflow-hidden w-4 h-4 flex items-center justify-center">
+                  <span className="relative overflow-hidden w-4 h-4 flex items-center justify-center shrink-0">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="absolute m-auto inset-0 text-white transition-transform duration-[600ms] ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:translate-x-full group-hover:-translate-y-full">
                       <line x1="7" y1="17" x2="17" y2="7"></line>
                       <polyline points="7 7 17 7 17 17"></polyline>
@@ -164,7 +164,7 @@ export default function About() {
             </div>
 
             {/* Right Sub-Column */}
-            <div className="md:w-1/2">
+            <div className="md:w-[45%] lg:w-[40%]">
               <p className="text-white/60 text-base md:text-lg font-['Syne'] leading-relaxed font-medium">
                 help brands speak clearly, solving communication challenges through meaningful and human-centered design.
               </p>

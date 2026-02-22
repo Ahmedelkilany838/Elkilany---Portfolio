@@ -98,7 +98,7 @@ export default function FXSlider() {
                         transition={{ duration: 1.2, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
                         className="font-black text-[12.75vw] leading-[0.8] tracking-tighter uppercase text-white mix-blend-overlay opacity-90 -ml-2"
                     >
-                        ELKILANY<span className="text-2xl md:text-5xl align-top opacity-50 font-normal">®</span>
+                        KILANY<span className="text-2xl md:text-5xl align-top opacity-50 font-normal">®</span>
                     </motion.h1>
 
                 </div>

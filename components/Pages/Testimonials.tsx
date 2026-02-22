@@ -12,7 +12,7 @@ const reviews = [
     {
         name: "David Chen",
         role: "Head of Digital, Chevrolet",
-        text: "I've worked with many designers, but Elkilany is in a league of his own. His understanding of motion and typography created a digital experience that feels alive. Absolute mastery.",
+        text: "I've worked with many designers, but Kilany is in a league of his own. His understanding of motion and typography created a digital experience that feels alive. Absolute mastery.",
     },
     {
         name: "Marcus Thorne",

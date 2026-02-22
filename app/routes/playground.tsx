@@ -4,8 +4,8 @@ import { motion } from "framer-motion";
 
 export function meta({ }: Route.MetaArgs) {
     return [
-        { title: "Playground | Elkilany" },
-        { name: "description", content: "Playground by Elkilany - Experiments & Fun" },
+        { title: "Playground | Kilany" },
+        { name: "description", content: "Playground by Kilany - Experiments & Fun" },
     ];
 }
 

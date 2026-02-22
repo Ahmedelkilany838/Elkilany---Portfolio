@@ -13,7 +13,7 @@ import FinalCTA from "components/Pages/FinalCTA";
 import Contact from "components/Pages/Contact";
 
 export function meta({ }: Route.MetaArgs) {
-  return [{ title: "Elkilany | Senior Brand & Advertising Specialist" }, { name: "description", content: "Building visual legacies for visionary brands." }];
+  return [{ title: "Kilany | Senior Brand & Advertising Specialist" }, { name: "description", content: "Building visual legacies for visionary brands." }];
 }
 
 export default function Home() {

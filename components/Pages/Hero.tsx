@@ -49,9 +49,9 @@ export default function Hero() {
                 {/* --- RIGHT COLUMN: Headline (Lifted Up) --- */}
                 <div className="flex flex-col items-start md:items-end text-left md:text-right gap-8 order-1 md:order-2 h-full justify-end pb-[200px] md:pb-[320px]">
                     {/* Headline */}
-                    <h1 className="font-['Syne'] font-extrabold uppercase text-[clamp(3.5rem,7vw,7rem)] leading-[0.95] tracking-[-0.04em]">
-                        Beyond Aesthetics.<br />
-                        <span className="text-white/40">Built with Strategy.</span>
+                    <h1 className="font-['Syne'] font-extrabold uppercase text-[clamp(3.5rem,7.5vw,7.5rem)] leading-[0.85] tracking-[-0.04em] flex flex-col items-start md:items-end text-white text-left md:text-right">
+                        <span className="block drop-shadow-lg text-white">INTENTIONAL</span>
+                        <span className="block drop-shadow-lg">AESTHETICS.</span>
                     </h1>
                 </div>
 

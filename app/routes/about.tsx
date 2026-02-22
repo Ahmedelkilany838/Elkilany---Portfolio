@@ -5,8 +5,8 @@ import FooterSection from "components/FooterSection";
 
 export function meta({ }: Route.MetaArgs) {
     return [
-        { title: "About | Elkilany" },
-        { name: "description", content: "About Elkilany - Graphic Designer" },
+        { title: "About | Kilany" },
+        { name: "description", content: "About Kilany - Graphic Designer" },
     ];
 }
 

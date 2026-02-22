@@ -13,7 +13,7 @@ export interface AboutImageInterface {
 export const navItems: NavInterface[] = [
   { href: '/', label: 'Home', number: '01' },
   { href: '/about', label: 'About', number: '02' },
-  { href: '/work', label: 'Works', number: '03' },
+  { href: '/works', label: 'Works', number: '03' },
   { href: '/contact', label: 'Contact', number: '04' },
 ];
 

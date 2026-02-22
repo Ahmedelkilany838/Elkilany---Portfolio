@@ -20,18 +20,18 @@ export default function Contact() {
                         </h2>
 
                         <p className="font-['Syne'] font-bold text-base md:text-xl lg:text-2xl uppercase leading-snug text-white mb-10 md:mb-16 max-w-md">
-                            HAVE AN IDEA IN MIND? LET'S CONNECT AND EXPLORE HOW WE CAN HELP BRING IT TO LIFE.
+                            HAVE AN IDEA IN MIND? LET'S CONNECT AND EXPLORE HOW I CAN HELP BRING IT TO LIFE.
                         </p>
                     </div>
 
                     <div className="flex items-center gap-4">
                         <img
                             src="/images/hero.png"
-                            alt="Ahmed Elkilany"
+                            alt="Ahmed Kilany"
                             className="w-[60px] h-[60px] rounded-full object-cover object-[center_top]"
                         />
                         <div className="flex flex-col">
-                            <span className="font-['Syne'] font-bold text-[#ff4d29] uppercase tracking-wide text-lg leading-tight">AHMED ELKILANY</span>
+                            <span className="font-['Syne'] font-bold text-[#ff4d29] uppercase tracking-wide text-lg leading-tight">AHMED KILANY</span>
                             <span className="text-white/70 font-sans text-sm mt-1">CEO and Founder</span>
                         </div>
                     </div>
