@@ -11,7 +11,7 @@ function Word({ children, range, progress }: { children: React.ReactNode, range:
 
   return (
     <span className="relative inline-block mb-[0.1em] mr-[0.2em]">
-      <motion.span style={{ color }} className="select-none inline-block">
+      <motion.span style={{ color }} className="select-none inline-block will-change-[color] transform-gpu">
         {children}
       </motion.span>
     </span>
@@ -29,7 +29,7 @@ export default function About() {
   return (
     <section ref={containerRef} className="relative w-full min-h-[150vh] bg-[#050505] flex items-start justify-center">
       {/* Sticky container to lock the view while scrolling through */}
-      <div className="sticky top-[15%] w-full py-[40px] md:py-[80px] px-[4%] md:px-[6%] lg:px-[8%] flex flex-col md:flex-row items-start justify-center gap-8 xl:gap-16">
+      <div className="sticky top-[15%] w-full py-[clamp(40px,5vh,80px)] px-[4%] md:px-[6%] lg:px-[8%] flex flex-col md:flex-row items-start justify-center gap-8 xl:gap-16 transform-gpu">
 
         {/* 1. Left Column: Rotating Text Ring */}
         <div className="hidden lg:flex w-[200px] xl:w-[220px] shrink-0 mt-[12px] justify-end xl:pr-6">
@@ -127,7 +127,7 @@ export default function About() {
               <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 md:gap-8 mt-2 w-full sm:w-auto">
 
                 {/* Button 1: Solid Pill */}
-                <Link to="/about" className="relative inline-flex items-center justify-center gap-3 px-8 py-4 md:px-10 md:py-5 lg:px-12 lg:py-6 bg-white text-black rounded-full overflow-hidden group hover:scale-105 transition-transform duration-500 shadow-[0_0_40px_rgba(255,255,255,0.1)] shrink-0">
+                <Link to="/about" className="relative inline-flex items-center justify-center gap-3 px-8 py-4 md:px-10 md:py-5 lg:px-12 lg:py-6 bg-white text-black rounded-full overflow-hidden group hover:scale-105 active:scale-95 transition-transform duration-500 shadow-[0_0_40px_rgba(255,255,255,0.1)] shrink-0 transform-gpu">
                   <div className="absolute inset-0 w-full h-full bg-[#ff4d29] scale-y-0 origin-bottom transition-transform duration-[600ms] ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:scale-y-100 rounded-full"></div>
                   <span className="relative z-10 flex overflow-hidden font-['Syne'] font-bold text-sm md:text-base lg:text-lg tracking-[0.05em] uppercase">
                     {"MORE ABOUT ME".split('').map((char, i) => (

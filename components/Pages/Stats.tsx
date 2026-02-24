@@ -21,7 +21,7 @@ export function AnimatedSlideUpStat({ value, suffix = "", delay = 0 }: { value: 
 
 export default function Stats({ className }: { className?: string }) {
     return (
-        <section className={`w-full bg-[#050505] pt-12 md:pt-16 pb-12 md:pb-20 relative z-10 border-b border-white/5 ${PX} ${className || ""}`}>
+        <section className={`w-full bg-[#050505] py-[clamp(60px,8vh,140px)] relative z-10 border-b border-white/5 transform-gpu ${PX} ${className || ""}`}>
             <div className="w-full max-w-[1400px] mx-auto flex flex-col md:flex-row items-center justify-between gap-12 md:gap-0">
 
                 {/* 1. Years of Experience */}

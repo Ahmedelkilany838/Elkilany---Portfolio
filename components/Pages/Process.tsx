@@ -26,7 +26,7 @@ const steps = [
 
 export default function Process() {
     return (
-        <section id="process" className="relative w-full bg-[#050505] py-[60px] md:py-[100px] lg:py-[140px] px-[4%] md:px-[6%] lg:px-[8%] border-b border-white/5">
+        <section id="process" className="relative w-full bg-[#050505] py-[clamp(60px,8vh,140px)] px-[4%] md:px-[6%] lg:px-[8%] border-b border-white/5 transform-gpu">
             <div className="flex flex-col md:flex-row items-start justify-between gap-16 md:gap-24 w-full max-w-[1800px] mx-auto">
 
                 {/* LEFT COLUMN - STICKY TITLE & SUBTEXT */}
@@ -54,8 +54,8 @@ export default function Process() {
                     </div>
 
                     <h2 className="font-['Syne'] font-extrabold text-[clamp(6rem,14vw,14rem)] leading-[0.85] tracking-[-0.03em] uppercase mt-4 flex flex-col w-full">
-                        <span className="text-white block">HOW I</span>
-                        <span className="text-[#666] flex items-baseline">
+                        <span className="text-white block whitespace-nowrap">HOW I</span>
+                        <span className="text-[#666] flex items-baseline whitespace-nowrap">
                             WORK<span className="inline-block w-[0.15em] h-[0.15em] bg-[#ff4d29] ml-1 mb-[0.05em]"></span>
                         </span>
                     </h2>
@@ -67,7 +67,7 @@ export default function Process() {
                     <div className="mt-4 md:mt-6 lg:mt-10">
                         <Link
                             to="/contact"
-                            className="group relative inline-flex items-center justify-center gap-3 px-10 py-5 bg-white text-black rounded-[100px] overflow-hidden hover:scale-105 transition-transform duration-500 shadow-[0_0_40px_rgba(255,255,255,0.1)] shrink-0 w-max"
+                            className="group relative inline-flex items-center justify-center gap-3 px-10 py-5 bg-white text-black rounded-[100px] overflow-hidden hover:scale-105 active:scale-95 transition-transform duration-500 shadow-[0_0_40px_rgba(255,255,255,0.1)] shrink-0 w-max transform-gpu"
                         >
                             <div className="absolute inset-0 w-full h-full bg-[#ff4d29] scale-y-0 origin-bottom transition-transform duration-[600ms] ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:scale-y-100 rounded-[100px]"></div>
                             <span className="relative z-10 flex overflow-hidden font-['Syne'] font-bold text-sm tracking-[0.05em] uppercase">

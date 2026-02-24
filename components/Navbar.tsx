@@ -53,7 +53,7 @@ export default function Navbar() {
                 <div className="hidden md:block origin-right">
                     <Link
                         to="/contact"
-                        className="font-['Syne'] flex items-center justify-center rounded-full border border-white/20 px-7 py-3 text-xs md:text-sm font-bold uppercase tracking-widest text-white transition-all duration-300 hover:bg-white/10 hover:border-white/40 hover:shadow-[0_0_15px_rgba(255,255,255,0.1)] bg-black/20 backdrop-blur-sm cursor-none"
+                        className="font-['Syne'] flex items-center justify-center rounded-full border border-white/20 px-7 py-3 text-xs md:text-sm font-bold uppercase tracking-widest text-white transition-all duration-300 hover:bg-white/10 hover:border-white/40 hover:shadow-[0_0_15px_rgba(255,255,255,0.1)] active:scale-95 bg-black/20 backdrop-blur-sm cursor-none"
                     >
                         Let's Talk
                     </Link>
@@ -62,7 +62,7 @@ export default function Navbar() {
                 {/* Menu Toggle - Perfect Circle */}
                 <button
                     onClick={() => setMenuOpen(!menuOpen)}
-                    className="group relative w-[46px] h-[46px] flex items-center justify-center rounded-full border border-white/20 text-white transition-all duration-300 hover:bg-white/10 hover:border-white/40 hover:shadow-[0_0_15px_rgba(255,255,255,0.1)] bg-black/20 backdrop-blur-sm cursor-none"
+                    className="group relative w-[48px] h-[48px] flex items-center justify-center rounded-full border border-white/20 text-white transition-all duration-300 hover:bg-white/10 hover:border-white/40 hover:shadow-[0_0_15px_rgba(255,255,255,0.1)] active:scale-95 bg-black/20 backdrop-blur-sm cursor-none"
                 >
                     {menuOpen ? <X className="w-5 h-5" /> : (
                         <div className="flex flex-col gap-[5px]">

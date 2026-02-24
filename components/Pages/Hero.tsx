@@ -9,7 +9,7 @@ export default function Hero() {
     const y = useTransform(scrollY, [0, 1000], [0, 200]); // Reduced parallax
     const scale = useTransform(scrollY, [0, 1000], [1.15, 1]); // Zoom out effect
     return (
-        <section ref={containerRef} className="relative w-full h-screen overflow-hidden bg-[#050505] text-white flex flex-col justify-end px-[4%] md:px-[6%] lg:px-[8%] pb-[40px] md:pb-[60px] border-b border-white/5">
+        <section ref={containerRef} className="relative w-full h-screen overflow-hidden bg-[#050505] text-white flex flex-col justify-end px-[4%] md:px-[6%] lg:px-[8%] pb-[clamp(60px,8vh,140px)] border-b border-white/5 transform-gpu">
             {/* --- Background Layer --- */}
             <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
                 <div className="relative w-full h-full">
@@ -60,8 +60,8 @@ export default function Hero() {
                 >
                     {/* Headline */}
                     <h1 className="font-['Syne'] font-extrabold uppercase text-[clamp(2.5rem,11.5vw,7.5rem)] lg:text-[clamp(4.5rem,7.5vw,7.5rem)] leading-[0.85] tracking-[-0.04em] flex flex-col items-start md:items-end text-white text-left md:text-right w-full overflow-hidden">
-                        <span className="block drop-shadow-lg text-white">INTENTIONAL</span>
-                        <span className="block drop-shadow-lg">AESTHETICS.</span>
+                        <span className="block drop-shadow-lg text-white whitespace-nowrap">INTENTIONAL</span>
+                        <span className="block drop-shadow-lg whitespace-nowrap">AESTHETICS.</span>
                     </h1>
                 </motion.div>
 

@@ -57,7 +57,7 @@ export default function Services() {
   }, [cursorX, cursorY]);
 
   return (
-    <section id="services" className="relative w-full bg-[#050505] py-[60px] md:py-[100px] lg:py-[140px] px-[4%] md:px-[6%] lg:px-[8%] border-b border-white/5 overflow-visible">
+    <section id="services" className="relative w-full bg-[#050505] py-[clamp(60px,8vh,140px)] px-[4%] md:px-[6%] lg:px-[8%] border-b border-white/5 overflow-visible transform-gpu">
       <div className="w-full max-w-[1800px] mx-auto flex flex-col">
 
         {/* Custom Image Cursor (Portal to body to escape transform stacking context) */}
@@ -121,15 +121,15 @@ export default function Services() {
               </div>
 
               <h2 className="font-['Syne'] font-extrabold text-[clamp(2.8rem,10vw,11rem)] leading-[0.85] tracking-[-0.04em] uppercase">
-                <span className="text-white block">Creative</span>
-                <span className="text-[#666] block">Solutions</span>
+                <span className="text-white block whitespace-nowrap">Creative</span>
+                <span className="text-[#666] block whitespace-nowrap">Solutions</span>
               </h2>
             </div>
 
             <div className="pb-2 md:pb-4 flex justify-start md:justify-end">
               <Link
                 to="/services"
-                className="group rounded-[100px] bg-white text-black px-10 py-5 md:px-14 md:py-6 flex items-center justify-center gap-4 hover:bg-[#ff4d29] hover:text-white transition-all duration-400 ease-out hover:scale-105 shadow-[0_0_40px_rgba(255,255,255,0.1)]"
+                className="group rounded-[100px] bg-white text-black px-10 py-5 md:px-14 md:py-6 flex items-center justify-center gap-4 hover:bg-[#ff4d29] hover:text-white transition-all duration-400 ease-out hover:scale-105 active:scale-95 shadow-[0_0_40px_rgba(255,255,255,0.1)] transform-gpu"
               >
                 <span className="font-['Syne'] font-bold text-base md:text-lg tracking-[0.15em] uppercase mt-[2px]">All Services</span>
                 <span className="text-2xl md:text-3xl leading-none -mt-[2px] font-light transition-transform duration-500 group-hover:rotate-90">+</span>
@@ -152,7 +152,7 @@ export default function Services() {
               data-hide-cursor="true"
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
-              className="group flex flex-col w-full py-8 md:py-12 border-b border-white/10 cursor-none transition-colors hover:bg-[#111] duration-500 px-4 md:px-6 -mx-4 md:-mx-6"
+              className="group flex flex-col w-full py-8 md:py-12 border-b border-white/10 cursor-none transition-colors hover:bg-[#111] active:bg-[#111] duration-500 px-4 md:px-6 -mx-4 md:-mx-6 transform-gpu"
             >
               {/* Top Row: Title + Icon */}
               <div className="flex items-center justify-between w-full">

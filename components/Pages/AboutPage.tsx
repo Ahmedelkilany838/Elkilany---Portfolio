@@ -71,7 +71,7 @@ function PillButton({ to, label, wide = false }: { to: string; label: string; wi
     return (
         <Link
             to={to}
-            className={`relative inline-flex items-center justify-center gap-4 ${wide ? 'px-16 md:px-24 py-6 md:py-7' : 'px-10 md:px-14 py-5 md:py-6'} bg-transparent border border-white/20 text-white rounded-full overflow-hidden group hover:border-white/100 transition-all duration-500`}
+            className={`relative inline-flex items-center justify-center gap-4 ${wide ? 'px-16 md:px-24 py-6 md:py-7' : 'px-10 md:px-14 py-5 md:py-6'} bg-transparent border border-white/20 text-white rounded-full overflow-hidden group hover:border-white/100 active:scale-95 transition-all duration-500 transform-gpu`}
         >
             {/* White fill on hover */}
             <div
@@ -123,7 +123,7 @@ const SocialCircle = ({ href, children }: { href: string; children: React.ReactN
 // ─────────────────────────────────────────────────────────────────────────────
 const VerticalMarquee = () => {
     return (
-        <div className="h-[20px] overflow-hidden relative flex flex-col justify-start items-start w-[140px] md:w-[180px]">
+        <div className="h-[20px] overflow-hidden relative flex flex-col justify-start items-start w-[115px] md:w-[180px]">
             <motion.div
                 animate={{ y: ['0%', '-80%'] }}
                 transition={{
@@ -223,15 +223,15 @@ function HeroSection({ scrollY }: { scrollY: any }) {
                     transition={{ duration: 1, delay: 0.7, ease: [0.22, 1, 0.36, 1] }}
                     className={`w-full absolute bottom-0 left-0 pb-8 md:pb-12 ${PX}`}
                 >
-                    <div className="w-full grid grid-cols-3 items-end">
+                    <div className="w-full flex flex-wrap md:grid md:grid-cols-3 items-end justify-between gap-y-6 md:gap-y-0">
 
                         {/* LEFT: Vertical Service Marquee */}
-                        <div className="flex justify-start items-end pb-2">
+                        <div className="flex justify-start items-end order-1 md:order-1 w-1/2 md:w-auto pb-2 md:pb-2">
                             <VerticalMarquee />
                         </div>
 
                         {/* CENTER: Social Media Grid */}
-                        <div className="flex justify-center items-end gap-2 md:gap-4 pb-0 md:pb-1">
+                        <div className="flex justify-center items-end gap-2 md:gap-4 order-3 md:order-2 w-full md:w-auto pb-0 md:pb-1 mt-4 md:mt-0">
                             <SocialCircle href="#">
                                 <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12.001 9C10.3436 9 9.00098 10.3431 9.00098 12C9.00098 13.6573 10.3441 15 12.001 15C13.6583 15 15.001 13.6569 15.001 12C15.001 10.3427 13.6579 9 12.001 9ZM12.001 7C14.7614 7 17.001 9.2371 17.001 12C17.001 14.7605 14.7639 17 12.001 17C9.24051 17 7.00098 14.7629 7.00098 12C7.00098 9.23953 9.23808 7 12.001 7ZM18.501 6.74915C18.501 7.43926 17.9402 7.99917 17.251 7.99917C16.5609 7.99917 16.001 7.4384 16.001 6.74915C16.001 6.0599 16.5617 5.5 17.251 5.5C17.9393 5.49913 18.501 6.0599 18.501 6.74915ZM12.001 4C9.5265 4 9.12318 4.00655 7.97227 4.0578C7.18815 4.09461 6.66253 4.20007 6.17416 4.38967C5.74016 4.55799 5.42709 4.75898 5.09352 5.09255C4.75867 5.4274 4.55804 5.73963 4.3904 6.17383C4.20036 6.66332 4.09493 7.18811 4.05878 7.97115C4.00703 9.0752 4.00098 9.46105 4.00098 12C4.00098 14.4745 4.00753 14.8778 4.05877 16.0286C4.0956 16.8124 4.2012 17.3388 4.39034 17.826C4.5591 18.2606 4.7605 18.5744 5.09246 18.9064C5.42863 19.2421 5.74179 19.4434 6.17187 19.6094C6.66619 19.8005 7.19148 19.9061 7.97212 19.9422C9.07618 19.9939 9.46203 20 12.001 20C14.4755 20 14.8788 19.9934 16.0296 19.9422C16.8117 19.9055 17.3385 19.7996 17.827 19.6106C18.2604 19.4423 18.5752 19.2402 18.9074 18.9085C19.2436 18.5718 19.4445 18.2594 19.6107 17.8283C19.8013 17.3358 19.9071 16.8098 19.9432 16.0289C19.9949 14.9248 20.001 14.5389 20.001 12C20.001 9.52552 19.9944 9.12221 19.9432 7.97137C19.9064 7.18906 19.8005 6.66149 19.6113 6.17318C19.4434 5.74038 19.2417 5.42635 18.9084 5.09255C18.573 4.75715 18.2616 4.55693 17.8271 4.38942C17.338 4.19954 16.8124 4.09396 16.0298 4.05781C14.9258 4.00605 14.5399 4 12.001 4ZM12.001 2C14.7176 2 15.0568 2.01 16.1235 2.06C17.1876 2.10917 17.9135 2.2775 18.551 2.525C19.2101 2.77917 19.7668 3.1225 20.3226 3.67833C20.8776 4.23417 21.221 4.7925 21.476 5.45C21.7226 6.08667 21.891 6.81333 21.941 7.8775C21.9885 8.94417 22.001 9.28333 22.001 12C22.001 14.7167 21.991 15.0558 21.941 16.1225C21.8918 17.1867 21.7226 17.9125 21.476 18.55C21.2218 19.2092 20.8776 19.7658 20.3226 20.3217C19.7668 20.8767 19.2076 21.22 18.551 21.475C17.9135 21.7217 17.1876 21.89 16.1235 21.94C15.0568 21.9875 14.7176 22 12.001 22C9.28431 22 8.94514 21.99 7.87848 21.94C6.81431 21.8908 6.08931 21.7217 5.45098 21.475C4.79264 21.2208 4.23514 20.8767 3.67931 20.3217C3.12348 19.7658 2.78098 19.2067 2.52598 18.55C2.27848 17.9125 2.11098 17.1867 2.06098 16.1225C2.01348 15.0558 2.00098 14.7167 2.00098 12C2.00098 9.28333 2.01098 8.94417 2.06098 7.8775C2.11014 6.8125 2.27848 6.0875 2.52598 5.45C2.78014 4.79167 3.12348 4.23417 3.67931 3.67833C4.23514 3.1225 4.79348 2.78 5.45098 2.525C6.08848 2.2775 6.81348 2.11 7.87848 2.06C8.94514 2.0125 9.28431 2 12.001 2Z" /></svg>
                             </SocialCircle>
@@ -247,8 +247,8 @@ function HeroSection({ scrollY }: { scrollY: any }) {
                         </div>
 
                         {/* RIGHT: Rotating Circular Text */}
-                        <div className="flex justify-end items-end pb-2 md:pb-0">
-                            <div className="w-[120px] h-[120px] md:w-[160px] md:h-[160px] lg:w-[180px] lg:h-[180px] mr-2 md:-mr-4">
+                        <div className="flex justify-end items-end order-2 md:order-3 w-1/2 md:w-auto pb-0 md:pb-0">
+                            <div className="w-[90px] h-[90px] md:w-[160px] md:h-[160px] lg:w-[180px] lg:h-[180px] mr-0 md:-mr-4">
                                 <motion.div
                                     animate={{ rotate: 360 }}
                                     transition={{ repeat: Infinity, ease: "linear", duration: 15 }}
@@ -370,7 +370,7 @@ function ManifestoSection() {
                         <div className="flex flex-col sm:flex-row items-start sm:items-center gap-8 sm:gap-12 mt-2 md:mt-4 w-full">
 
                             {/* Button 1: Solid Pill (Download CV) */}
-                            <a href="#" download="CV" className="relative inline-flex items-center justify-center gap-3 md:gap-4 px-8 py-4 md:px-12 md:py-5 bg-white text-black rounded-full overflow-hidden group hover:scale-105 transition-transform duration-500 shadow-[0_0_40px_rgba(255,255,255,0.1)] shrink-0 w-max">
+                            <a href="#" download="CV" className="relative inline-flex items-center justify-center gap-3 md:gap-4 px-8 py-4 md:px-12 md:py-5 bg-white text-black rounded-full overflow-hidden group hover:scale-105 active:scale-95 transition-transform duration-500 shadow-[0_0_40px_rgba(255,255,255,0.1)] shrink-0 w-max transform-gpu">
                                 <div className="absolute inset-0 w-full h-full bg-[#ff4d29] scale-y-0 origin-bottom transition-transform duration-[600ms] ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:scale-y-100 rounded-full"></div>
                                 <span className="relative z-10 flex overflow-hidden font-['Syne'] font-bold text-sm md:text-lg tracking-[0.05em] uppercase">
                                     {"DOWNLOAD CV".split('').map((char, i) => (
@@ -724,8 +724,8 @@ function ParallaxImageBreak() {
                 {/* Dark Fade Overlay for Text Readability */}
                 <div className="absolute inset-0 bg-black/40 z-10 pointer-events-none"></div>
 
-                {/* Slogan Text Container - Lifted up using -mt-[10vh] */}
-                <div className="relative z-20 px-[4%] text-center pointer-events-none -mt-[10vh]">
+                {/* Slogan Text Container - Centered */}
+                <div className="relative z-20 px-[4%] text-center pointer-events-none">
                     <motion.div
                         initial={{ opacity: 0, scale: 0.95 }}
                         whileInView={{ opacity: 1, scale: 1 }}

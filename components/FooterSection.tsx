@@ -92,7 +92,7 @@ export default function FooterSection() {
                             />
                             <button
                                 type="submit"
-                                className="group flex items-center gap-2 bg-white text-xs font-['Syne'] font-bold uppercase tracking-[0.08em] px-4 py-2 rounded-full hover:bg-[#ff4d29] transition-all duration-300 shrink-0"
+                                className="group flex items-center justify-center gap-2 bg-white text-xs font-['Syne'] font-bold uppercase tracking-[0.08em] px-5 py-3 md:py-4 rounded-full hover:bg-[#ff4d29] active:scale-95 transition-all duration-300 shrink-0 min-h-[48px]"
                             >
                                 <span className="w-1.5 h-1.5 rounded-full bg-black group-hover:bg-white transition-colors block"></span>
                                 <span className="text-black group-hover:text-white transition-colors">Subscribe</span>

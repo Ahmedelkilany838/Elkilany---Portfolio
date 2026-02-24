@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 export default function FinalCTA() {
     return (
-        <section className="relative w-full min-h-[80vh] flex flex-col items-center justify-center overflow-hidden py-[60px] md:py-[100px] lg:py-[140px] border-b border-white/5">
+        <section className="relative w-full min-h-[80vh] flex flex-col items-center justify-center overflow-hidden py-[clamp(60px,8vh,140px)] border-b border-white/5 transform-gpu">
             {/* Background Image */}
             <div
                 className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
@@ -43,11 +43,11 @@ export default function FinalCTA() {
                 </div>
 
                 {/* Massive Typography - All White & Larger */}
-                <h2 className="font-['Syne'] font-extrabold text-[clamp(2.8rem,11vw,14rem)] leading-[0.85] tracking-[-0.04em] uppercase flex flex-col items-center">
-                    <span className="text-white block drop-shadow-2xl">
+                <h2 className="font-['Syne'] font-extrabold text-[clamp(2rem,11vw,14rem)] leading-[0.85] tracking-[-0.04em] uppercase flex flex-col items-center">
+                    <span className="text-white block drop-shadow-2xl whitespace-nowrap">
                         LET'S BUILD
                     </span>
-                    <span className="text-white block drop-shadow-2xl text-center">
+                    <span className="text-white block drop-shadow-2xl text-center whitespace-nowrap">
                         YOUR BRAND
                     </span>
                 </h2>

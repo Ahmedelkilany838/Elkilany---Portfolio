@@ -45,7 +45,7 @@ export default function Works() {
     const [isHoveringProject, setIsHoveringProject] = useState(false);
 
     return (
-        <section id="works" className="relative w-full bg-[#050505] py-[60px] md:py-[100px] lg:py-[140px] px-[4%] md:px-[6%] lg:px-[8%] border-b border-white/5 overflow-visible">
+        <section id="works" className="relative w-full bg-[#050505] py-[clamp(60px,8vh,140px)] px-[4%] md:px-[6%] lg:px-[8%] border-b border-white/5 overflow-visible transform-gpu">
             <div className="w-full max-w-[1800px] mx-auto flex flex-col">
 
                 {/* Top Grid / Header */}
@@ -116,7 +116,7 @@ export default function Works() {
                 >
                     <Link
                         to="/works"
-                        className="group relative overflow-hidden rounded-full border border-white/20 w-full sm:w-auto min-w-[280px] md:min-w-[500px] px-8 md:px-[80px] py-[24px] md:py-[28px] flex items-center justify-center gap-4 transition-all duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] hover:bg-[#ff4d29] hover:border-[#ff4d29] hover:scale-105 shadow-[0_0_40px_rgba(255,255,255,0.05)] text-white bg-transparent"
+                        className="group relative overflow-hidden rounded-full border border-white/20 w-full sm:w-auto min-w-[280px] md:min-w-[500px] px-8 md:px-[80px] py-[24px] md:py-[28px] flex items-center justify-center gap-4 transition-all duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] hover:bg-[#ff4d29] hover:border-[#ff4d29] hover:scale-105 active:scale-95 shadow-[0_0_40px_rgba(255,255,255,0.05)] text-white bg-transparent transform-gpu"
                     >
                         <span className="font-['Syne'] font-extrabold uppercase tracking-[0.05em] text-sm md:text-lg relative z-10 w-full text-center">
                             View All Projects
@@ -141,7 +141,7 @@ function ProjectCard({ project }: { project: any }) {
     return (
         <Link
             to={project.link}
-            className="case-study-link block group w-full h-full cursor-none"
+            className="case-study-link block group w-full h-full cursor-none transform-gpu active:scale-[0.98] transition-transform duration-300"
             data-cursor-view="true"
         >
             <div className="case-study-wrapper relative w-full h-full flex flex-col p-2.5 md:p-3 gap-2.5 md:gap-3 rounded-[24px] bg-[#0a0a0a]/60 backdrop-blur-[24px] border border-white/5 shadow-2xl transition-colors duration-500 hover:bg-[#151515]/70">
