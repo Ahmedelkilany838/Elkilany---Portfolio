@@ -1,12 +1,16 @@
 import type { Route } from "./+types/about";
 import { useEffect } from "react";
-import { motion } from "framer-motion";
-import FooterSection from "components/FooterSection";
+import Navbar from "components/Navbar";
+import AboutPage from "components/Pages/AboutPage";
 
 export function meta({ }: Route.MetaArgs) {
     return [
-        { title: "About | Kilany" },
-        { name: "description", content: "About Kilany - Graphic Designer" },
+        { title: "About | Kilany — Senior Brand & Advertising Specialist" },
+        {
+            name: "description",
+            content:
+                "Learn about Ahmed Kilany — a senior brand and advertising specialist who combines strategic thinking with visual precision to build legacies for visionary brands.",
+        },
     ];
 }
 
@@ -17,42 +21,13 @@ export default function About() {
 
     return (
         <div className="relative w-full min-h-screen bg-[#050505] flex flex-col">
-            {/* Page Content */}
-            <section
-                id="about-page"
-                className="flex-1 flex flex-col items-center justify-center px-6 md:px-12"
-            >
-                {/* Big Editorial Title */}
-                <motion.h1
-                    initial={{ opacity: 0, y: 60, scale: 0.95 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    transition={{ duration: 1.2, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-                    className="text-[20vw] md:text-[15vw] font-black uppercase text-white leading-none tracking-tighter text-center"
-                >
-                    About
-                </motion.h1>
+            {/* Global Navbar */}
+            <Navbar />
 
-                {/* Coming Soon Subtitle */}
-                <motion.p
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 1, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                    className="mt-8 text-white/50 text-sm md:text-base uppercase tracking-[0.3em] font-medium"
-                >
-                    Coming Soon
-                </motion.p>
-
-                {/* Decorative Line */}
-                <motion.div
-                    initial={{ scaleX: 0 }}
-                    animate={{ scaleX: 1 }}
-                    transition={{ duration: 0.8, delay: 0.8, ease: [0.22, 1, 0.36, 1] }}
-                    className="mt-12 w-24 h-[2px] bg-white/20 origin-center"
-                />
-            </section>
-
-            {/* Footer */}
-            <FooterSection />
+            {/* Clean Slate for New Content */}
+            <main className="flex-1 w-full flex flex-col">
+                <AboutPage />
+            </main>
         </div>
     );
 }

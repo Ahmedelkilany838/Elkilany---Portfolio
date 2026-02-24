@@ -94,10 +94,22 @@ export default function Works() {
             </motion.div>
 
             {/* Top Grid / Header */}
-            <div className="flex flex-col mb-16 md:mb-20">
+            <motion.div
+                initial={{ y: 120, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+                viewport={{ once: true, margin: "-100px" }}
+                className="flex flex-col mb-16 md:mb-20"
+            >
                 <div className="flex items-center gap-4 mb-4 text-[#777] text-xs font-mono uppercase tracking-[0.1em]">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="shrink-0">
-                        <path d="M12 2v20M2 12h20M4.93 4.93l14.14 14.14M4.93 19.07L19.07 4.93" />
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="shrink-0 flex items-center justify-center">
+                        <motion.span
+                            animate={{ rotate: 360 }}
+                            transition={{ repeat: Infinity, ease: "linear", duration: 8 }}
+                            className="inline-block text-xl md:text-2xl mt-[-2px]"
+                        >
+                            ✲
+                        </motion.span>
                     </svg>
                     <div className="flex overflow-hidden whitespace-nowrap opacity-80 w-[200px] md:w-[300px]" style={{ maskImage: 'linear-gradient(to right, black 60%, transparent)' }}>
                         <motion.div
@@ -105,14 +117,14 @@ export default function Works() {
                             transition={{ repeat: Infinity, ease: "linear", duration: 15 }}
                             className="flex"
                         >
-                            <span className="mr-4">My Portfolio — My Portfolio — My Portfolio — My Portfolio — </span>
-                            <span className="mr-4">My Portfolio — My Portfolio — My Portfolio — My Portfolio — </span>
+                            <span className="mr-4">MY PORTFOLIO — MY PORTFOLIO — MY PORTFOLIO — </span>
+                            <span className="mr-4">MY PORTFOLIO — MY PORTFOLIO — MY PORTFOLIO — </span>
                         </motion.div>
                     </div>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-4 md:gap-8 items-end">
-                    <h2 className="font-['Syne'] font-extrabold text-[clamp(4.5rem,10vw,11rem)] leading-[0.85] tracking-[-0.04em] uppercase">
+                    <h2 className="font-['Syne'] font-extrabold text-[clamp(2.8rem,10vw,11rem)] leading-[0.85] tracking-[-0.04em] uppercase">
                         <span className="text-white block">Selected</span>
                         <span className="text-[#666] block">Work</span>
                     </h2>
@@ -120,7 +132,7 @@ export default function Works() {
                         2024 — 2026
                     </div>
                 </div>
-            </div>
+            </motion.div>
 
             {/* Project Grid With Native Sticky Stacking */}
             <div className="project-component flex flex-col relative w-full mt-10" style={{ paddingBottom: '5vh' }}>
@@ -149,12 +161,18 @@ export default function Works() {
             </div>
 
             {/* View All Button */}
-            <div className="w-full flex justify-center mt-10 md:mt-14 relative z-50">
+            <motion.div
+                initial={{ y: 120, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+                viewport={{ once: true, margin: "-50px" }}
+                className="w-full flex justify-center mt-10 md:mt-14 relative z-50"
+            >
                 <Link
                     to="/works"
-                    className="group relative overflow-hidden rounded-full border border-white/20 min-w-[320px] md:min-w-[500px] px-[80px] py-[24px] md:py-[28px] flex items-center justify-center gap-4 transition-all duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] hover:bg-[#ff4d29] hover:border-[#ff4d29] hover:scale-105 shadow-[0_0_40px_rgba(255,255,255,0.05)] text-white bg-transparent"
+                    className="group relative overflow-hidden rounded-full border border-white/20 w-full sm:w-auto min-w-[280px] md:min-w-[500px] px-8 md:px-[80px] py-[24px] md:py-[28px] flex items-center justify-center gap-4 transition-all duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] hover:bg-[#ff4d29] hover:border-[#ff4d29] hover:scale-105 shadow-[0_0_40px_rgba(255,255,255,0.05)] text-white bg-transparent"
                 >
-                    <span className="font-['Syne'] font-extrabold uppercase tracking-[0.05em] text-base md:text-lg relative z-10">
+                    <span className="font-['Syne'] font-extrabold uppercase tracking-[0.05em] text-sm md:text-lg relative z-10 w-full text-center">
                         View All Projects
                     </span>
                     <div className="relative w-5 h-5 overflow-hidden flex items-center justify-center z-10">
@@ -166,7 +184,7 @@ export default function Works() {
                         </svg>
                     </div>
                 </Link>
-            </div>
+            </motion.div>
         </section>
     );
 }

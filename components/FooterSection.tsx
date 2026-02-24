@@ -14,13 +14,13 @@ export default function FooterSection() {
 
             {/* Email CTA Strip */}
             <div className="w-full pt-0 pb-[40px] md:pb-[60px] flex flex-col items-center justify-center text-center px-[4%]">
-                <p className="text-white/40 text-xs md:text-sm font-mono uppercase tracking-[0.25em] mb-0 leading-none">
+                <p className="text-white/40 text-[10px] md:text-xs font-mono uppercase tracking-[0.15em] md:tracking-[0.25em] mb-2 md:mb-0 leading-normal md:leading-none max-w-[80%] mx-auto">
                     Reach out if you're ready to make something amazing together.
                 </p>
                 <a
                     href="mailto:hello@kilany.com"
-                    className="font-['Syne'] font-black uppercase text-white tracking-[-0.02em] transition-colors duration-300 hover:text-[#ff4d29]"
-                    style={{ fontSize: "clamp(3rem, 7.5vw, 7.5rem)" }}
+                    className="font-['Syne'] font-black uppercase text-white tracking-[-0.02em] transition-colors duration-300 hover:text-[#ff4d29] break-all sm:break-normal"
+                    style={{ fontSize: "clamp(2rem, 7vw, 7.5rem)", lineHeight: 1.1 }}
                 >
                     hello@kilany.com
                 </a>
@@ -102,19 +102,19 @@ export default function FooterSection() {
                 </div>
 
                 {/* Bottom Bar */}
-                <div className="flex flex-col md:flex-row justify-between items-center gap-4 pt-8 text-white/40 text-[13px] font-mono uppercase tracking-[0.1em]">
-                    <div className="flex items-center gap-1">
+                <div className="flex flex-col md:flex-row justify-between items-center gap-6 md:gap-4 pt-8 text-white/40 text-[11px] md:text-[13px] font-mono uppercase tracking-[0.05em] md:tracking-[0.1em] text-center md:text-left">
+                    <div className="flex items-center gap-1 order-3 md:order-1 mt-2 md:mt-0">
                         <span className="text-[#ff4d29]">©</span>
                         <span>2026 Kilany®</span>
                     </div>
-                    <div className="flex items-center gap-5">
+                    <div className="flex flex-wrap justify-center items-center gap-4 md:gap-5 order-2">
                         <a href="#" className="hover:text-white transition-colors">License</a>
                         <a href="#" className="hover:text-white transition-colors">Changelog</a>
                         <a href="#" className="hover:text-white transition-colors">Style Guide</a>
                     </div>
-                    <div>
+                    <div className="order-1 md:order-3">
                         Designed &amp; Developed by{" "}
-                        <span className="text-white font-bold font-['Syne']">Ahmed Kilany</span>
+                        <span className="text-white font-bold font-['Syne'] whitespace-nowrap">Ahmed Kilany</span>
                     </div>
                 </div>
             </div>

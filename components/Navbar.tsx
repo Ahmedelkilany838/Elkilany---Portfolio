@@ -40,7 +40,7 @@ export default function Navbar() {
             <div className={`fixed z-[1002] left-4 md:left-8 transition-all duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] ${isScrolled ? 'top-6' : 'top-4 md:top-6'
                 }`}>
                 <Link to="/" onClick={() => setMenuOpen(false)}>
-                    <h1 className={`font-['Syne'] font-extrabold tracking-tighter uppercase text-white whitespace-nowrap leading-none transition-all duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] ${isScrolled ? 'text-3xl md:text-4xl' : 'text-[clamp(4.5rem,10vw,12rem)]'
+                    <h1 className={`font-['Syne'] font-extrabold tracking-tighter uppercase text-white whitespace-nowrap leading-none transition-all duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] ${isScrolled ? 'text-2xl md:text-4xl' : 'text-[clamp(2.5rem,9vw,10rem)]'
                         }`}>
                         KILANY
                     </h1>

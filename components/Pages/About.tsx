@@ -6,12 +6,12 @@ import { Link } from 'react-router';
 const sentence = "I shape concepts into communication-driven designs that help brands speak clearly and connect with people in meaningful ways".split(" ");
 
 function Word({ children, range, progress }: { children: React.ReactNode, range: [number, number], progress: MotionValue<number> }) {
-  const opacity = useTransform(progress, range, [0.2, 1]);
+  // Map the scroll progress over the character's range to a bright white color, otherwise keep it a dark grey #222222
+  const color = useTransform(progress, range, ["#222222", "#ffffff"]);
 
   return (
-    <span className="relative inline-block mb-[0.1em]">
-      <span className="absolute opacity-20 text-white select-none">{children}</span>
-      <motion.span style={{ opacity }} className="text-white select-none inline-block">
+    <span className="relative inline-block mb-[0.1em] mr-[0.2em]">
+      <motion.span style={{ color }} className="select-none inline-block">
         {children}
       </motion.span>
     </span>
@@ -22,13 +22,14 @@ export default function About() {
   const containerRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start 0.7", "end 0.9"]
+    // Start fading when top of container hits the center, finish when bottom of container hits the bottom
+    offset: ["start center", "end end"]
   });
 
   return (
-    <section ref={containerRef} className="relative w-full min-h-[150vh] bg-[#050505]">
+    <section ref={containerRef} className="relative w-full min-h-[150vh] bg-[#050505] flex items-start justify-center">
       {/* Sticky container to lock the view while scrolling through */}
-      <div className="sticky top-[10%] md:top-[15%] w-full py-[80px] md:py-[140px] px-[4%] md:px-[6%] lg:px-[8%] flex flex-col md:flex-row items-start justify-center gap-8 xl:gap-16">
+      <div className="sticky top-[15%] w-full py-[40px] md:py-[80px] px-[4%] md:px-[6%] lg:px-[8%] flex flex-col md:flex-row items-start justify-center gap-8 xl:gap-16">
 
         {/* 1. Left Column: Rotating Text Ring */}
         <div className="hidden lg:flex w-[200px] xl:w-[220px] shrink-0 mt-[12px] justify-end xl:pr-6">
@@ -52,25 +53,45 @@ export default function About() {
         {/* 2. Right Column: Main Content Area */}
         <div className="flex-1 w-full max-w-[1200px] flex flex-col">
 
-          {/* Header Area with Asterisk & Scrolling Reveal Text */}
-          <h2 className="font-['Syne'] text-left flex flex-wrap items-center content-start uppercase">
+          {/* Top Label: Rotating Asterisk + Looping Marquee */}
+          <div className="flex items-center gap-4 mb-6 md:mb-10 text-[#777] text-xs font-mono uppercase tracking-[0.1em]">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="shrink-0 flex items-center justify-center">
+              <motion.span
+                animate={{ rotate: 360 }}
+                transition={{ repeat: Infinity, ease: "linear", duration: 8 }}
+                className="inline-block text-xl md:text-2xl mt-[-2px]"
+              >
+                ✲
+              </motion.span>
+            </svg>
+            <div className="flex overflow-hidden whitespace-nowrap opacity-80 w-[200px] md:w-[300px]" style={{ maskImage: 'linear-gradient(to right, black 60%, transparent)' }}>
+              <motion.div
+                animate={{ x: ["0%", "-50%"] }}
+                transition={{ repeat: Infinity, ease: "linear", duration: 15 }}
+                className="flex"
+              >
+                <span className="mr-4">ABOUT ME — ABOUT ME — ABOUT ME — </span>
+                <span className="mr-4">ABOUT ME — ABOUT ME — ABOUT ME — </span>
+              </motion.div>
+            </div>
+          </div>
 
-            {/* The Asterisk Icon matching the reference */}
-            <span className="inline-flex mr-4 md:mr-6 mb-2 md:mb-4 shrink-0">
-              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-white">
-                <path d="M12 2v20M2 12h20M4.93 4.93l14.14 14.14M4.93 19.07L19.07 4.93" />
-              </svg>
-            </span>
+          {/* Header Area with Scrolling Reveal Text */}
+          <h2 className="font-['Syne'] text-left flex flex-wrap items-center content-start uppercase">
 
             {/* Word-by-Word Scroll Engine */}
             {sentence.map((word, i) => {
-              const start = i / sentence.length;
-              const end = start + (1 / sentence.length);
-              const isLast = i === sentence.length - 1;
+              // We map the word indices to fractions between 0 and 0.8 so the whole phrase completes
+              // well before the user finishes scrolling past the container.
+              const completionPoint = 0.8;
+              const step = completionPoint / sentence.length;
+              const start = i * step;
+              const end = start + step;
+
               return (
                 <Word key={i} range={[start, end]} progress={scrollYProgress}>
                   <span className="text-[36px] md:text-[52px] lg:text-[72px] font-bold tracking-[-0.02em] leading-[1.1]">
-                    {word}{!isLast && '\u00A0'}
+                    {word}
                   </span>
                 </Word>
               );
@@ -78,10 +99,9 @@ export default function About() {
 
             {/* Period / Stop Mark Animation */}
             <span className="inline-block relative">
-              <span className="text-white text-[36px] md:text-[52px] lg:text-[72px] font-bold tracking-[-0.02em] leading-[1.1] opacity-20 absolute">.</span>
               <motion.span
-                style={{ opacity: useTransform(scrollYProgress, [0.95, 1], [0.2, 1]) }}
-                className="text-white text-[36px] md:text-[52px] lg:text-[72px] font-bold tracking-[-0.02em] leading-[1.1]"
+                style={{ color: useTransform(scrollYProgress, [0.8, 0.85], ["#222222", "#ffffff"]) }}
+                className="text-[36px] md:text-[52px] lg:text-[72px] font-bold tracking-[-0.02em] leading-[1.1]"
               >
                 .
               </motion.span>
@@ -89,7 +109,13 @@ export default function About() {
           </h2>
 
           {/* Sub-Texts & Button Grid */}
-          <div className="mt-10 md:mt-12 flex flex-col md:flex-row gap-8 md:gap-16 w-full lg:w-full xl:w-[95%]">
+          <motion.div
+            initial={{ y: 80, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+            viewport={{ once: true, margin: "-100px" }}
+            className="mt-12 md:mt-24 flex flex-col md:flex-row gap-8 md:gap-16 w-full lg:w-full xl:w-[95%]"
+          >
 
             {/* Left Sub-Column */}
             <div className="flex flex-col gap-10 md:w-[55%] lg:w-[60%]">
@@ -98,7 +124,7 @@ export default function About() {
               </p>
 
               {/* Buttons */}
-              <div className="flex items-center gap-6 md:gap-8 mt-2 whitespace-nowrap">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 md:gap-8 mt-2 w-full sm:w-auto">
 
                 {/* Button 1: Solid Pill */}
                 <Link to="/about" className="relative inline-flex items-center justify-center gap-3 px-8 py-4 md:px-10 md:py-5 lg:px-12 lg:py-6 bg-white text-black rounded-full overflow-hidden group hover:scale-105 transition-transform duration-500 shadow-[0_0_40px_rgba(255,255,255,0.1)] shrink-0">
@@ -170,7 +196,7 @@ export default function About() {
               </p>
             </div>
 
-          </div>
+          </motion.div>
 
         </div>
 

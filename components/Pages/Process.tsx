@@ -65,7 +65,13 @@ export default function Process() {
                 <motion.div style={{ x }} className="flex items-center px-[4%] md:px-[6%] lg:px-[8%] w-max relative">
 
                     {/* TITLE BLOCK */}
-                    <div className="w-max shrink-0 flex flex-col justify-center pr-16 md:pr-24 lg:pr-40">
+                    <motion.div
+                        initial={{ y: 120, opacity: 0 }}
+                        whileInView={{ y: 0, opacity: 1 }}
+                        transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+                        viewport={{ once: true, margin: "-100px" }}
+                        className="w-max shrink-0 flex flex-col justify-center pr-16 md:pr-24 lg:pr-40"
+                    >
                         <div className="flex items-center gap-4 mb-4 text-[#777] text-xs font-mono uppercase tracking-[0.1em]">
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="shrink-0">
                                 <path d="M12 2v20M2 12h20M4.93 4.93l14.14 14.14M4.93 19.07L19.07 4.93" />
@@ -82,7 +88,7 @@ export default function Process() {
                             </div>
                         </div>
 
-                        <h2 className="font-['Syne'] font-extrabold text-[clamp(4.5rem,10vw,11rem)] leading-[0.85] tracking-[-0.04em] uppercase">
+                        <h2 className="font-['Syne'] font-extrabold text-[clamp(3.5rem,10vw,11rem)] leading-[0.85] tracking-[-0.04em] uppercase">
                             <span className="text-white block">How I</span>
                             <span className="text-[#666] block">Work<span className="text-[#ff4d29]">.</span></span>
                         </h2>
@@ -90,10 +96,16 @@ export default function Process() {
                         <p className="mt-6 md:mt-8 text-white/50 text-sm md:text-base leading-[1.6] max-w-[300px] md:max-w-[400px] whitespace-normal">
                             A seamless journey from initial concept to a polished digital reality, crafted with absolute precision.
                         </p>
-                    </div>
+                    </motion.div>
 
                     {/* JOURNEY TRACK */}
-                    <div className="flex items-center gap-16 md:gap-32 lg:gap-[200px] relative px-4 md:px-0">
+                    <motion.div
+                        initial={{ y: 120, opacity: 0 }}
+                        whileInView={{ y: 0, opacity: 1 }}
+                        transition={{ duration: 1.2, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+                        viewport={{ once: true, margin: "-100px" }}
+                        className="flex items-center gap-16 md:gap-32 lg:gap-[200px] relative px-4 md:px-0"
+                    >
 
                         {/* THE BACKGROUND LINE */}
                         <div className="absolute top-[45%] md:top-1/2 left-0 w-full h-[1px] bg-white/10 -translate-y-1/2 z-0"></div>
@@ -131,7 +143,7 @@ export default function Process() {
 
                             </div>
                         ))}
-                    </div>
+                    </motion.div>
 
                 </motion.div>
             </div>

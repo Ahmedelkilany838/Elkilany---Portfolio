@@ -15,7 +15,13 @@ export default function FinalCTA() {
                 <div className="absolute inset-0 bg-gradient-to-b from-[#050505] via-transparent to-[#050505] opacity-90"></div>
             </div>
 
-            <div className="relative z-10 flex flex-col items-center justify-center w-full px-[4%] text-center">
+            <motion.div
+                initial={{ y: 120, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+                viewport={{ once: true, margin: "-100px" }}
+                className="relative z-10 flex flex-col items-center justify-center w-full px-[4%] text-center"
+            >
 
                 {/* Scrolling Top Label (Matching Works.tsx style) */}
                 <div className="flex items-center justify-center gap-4 mb-8 md:mb-12 text-white/50 text-[10px] md:text-sm font-mono uppercase tracking-[0.2em]">
@@ -37,11 +43,11 @@ export default function FinalCTA() {
                 </div>
 
                 {/* Massive Typography - All White & Larger */}
-                <h2 className="font-['Syne'] font-extrabold text-[clamp(5.5rem,13vw,14rem)] leading-[0.85] tracking-[-0.04em] uppercase flex flex-col items-center">
+                <h2 className="font-['Syne'] font-extrabold text-[clamp(2.8rem,11vw,14rem)] leading-[0.85] tracking-[-0.04em] uppercase flex flex-col items-center">
                     <span className="text-white block drop-shadow-2xl">
                         LET'S BUILD
                     </span>
-                    <span className="text-white block drop-shadow-2xl">
+                    <span className="text-white block drop-shadow-2xl text-center">
                         YOUR BRAND
                     </span>
                 </h2>
@@ -71,7 +77,7 @@ export default function FinalCTA() {
                     </Link>
                 </div>
 
-            </div>
+            </motion.div>
         </section>
     );
 }

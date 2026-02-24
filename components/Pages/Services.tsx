@@ -81,28 +81,43 @@ export default function Services() {
       </motion.div>
 
       {/* Top Grid / Header (Identical structure to Works section) */}
-      <div className="flex flex-col mb-16 md:mb-24">
-        <div className="flex items-center gap-4 mb-4 text-[#777] text-xs font-mono uppercase tracking-[0.1em]">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="shrink-0">
-            <path d="M12 2v20M2 12h20M4.93 4.93l14.14 14.14M4.93 19.07L19.07 4.93" />
-          </svg>
-          <div className="flex overflow-hidden whitespace-nowrap opacity-80 w-[200px] md:w-[300px]" style={{ maskImage: 'linear-gradient(to right, black 60%, transparent)' }}>
-            <motion.div
-              animate={{ x: ["0%", "-50%"] }}
-              transition={{ repeat: Infinity, ease: "linear", duration: 15 }}
-              className="flex"
-            >
-              <span className="mr-4">My Services — My Services — My Services — My Services — </span>
-              <span className="mr-4">My Services — My Services — My Services — My Services — </span>
-            </motion.div>
-          </div>
-        </div>
-
+      <motion.div
+        initial={{ y: 120, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+        viewport={{ once: true, margin: "-100px" }}
+        className="flex flex-col mb-16 md:mb-24"
+      >
         <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-6 md:gap-8 items-end">
-          <h2 className="font-['Syne'] font-extrabold text-[clamp(4.5rem,10vw,11rem)] leading-[0.85] tracking-[-0.04em] uppercase">
-            <span className="text-white block">Creative</span>
-            <span className="text-[#666] block">Solutions</span>
-          </h2>
+          {/* Left Column: Subtitle & Heading */}
+          <div className="flex flex-col justify-start shrink-0">
+            <div className="flex items-center gap-4 mb-4 text-[#777] text-xs font-mono uppercase tracking-[0.1em]">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="shrink-0 flex items-center justify-center">
+                <motion.span
+                  animate={{ rotate: 360 }}
+                  transition={{ repeat: Infinity, ease: "linear", duration: 8 }}
+                  className="inline-block text-xl md:text-2xl mt-[-2px]"
+                >
+                  ✲
+                </motion.span>
+              </svg>
+              <div className="flex overflow-hidden whitespace-nowrap opacity-80 w-[200px] md:w-[300px]" style={{ maskImage: 'linear-gradient(to right, black 60%, transparent)' }}>
+                <motion.div
+                  animate={{ x: ["0%", "-50%"] }}
+                  transition={{ repeat: Infinity, ease: "linear", duration: 15 }}
+                  className="flex"
+                >
+                  <span className="mr-4">MY SERVICES — MY SERVICES — MY SERVICES — </span>
+                  <span className="mr-4">MY SERVICES — MY SERVICES — MY SERVICES — </span>
+                </motion.div>
+              </div>
+            </div>
+
+            <h2 className="font-['Syne'] font-extrabold text-[clamp(2.8rem,10vw,11rem)] leading-[0.85] tracking-[-0.04em] uppercase">
+              <span className="text-white block">Creative</span>
+              <span className="text-[#666] block">Solutions</span>
+            </h2>
+          </div>
 
           <div className="pb-2 md:pb-4 flex justify-start md:justify-end">
             <Link
@@ -114,10 +129,16 @@ export default function Services() {
             </Link>
           </div>
         </div>
-      </div>
+      </motion.div>
 
       {/* Services List */}
-      <div className="flex flex-col w-full border-t border-white/10 mt-8">
+      <motion.div
+        initial={{ y: 120, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        transition={{ duration: 1.2, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+        viewport={{ once: true, margin: "-100px" }}
+        className="flex flex-col w-full border-t border-white/10 mt-8"
+      >
         {services.map((service, index) => (
           <div
             key={index}
@@ -128,7 +149,7 @@ export default function Services() {
           >
             {/* Top Row: Title + Icon */}
             <div className="flex items-center justify-between w-full">
-              <h2 className="font-['Syne'] font-bold text-[clamp(2.5rem,4.5vw,5rem)] text-white/50 group-hover:text-white transition-colors duration-500 uppercase leading-none tracking-[-0.03em] m-0">
+              <h2 className="font-['Syne'] font-bold text-[clamp(1.8rem,6vw,5rem)] text-white/50 group-hover:text-white transition-colors duration-500 uppercase leading-none tracking-[-0.03em] m-0">
                 {service.title}
               </h2>
               <div className="flex items-center justify-center p-2">
@@ -170,7 +191,7 @@ export default function Services() {
             </AnimatePresence>
           </div>
         ))}
-      </div>
+      </motion.div>
 
     </section>
   );

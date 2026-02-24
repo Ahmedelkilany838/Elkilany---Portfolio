@@ -29,7 +29,13 @@ export default function FAQ() {
         <section className="relative w-full bg-[#050505] py-[80px] md:py-[140px] px-[4%] md:px-[6%] lg:px-[8%] border-b border-white/5">
 
             {/* Header: Template Snippet Layout */}
-            <div className="w-full flex flex-col md:flex-row md:items-end justify-between border-b border-white/10 pb-12 mb-12 md:mb-16 gap-12 md:gap-24">
+            <motion.div
+                initial={{ y: 120, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+                viewport={{ once: true, margin: "-100px" }}
+                className="w-full flex flex-col md:flex-row md:items-end justify-between border-b border-white/10 pb-12 mb-12 md:mb-16 gap-12 md:gap-24"
+            >
                 {/* Left Column: Subtitle & Heading */}
                 <div className="flex flex-col justify-start shrink-0">
                     <div className="flex items-center gap-4 mb-4 text-[#777] text-xs font-mono uppercase tracking-[0.1em]">
@@ -48,7 +54,7 @@ export default function FAQ() {
                         </div>
                     </div>
 
-                    <h2 className="font-['Syne'] font-extrabold text-[clamp(4.5rem,10vw,11rem)] leading-[0.85] tracking-[-0.04em] uppercase">
+                    <h2 className="font-['Syne'] font-extrabold text-[clamp(2.8rem,10vw,11rem)] leading-[0.85] tracking-[-0.04em] uppercase">
                         <span className="text-white block">General</span>
                         <span className="text-[#666] block">Questions</span>
                     </h2>
@@ -100,10 +106,16 @@ export default function FAQ() {
                         </Link>
                     </div>
                 </div>
-            </div>
+            </motion.div>
 
             {/* Accordion: Full Width */}
-            <div className="w-full flex flex-col">
+            <motion.div
+                initial={{ y: 120, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                transition={{ duration: 1.2, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+                viewport={{ once: true, margin: "-100px" }}
+                className="w-full flex flex-col"
+            >
                 {faqs.map((faq, index) => (
                     <div
                         key={index}
@@ -139,7 +151,7 @@ export default function FAQ() {
                         </AnimatePresence>
                     </div>
                 ))}
-            </div>
+            </motion.div>
 
         </section>
     );

@@ -33,14 +33,26 @@ export default function Testimonials() {
         <section className="relative w-full bg-[#050505] py-[80px] md:py-[140px] px-[4%] md:px-[6%] lg:px-[8%] overflow-hidden border-b border-white/5">
 
             {/* Header DNA */}
-            <div className="w-full mb-[64px] border-b border-white/5 pb-8 flex items-end justify-between">
-                <h2 className="font-extrabold text-[6.8vw] md:text-[4.25rem] leading-[1.1] tracking-[-0.02em] uppercase text-white">
+            <motion.div
+                initial={{ y: 120, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+                viewport={{ once: true, margin: "-100px" }}
+                className="w-full mb-[64px] border-b border-white/5 pb-8 flex items-end justify-between"
+            >
+                <h2 className="font-extrabold text-[clamp(2.5rem,8vw,4.25rem)] leading-[1.1] tracking-[-0.02em] uppercase text-white">
                     CLIENT VOICES<span className="text-[#ff4d29]">.</span>
                 </h2>
                 <span className="text-white/50 text-xl tracking-normal hidden md:block">(05)</span>
-            </div>
+            </motion.div>
 
-            <div className="max-w-[100rem] mx-auto">
+            <motion.div
+                initial={{ y: 120, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                transition={{ duration: 1.2, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+                viewport={{ once: true, margin: "-100px" }}
+                className="max-w-[100rem] mx-auto"
+            >
 
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
 
@@ -94,7 +106,7 @@ export default function Testimonials() {
                     </div>
 
                 </div>
-            </div>
+            </motion.div>
         </section>
     );
 }

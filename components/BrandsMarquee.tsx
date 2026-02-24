@@ -15,7 +15,7 @@ const brandSet = [...brands, ...brands, ...brands];
 
 export default function BrandsMarquee() {
     return (
-        <section className="relative w-full bg-[#050505] py-[40px] md:py-[80px] overflow-hidden">
+        <section className="relative w-full bg-[#050505] py-[20px] md:py-[40px] overflow-hidden">
             {/* Gradient Fades for Smooth Entrance/Exit */}
             <div className="absolute top-0 left-0 h-full w-[15%] md:w-[20%] bg-gradient-to-r from-[#050505] to-transparent z-10 pointer-events-none" />
             <div className="absolute top-0 right-0 h-full w-[15%] md:w-[20%] bg-gradient-to-l from-[#050505] to-transparent z-10 pointer-events-none" />
@@ -48,12 +48,12 @@ const LogoSet = () => (
         {brandSet.map((logo, index) => (
             <div
                 key={`${index}-${logo}`}
-                className="pr-16 md:pr-32 shrink-0 opacity-40 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
+                className="pr-20 md:pr-40 shrink-0 opacity-40 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
             >
                 <img
                     src={logo}
                     alt="Brand Logo"
-                    className="h-10 md:h-14 w-auto object-contain max-w-[150px]"
+                    className="h-16 md:h-24 w-auto object-contain max-w-[220px] md:max-w-[280px]"
                     style={{
                         filter: 'brightness(0) invert(1)',
                     }}

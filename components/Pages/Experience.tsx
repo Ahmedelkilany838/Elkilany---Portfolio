@@ -7,18 +7,22 @@ export default function Experience() {
     // Track the scroll progress based on the layout position of the section
     const { scrollYProgress } = useScroll({
         target: containerRef,
-        // Animates from when it first appears until the next section completely covers it
-        offset: ["start end", "end start"]
+        // Capture from when the top enters the bottom of the viewport to when it leaves
+        offset: ["start end", "end end"]
     });
 
     const smoothProgress = useSpring(scrollYProgress, {
-        stiffness: 80,  // Fast enough to feel responsive
-        damping: 25,    // Smooth friction to stop jumping
+        stiffness: 100, // Slightly stiffer for better responsiveness
+        damping: 30,    // Smooth friction
         restDelta: 0.001
     });
 
-    // We scale down gracefully so the zoom effect is constantly moving
-    const scale = useTransform(smoothProgress, [0, 1], [1.3, 1]);
+    // Custom mapping for: starts heavy/slow, accelerates, and lands exactly at 1.0
+    // Keep in mind with offset ["start end", "end end"] of a 100vh section:
+    const scale = useTransform(smoothProgress,
+        [0, 0.5, 0.8, 1],
+        [1.6, 1.45, 1.1, 1]
+    );
 
     return (
         <section
@@ -40,3 +44,5 @@ export default function Experience() {
         </section>
     );
 }
+
+// Note: Ensure HMR catches this to sync both pages
