@@ -1115,4 +1115,6 @@ export default function AboutPage() {
                     <Contact />
                 </div>
             </div>
-        </div>
+        </div>
+    );
+}
