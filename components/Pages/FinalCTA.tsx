@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 export default function FinalCTA() {
     return (
-        <section className="relative w-full min-h-[80vh] flex flex-col items-center justify-center overflow-hidden py-[80px] md:py-[140px] border-b border-white/5">
+        <section className="relative w-full min-h-[80vh] flex flex-col items-center justify-center overflow-hidden py-[60px] md:py-[100px] lg:py-[140px] border-b border-white/5">
             {/* Background Image */}
             <div
                 className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
@@ -20,7 +20,7 @@ export default function FinalCTA() {
                 whileInView={{ y: 0, opacity: 1 }}
                 transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
                 viewport={{ once: true, margin: "-100px" }}
-                className="relative z-10 flex flex-col items-center justify-center w-full px-[4%] text-center"
+                className="relative z-10 flex flex-col items-center justify-center w-full max-w-[1800px] mx-auto px-[4%] text-center"
             >
 
                 {/* Scrolling Top Label (Matching Works.tsx style) */}

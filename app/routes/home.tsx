@@ -6,6 +6,7 @@ import BrandsMarquee from "components/BrandsMarquee";
 import Works from "components/Pages/Works";
 import About from "components/Pages/About";
 import Services from "components/Pages/Services";
+import Stats from "components/Pages/Stats";
 import Experience from "components/Pages/Experience";
 import Process from "components/Pages/Process";
 import FAQ from "components/Pages/FAQ"; // Strategic FAQ
@@ -45,6 +46,7 @@ export default function Home() {
 
         {/* 5. Services: Dynamic Accordion */}
         <Services />
+
 
         {/* 6. The Proof: Stats & Impact */}
         <Experience />

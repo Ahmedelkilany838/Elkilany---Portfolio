@@ -16,13 +16,11 @@ export function meta({ }: Route.MetaArgs) {
 
 export default function About() {
     useEffect(() => {
-        window.scrollTo(0, 0);
+        // Handled by root transition
     }, []);
 
     return (
         <div className="relative w-full min-h-screen bg-[#050505] flex flex-col">
-            {/* Global Navbar */}
-            <Navbar />
 
             {/* Clean Slate for New Content */}
             <main className="flex-1 w-full flex flex-col">

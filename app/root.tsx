@@ -2,9 +2,9 @@ import {
   isRouteErrorResponse,
   Links,
   Meta,
-  Outlet,
   Scripts,
   ScrollRestoration,
+  useOutlet,
 } from "react-router";
 
 import type { Route } from "./+types/root";
@@ -21,7 +21,6 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </head>
       <body>
         {children}
-        <ScrollRestoration />
         <Scripts />
       </body>
     </html>
@@ -31,23 +30,63 @@ export function Layout({ children }: { children: React.ReactNode }) {
 import SmoothScroll from "components/SmoothScroll";
 import GlobalCursor from "components/Animation/GlobalCursor";
 import Navbar from "components/Navbar";
-import { AnimatePresence, motion } from "framer-motion";
-import { useLocation, useOutlet } from "react-router";
+import { AnimatePresence, motion, useIsPresent } from "framer-motion";
+import { useLocation } from "react-router";
+import { useRef, useLayoutEffect } from "react";
 
 import Preloader from "components/Preloader";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 // Heavy premium ease
 const premiumEase: [number, number, number, number] = [0.76, 0, 0.24, 1];
+
+// Page wrapper for overlapping transition
+function RouteWrapper({ children, locationKey }: { children: React.ReactNode, locationKey: string }) {
+  const isPresent = useIsPresent();
+  const exitTopRef = useRef<number>(0);
+
+  // Capture current scroll ONLY once when it starts exiting
+  if (!isPresent && exitTopRef.current === 0 && typeof window !== "undefined") {
+    exitTopRef.current = window.scrollY;
+  }
+
+  // Ensure window goes to top synchronously before paint
+  useLayoutEffect(() => {
+    if (!isPresent) {
+      window.scrollTo(0, 0);
+    }
+  }, [isPresent]);
+
+  return (
+    <motion.div
+      key={locationKey}
+      initial={{ y: "100vh", zIndex: 50, opacity: 1 }}
+      animate={{ y: 0, zIndex: 50, opacity: 1 }}
+      exit={{ y: "-10vh", opacity: 0, filter: "brightness(0.2)", zIndex: 10 }}
+      transition={{ duration: 1.4, ease: premiumEase }}
+      style={{
+        position: isPresent ? "relative" : "fixed",
+        top: isPresent ? 0 : -exitTopRef.current,
+        left: 0,
+        right: 0,
+        backgroundColor: "#050505",
+        pointerEvents: isPresent ? "auto" : "none",
+        transformOrigin: "center top",
+        willChange: "transform, opacity",
+      }}
+      className="w-full min-h-screen"
+    >
+      {children}
+    </motion.div>
+  );
+}
 
 export default function App() {
   const location = useLocation();
   const outlet = useOutlet();
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'instant' });
-  }, [location.pathname]);
+
 
   return (
     <>
@@ -58,32 +97,12 @@ export default function App() {
       <Navbar />
 
       <SmoothScroll>
-        <div className="w-full min-h-screen bg-black relative overflow-x-hidden">
-          <div className="grid grid-cols-1 grid-rows-1">
-            <AnimatePresence initial={false}>
-              <motion.div
-                key={location.pathname}
-                className="col-start-1 row-start-1 w-full bg-[#050505]"
-                initial={{ y: "100vh", zIndex: 10 }}
-                animate={{
-                  y: 0,
-                  scale: 1,
-                  opacity: 1,
-                  zIndex: 10,
-                  transition: { duration: 1.2, ease: [0.76, 0, 0.24, 1] }
-                }}
-                exit={{
-                  y: 0,
-                  scale: 0.9,
-                  opacity: 0,
-                  zIndex: 0,
-                  transition: { duration: 1.2, ease: [0.76, 0, 0.24, 1] }
-                }}
-              >
-                {outlet}
-              </motion.div>
-            </AnimatePresence>
-          </div>
+        <div className="w-full min-h-screen bg-black relative">
+          <AnimatePresence>
+            <RouteWrapper key={location.pathname} locationKey={location.pathname}>
+              {outlet}
+            </RouteWrapper>
+          </AnimatePresence>
         </div>
       </SmoothScroll>
     </>

@@ -11,6 +11,7 @@ import {
     animate,
     AnimatePresence
 } from 'framer-motion';
+import Stats from "components/Pages/Stats";
 import FAQ from "components/Pages/FAQ";
 import FinalCTA from "components/Pages/FinalCTA";
 import Contact from "components/Pages/Contact";
@@ -21,7 +22,7 @@ import BrandsMarquee from "components/BrandsMarquee";
 // ─────────────────────────────────────────────────────────────────────────────
 const ACCENT = '#ff4d29';
 const PX = 'px-[4%] md:px-[6%] lg:px-[8%]';
-const SECTION_PY = 'py-[80px] md:py-[140px]';
+const SECTION_PY = 'py-[60px] md:py-[100px] lg:py-[140px]';
 
 // Typography class helpers
 const FONT_HEADLINE = "font-['Mona_Sans','Syne',sans-serif] font-black text-white uppercase leading-[0.88] tracking-[-0.04em]";
@@ -148,27 +149,27 @@ const VerticalMarquee = () => {
 // ─────────────────────────────────────────────────────────────────────────────
 // SECTION 1 — THE IDENTITY HERO (HTML Template Match)
 // ─────────────────────────────────────────────────────────────────────────────
-function HeroSection() {
+function HeroSection({ scrollY }: { scrollY: any }) {
+    const scale = useTransform(scrollY, [0, 1000], [1.15, 1]); // Zoom out effect
+
     return (
         <section className="relative w-full h-[100dvh] bg-[#050505] overflow-hidden">
 
             {/* BACKGROUND IMAGE & OVERLAY */}
-            <motion.div
-                initial={{ opacity: 0, scale: 1.1 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 2, ease: "easeOut" }}
-                className="absolute inset-0 z-0"
-            >
-                {/* The user's image */}
-                <img
-                    src="/images/1 v2.jpg"
-                    alt="Ahmed Elkilany"
-                    className="w-full h-full object-cover object-[center_30%]"
-                />
-                <div className="absolute inset-0 bg-black/70 mix-blend-multiply" />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-black/50 to-transparent" />
-                <div className="absolute inset-0 bg-gradient-to-b from-[#050505]/50 to-transparent" />
-            </motion.div>
+            <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+                <div className="relative w-full h-full">
+                    {/* The user's image */}
+                    <motion.img
+                        style={{ scale }}
+                        src="/images/1 v2.jpg"
+                        alt="Ahmed Elkilany"
+                        className="w-full h-full object-cover object-[center_30%]"
+                    />
+                    <div className="absolute inset-0 bg-black/70 mix-blend-multiply" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-black/50 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-b from-[#050505]/50 to-transparent" />
+                </div>
+            </div>
 
             {/* MAIN FULL-SCREEN LAYOUT */}
             <div className="relative z-10 w-full h-full flex flex-col">
@@ -304,9 +305,15 @@ function ManifestoSection() {
             {/* Sticky container to lock the view while scrolling through */}
             <div className="sticky top-[10%] md:top-[15%] w-full py-[80px] md:py-[140px] px-[4%] md:px-[6%] lg:px-[8%] flex flex-col md:flex-row items-start justify-center gap-8 xl:gap-16">
 
-                {/* 1. Left Column: Label */}
+                {/* 1. Left Column: Label (Now Empty to maintain grid alignment if needed, or we can just keep the space) */}
                 <div className="hidden lg:flex w-[200px] xl:w-[220px] shrink-0 mt-[12px] justify-start xl:justify-end xl:pr-6">
-                    <div className="flex items-center gap-4 mb-4 text-[#777] text-xs font-mono uppercase tracking-[0.1em] origin-right -rotate-90 translate-y-[150px] translate-x-[-120px]">
+                </div>
+
+                {/* 2. Right Column: Main Content Area */}
+                <div className="flex-1 w-full max-w-[1200px] flex flex-col">
+
+                    {/* Top Label: Rotating Asterisk + Looping Marquee */}
+                    <div className="flex items-center gap-4 mb-6 md:mb-10 text-[#777] text-xs font-mono uppercase tracking-[0.1em]">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="shrink-0 flex items-center justify-center">
                             <motion.span
                                 animate={{ rotate: 360 }}
@@ -316,7 +323,7 @@ function ManifestoSection() {
                                 ✲
                             </motion.span>
                         </svg>
-                        <div className="flex overflow-hidden whitespace-nowrap opacity-80 w-[200px] md:w-[250px]" style={{ maskImage: 'linear-gradient(to right, black 60%, transparent)' }}>
+                        <div className="flex overflow-hidden whitespace-nowrap opacity-80 w-[200px] md:w-[300px]" style={{ maskImage: 'linear-gradient(to right, black 60%, transparent)' }}>
                             <motion.div
                                 animate={{ x: ["0%", "-50%"] }}
                                 transition={{ repeat: Infinity, ease: "linear", duration: 15 }}
@@ -327,10 +334,6 @@ function ManifestoSection() {
                             </motion.div>
                         </div>
                     </div>
-                </div>
-
-                {/* 2. Right Column: Main Content Area */}
-                <div className="flex-1 w-full max-w-[1200px] flex flex-col">
 
                     {/* Header Area with Scrolling Reveal Text */}
                     <h2 className="font-['Syne'] text-left flex flex-wrap items-center content-start uppercase">
@@ -351,84 +354,81 @@ function ManifestoSection() {
                     </h2>
 
                     {/* Sub-Texts & Button Grid */}
-                    <div className="mt-10 md:mt-12 flex flex-col md:flex-row gap-8 md:gap-16 w-full lg:w-full xl:w-[95%]">
+                    <div className="mt-12 md:mt-20 flex flex-col gap-10 md:gap-14 w-full md:w-[90%] lg:w-[80%] xl:w-[70%]">
 
-                        {/* Left Sub-Column */}
-                        <div className="flex flex-col gap-10 md:w-[55%] lg:w-[60%]">
-                            <p className="text-white/60 text-base md:text-lg font-['Syne'] leading-relaxed font-medium max-w-xl">
+                        {/* Top Texts Container (Stacked) */}
+                        <div className="flex flex-col gap-6 md:gap-8 w-full">
+                            <p className="text-white/60 text-base md:text-xl lg:text-2xl font-['Syne'] leading-[1.6] md:leading-[1.7] font-medium max-w-3xl">
                                 What began as a passion for meaningful visual identities evolved into a strategic and consistent brand process.
                             </p>
+                            <p className="text-white/60 text-base md:text-xl lg:text-2xl font-['Syne'] leading-[1.6] md:leading-[1.7] font-medium max-w-3xl">
+                                Over time, we combined creativity and method to help brands communicate with clarity and confidence.
+                            </p>
+                        </div>
 
-                            {/* Buttons */}
-                            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 md:gap-8 mt-2 w-full sm:w-auto">
+                        {/* Buttons Container */}
+                        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-8 sm:gap-12 mt-2 md:mt-4 w-full">
 
-                                {/* Button 1: Solid Pill (Download CV) */}
-                                <a href="#" download="CV" className="relative inline-flex items-center justify-center gap-3 px-8 py-4 md:px-10 md:py-5 lg:px-12 lg:py-6 bg-white text-black rounded-full overflow-hidden group hover:scale-105 transition-transform duration-500 shadow-[0_0_40px_rgba(255,255,255,0.1)] shrink-0">
-                                    <div className="absolute inset-0 w-full h-full bg-[#ff4d29] scale-y-0 origin-bottom transition-transform duration-[600ms] ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:scale-y-100 rounded-full"></div>
-                                    <span className="relative z-10 flex overflow-hidden font-['Syne'] font-bold text-sm md:text-base lg:text-lg tracking-[0.05em] uppercase">
-                                        {"DOWNLOAD CV".split('').map((char, i) => (
+                            {/* Button 1: Solid Pill (Download CV) */}
+                            <a href="#" download="CV" className="relative inline-flex items-center justify-center gap-3 md:gap-4 px-8 py-4 md:px-12 md:py-5 bg-white text-black rounded-full overflow-hidden group hover:scale-105 transition-transform duration-500 shadow-[0_0_40px_rgba(255,255,255,0.1)] shrink-0 w-max">
+                                <div className="absolute inset-0 w-full h-full bg-[#ff4d29] scale-y-0 origin-bottom transition-transform duration-[600ms] ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:scale-y-100 rounded-full"></div>
+                                <span className="relative z-10 flex overflow-hidden font-['Syne'] font-bold text-sm md:text-lg tracking-[0.05em] uppercase">
+                                    {"DOWNLOAD CV".split('').map((char, i) => (
+                                        <span key={i} className="relative inline-block leading-none">
+                                            <span className="block transition-transform duration-[600ms] ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:-translate-y-full text-black" style={{ transitionDelay: `${i * 10}ms` }}>
+                                                {char === ' ' ? '\u00A0' : char}
+                                            </span>
+                                            <span className="absolute top-0 left-0 block transition-transform duration-[600ms] ease-[cubic-bezier(0.76,0,0.24,1)] translate-y-full group-hover:translate-y-0 text-white" style={{ transitionDelay: `${i * 10}ms` }}>
+                                                {char === ' ' ? '\u00A0' : char}
+                                            </span>
+                                        </span>
+                                    ))}
+                                </span>
+
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" className="relative z-10 transition-all duration-[600ms] ease-[cubic-bezier(0.76,0,0.24,1)] text-black group-hover:text-white group-hover:rotate-180 shrink-0">
+                                    <path d="M12 0L13.5 10.5L24 12L13.5 13.5L12 24L10.5 13.5L0 12L10.5 10.5L12 0Z" />
+                                </svg>
+                            </a>
+
+                            {/* Button 2: Underline Link (Contact Me) */}
+                            <a href="/contact" className="inline-flex items-center gap-2 md:gap-3 text-sm md:text-lg font-['Syne'] font-bold uppercase tracking-[0.05em] group shrink-0 w-max">
+                                <span className="relative pb-1">
+                                    <span className="relative flex overflow-hidden">
+                                        {"GET IN TOUCH".split('').map((char, i) => (
                                             <span key={i} className="relative inline-block leading-none">
-                                                <span className="block transition-transform duration-[600ms] ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:-translate-y-full text-black" style={{ transitionDelay: `${i * 10}ms` }}>
+                                                <span
+                                                    className="block transition-transform duration-[600ms] ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:-translate-y-full text-white"
+                                                    style={{ transitionDelay: `${i * 15}ms` }}
+                                                >
                                                     {char === ' ' ? '\u00A0' : char}
                                                 </span>
-                                                <span className="absolute top-0 left-0 block transition-transform duration-[600ms] ease-[cubic-bezier(0.76,0,0.24,1)] translate-y-full group-hover:translate-y-0 text-white" style={{ transitionDelay: `${i * 10}ms` }}>
+                                                <span
+                                                    className="absolute top-0 left-0 block transition-transform duration-[600ms] ease-[cubic-bezier(0.76,0,0.24,1)] translate-y-full group-hover:translate-y-0 text-[#ff4d29]"
+                                                    style={{ transitionDelay: `${i * 15}ms` }}
+                                                >
                                                     {char === ' ' ? '\u00A0' : char}
                                                 </span>
                                             </span>
                                         ))}
                                     </span>
 
-                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" className="relative z-10 transition-all duration-[600ms] ease-[cubic-bezier(0.76,0,0.24,1)] text-black group-hover:text-white group-hover:rotate-180 shrink-0">
-                                        <path d="M12 0L13.5 10.5L24 12L13.5 13.5L12 24L10.5 13.5L0 12L10.5 10.5L12 0Z" />
+                                    <span className="absolute bottom-0 left-0 w-full h-[2px] bg-white/30">
+                                        <span className="absolute inset-0 bg-[#ff4d29] origin-left scale-x-0 transition-transform duration-[600ms] ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:scale-x-100"></span>
+                                    </span>
+                                </span>
+
+                                <span className="relative overflow-hidden w-4 h-4 md:w-5 md:h-5 flex items-center justify-center shrink-0">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full absolute m-auto inset-0 text-white transition-transform duration-[600ms] ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:translate-x-full group-hover:-translate-y-full">
+                                        <line x1="7" y1="17" x2="17" y2="7"></line>
+                                        <polyline points="7 7 17 7 17 17"></polyline>
                                     </svg>
-                                </a>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full absolute m-auto inset-0 text-[#ff4d29] transition-transform duration-[600ms] ease-[cubic-bezier(0.76,0,0.24,1)] -translate-x-[120%] translate-y-[120%] group-hover:translate-x-0 group-hover:translate-y-0">
+                                        <line x1="7" y1="17" x2="17" y2="7"></line>
+                                        <polyline points="7 7 17 7 17 17"></polyline>
+                                    </svg>
+                                </span>
+                            </a>
 
-                                {/* Button 2: Underline Link (Contact Me) */}
-                                <a href="/contact" className="inline-flex items-center gap-2 text-sm md:text-base lg:text-lg font-['Syne'] font-bold uppercase tracking-[0.05em] group shrink-0">
-                                    <span className="relative pb-1">
-                                        <span className="relative flex overflow-hidden">
-                                            {"GET IN TOUCH".split('').map((char, i) => (
-                                                <span key={i} className="relative inline-block leading-none">
-                                                    <span
-                                                        className="block transition-transform duration-[600ms] ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:-translate-y-full text-white"
-                                                        style={{ transitionDelay: `${i * 15}ms` }}
-                                                    >
-                                                        {char === ' ' ? '\u00A0' : char}
-                                                    </span>
-                                                    <span
-                                                        className="absolute top-0 left-0 block transition-transform duration-[600ms] ease-[cubic-bezier(0.76,0,0.24,1)] translate-y-full group-hover:translate-y-0 text-[#ff4d29]"
-                                                        style={{ transitionDelay: `${i * 15}ms` }}
-                                                    >
-                                                        {char === ' ' ? '\u00A0' : char}
-                                                    </span>
-                                                </span>
-                                            ))}
-                                        </span>
-
-                                        <span className="absolute bottom-0 left-0 w-full h-[2px] bg-white/30">
-                                            <span className="absolute inset-0 bg-[#ff4d29] origin-left scale-x-0 transition-transform duration-[600ms] ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:scale-x-100"></span>
-                                        </span>
-                                    </span>
-
-                                    <span className="relative overflow-hidden w-4 h-4 flex items-center justify-center shrink-0">
-                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="absolute m-auto inset-0 text-white transition-transform duration-[600ms] ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:translate-x-full group-hover:-translate-y-full">
-                                            <line x1="7" y1="17" x2="17" y2="7"></line>
-                                            <polyline points="7 7 17 7 17 17"></polyline>
-                                        </svg>
-                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="absolute m-auto inset-0 text-[#ff4d29] transition-transform duration-[600ms] ease-[cubic-bezier(0.76,0,0.24,1)] -translate-x-[120%] translate-y-[120%] group-hover:translate-x-0 group-hover:translate-y-0">
-                                            <line x1="7" y1="17" x2="17" y2="7"></line>
-                                            <polyline points="7 7 17 7 17 17"></polyline>
-                                        </svg>
-                                    </span>
-                                </a>
-                            </div>
-                        </div>
-
-                        {/* Right Sub-Column */}
-                        <div className="md:w-[45%] lg:w-[40%]">
-                            <p className="text-white/60 text-base md:text-lg font-['Syne'] leading-relaxed font-medium">
-                                Over time, we combined creativity and method to help brands communicate with clarity and confidence.
-                            </p>
                         </div>
                     </div>
 
@@ -439,97 +439,7 @@ function ManifestoSection() {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// ANIMATED COUNTER COMPONENT (SLIDE UP REVEAL)
-// ─────────────────────────────────────────────────────────────────────────────
-function AnimatedSlideUpStat({ value, suffix = "", delay = 0 }: { value: string, suffix?: string, delay?: number }) {
-    return (
-        <span className="inline-flex overflow-hidden pb-4">
-            <motion.span
-                initial={{ y: "100%" }}
-                whileInView={{ y: 0 }}
-                transition={{ duration: 1.2, delay: delay, ease: [0.22, 1, 0.36, 1] }}
-                viewport={{ once: true, margin: "-100px" }}
-                className="inline-block"
-            >
-                {value}{suffix}
-            </motion.span>
-        </span>
-    );
-}
-
-// ─────────────────────────────────────────────────────────────────────────────
-// SECTION 2.5 — ABOUT STATS / COUNTERS
-// ─────────────────────────────────────────────────────────────────────────────
-function AboutStatsSection() {
-    return (
-        <section className={`w-full bg-[#050505] pt-12 md:pt-16 pb-12 md:pb-20 -mt-8 md:-mt-16 relative z-10 border-b border-white/5 ${PX}`}>
-            <div className="w-full max-w-[1400px] mx-auto flex flex-col md:flex-row items-center justify-between gap-12 md:gap-0">
-
-                {/* 1. Years of Experience */}
-                <div className="flex flex-col items-center justify-center text-center group">
-                    <div className="text-white font-['Mona_Sans','Syne',sans-serif] font-bold text-[6rem] md:text-[9.5rem] lg:text-[11.5rem] leading-none tracking-tight mb-2 md:mb-4">
-                        <AnimatedSlideUpStat value="13" suffix="+" delay={0} />
-                    </div>
-                    <motion.div
-                        initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ duration: 1, delay: 0.6 }} viewport={{ once: true }}
-                        className={`${FONT_LABEL} text-white/50 text-sm md:text-base tracking-[0.08em] uppercase`}
-                    >
-                        Years of Experience
-                    </motion.div>
-                </div>
-
-                {/* Divider 1 */}
-                <motion.div
-                    initial={{ opacity: 0, scale: 0.5 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 0.8, delay: 0.3 }} viewport={{ once: true }}
-                    className="hidden md:flex items-center justify-center text-white/20"
-                >
-                    <svg width="32" height="32" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
-                        <path d="M14.75 7.74854L0.75 7.74853" />
-                        <path d="M7.74805 0.75L7.74805 14.75" />
-                    </svg>
-                </motion.div>
-
-                {/* 2. Completed Projects */}
-                <div className="flex flex-col items-center justify-center text-center group">
-                    <div className="text-white font-['Mona_Sans','Syne',sans-serif] font-bold text-[6rem] md:text-[9.5rem] lg:text-[11.5rem] leading-none tracking-tight mb-2 md:mb-4">
-                        <AnimatedSlideUpStat value="290" delay={0.15} />
-                    </div>
-                    <motion.div
-                        initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ duration: 1, delay: 0.75 }} viewport={{ once: true }}
-                        className={`${FONT_LABEL} text-white/50 text-sm md:text-base tracking-[0.08em] uppercase`}
-                    >
-                        Completed Projects
-                    </motion.div>
-                </div>
-
-                {/* Divider 2 */}
-                <motion.div
-                    initial={{ opacity: 0, scale: 0.5 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 0.8, delay: 0.45 }} viewport={{ once: true }}
-                    className="hidden md:flex items-center justify-center text-white/20"
-                >
-                    <svg width="32" height="32" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
-                        <path d="M14.75 7.74854L0.75 7.74853" />
-                        <path d="M7.74805 0.75L7.74805 14.75" />
-                    </svg>
-                </motion.div>
-
-                {/* 3. Award Winner */}
-                <div className="flex flex-col items-center justify-center text-center group">
-                    <div className="text-white font-['Mona_Sans','Syne',sans-serif] font-bold text-[6rem] md:text-[9.5rem] lg:text-[11.5rem] leading-none tracking-tight mb-2 md:mb-4">
-                        <AnimatedSlideUpStat value="07" suffix="+" delay={0.3} />
-                    </div>
-                    <motion.div
-                        initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ duration: 1, delay: 0.9 }} viewport={{ once: true }}
-                        className={`${FONT_LABEL} text-white/50 text-sm md:text-base tracking-[0.08em] uppercase`}
-                    >
-                        Award Winner
-                    </motion.div>
-                </div>
-
-            </div>
-        </section>
-    );
-}
+// Removed inline AnimatedSlideUpStat and AboutStatsSection in favor of shared Stats component
 
 // ─────────────────────────────────────────────────────────────────────────────
 // SECTION 3 — PROFESSIONAL TIMELINE
@@ -617,7 +527,7 @@ function TimelineCard({ item, index, scrollYProgress }: { item: typeof TIMELINE[
                 className="w-full flex flex-col relative group bg-[#080808]/60 backdrop-blur-2xl border border-white/[0.08] hover:border-white/[0.15] px-6 md:px-10 py-8 md:py-10 cursor-pointer transition-colors duration-500 rounded-lg shadow-[0_-10px_30px_rgba(0,0,0,0.8)]"
             >
                 {/* Top row */}
-                <div className="flex justify-between items-start mb-16 md:mb-24">
+                <div className="flex justify-between items-start mb-8 md:mb-12">
                     <div className="flex flex-col gap-2">
                         <h3 className="font-['Syne'] text-white text-[1.4rem] md:text-[2rem] font-medium tracking-tight leading-none leading-[1.1]">
                             {item.company}
@@ -687,32 +597,34 @@ function TimelineSection() {
         <section ref={targetRef} className={`relative bg-[#050505] border-b border-white/5 pb-[20vh]`} style={{ height: `${(TIMELINE.length + 1) * 100}vh` }}>
             <div className={`sticky top-0 h-screen overflow-hidden flex flex-col justify-center ${PX}`}>
 
-                {/* Top Label: Rotating Asterisk + Looping Marquee */}
-                <div className="absolute top-[10%] md:top-[15%] left-[4%] md:left-[6%] lg:left-[8%] flex items-center gap-4 text-[#777] text-xs font-mono uppercase tracking-[0.1em] z-10">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="shrink-0 flex items-center justify-center">
-                        <motion.span
-                            animate={{ rotate: 360 }}
-                            transition={{ repeat: Infinity, ease: "linear", duration: 8 }}
-                            className="inline-block text-xl md:text-2xl mt-[-2px]"
-                        >
-                            ✲
-                        </motion.span>
-                    </svg>
-                    <div className="flex overflow-hidden whitespace-nowrap opacity-80 w-[200px] md:w-[300px]" style={{ maskImage: 'linear-gradient(to right, black 60%, transparent)' }}>
-                        <motion.div
-                            animate={{ x: ["0%", "-50%"] }}
-                            transition={{ repeat: Infinity, ease: "linear", duration: 15 }}
-                            className="flex"
-                        >
-                            <span className="mr-4">WORK EXPERIENCE — WORK EXPERIENCE — WORK EXPERIENCE — </span>
-                            <span className="mr-4">WORK EXPERIENCE — WORK EXPERIENCE — WORK EXPERIENCE — </span>
-                        </motion.div>
-                    </div>
-                </div>
+                {/* Fixed Background Content */}
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-center text-center w-full z-0 pointer-events-none mt-[-5%] md:mt-0">
 
-                {/* Fixed Title that stays in the center background */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-center text-center w-full z-0 opacity-40 pointer-events-none mt-[-5%] md:mt-0">
-                    <h2 className="font-['Syne'] font-extrabold text-[clamp(4.5rem,10vw,12rem)] leading-[0.85] tracking-[-0.04em] uppercase">
+                    {/* Centered Top Label: Rotating Asterisk + Looping Marquee */}
+                    <div className="flex items-center gap-4 mb-4 md:mb-6 text-[#777] text-xs font-mono uppercase tracking-[0.1em] opacity-80">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="shrink-0 flex items-center justify-center">
+                            <motion.span
+                                animate={{ rotate: 360 }}
+                                transition={{ repeat: Infinity, ease: "linear", duration: 8 }}
+                                className="inline-block text-xl md:text-2xl mt-[-2px]"
+                            >
+                                ✲
+                            </motion.span>
+                        </svg>
+                        <div className="flex overflow-hidden whitespace-nowrap w-[200px] md:w-[300px]" style={{ maskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)' }}>
+                            <motion.div
+                                animate={{ x: ["0%", "-50%"] }}
+                                transition={{ repeat: Infinity, ease: "linear", duration: 15 }}
+                                className="flex text-left"
+                            >
+                                <span className="mr-4">WORK EXPERIENCE — WORK EXPERIENCE — WORK EXPERIENCE — </span>
+                                <span className="mr-4">WORK EXPERIENCE — WORK EXPERIENCE — WORK EXPERIENCE — </span>
+                            </motion.div>
+                        </div>
+                    </div>
+
+                    {/* Fixed Title that stays in the center background */}
+                    <h2 className="font-['Syne'] font-extrabold text-[clamp(2.5rem,10vw,12rem)] md:text-[clamp(4.5rem,10vw,12rem)] leading-[0.85] tracking-[-0.04em] uppercase opacity-40">
                         <span className="block">WORK</span>
                         <span className="block">EXPERIENCE</span>
                     </h2>
@@ -832,7 +744,7 @@ function ParallaxImageBreak() {
                         </div>
 
                         {/* Massive Bold Slogan mimicking the screenshot text style, with scroll reveal */}
-                        <h2 className="font-['Syne'] font-extrabold text-[clamp(2.2rem,6vw,7.5rem)] uppercase leading-[0.85] tracking-[-0.03em] flex flex-col items-center text-center w-full px-4 text-[#808080]">
+                        <h2 className="font-['Syne'] font-extrabold text-[clamp(1.5rem,6.5vw,7.5rem)] md:text-[clamp(3.5rem,6vw,7.5rem)] uppercase leading-[0.85] tracking-[-0.03em] flex flex-col items-center text-center w-full px-2 md:px-4 text-[#808080]">
                             <span className="block w-full">
                                 {wordsLine1.map((word, i) => (
                                     <ParallaxWord key={`l1-${i}`} progress={smoothProgress} range={getRange()}>
@@ -1160,20 +1072,25 @@ function ClosingCTA() {
 // MAIN EXPORT — Wires all 7 sections together
 // ─────────────────────────────────────────────────────────────────────────────
 export default function AboutPage() {
+    const { scrollY } = useScroll();
+
     return (
         <div className="relative w-full bg-[#050505]">
             {/* Section 1: Identity Hero (Sticky Reveal) */}
-            <div style={{ position: 'relative', zIndex: 1 }}>
-                <HeroSection />
-            </div>
+            <motion.div
+                style={{ opacity: useTransform(scrollY, [400, 1000], [1, 0]) }}
+                className="sticky top-0 z-0 w-full flex flex-col items-center justify-start min-h-screen"
+            >
+                <HeroSection scrollY={scrollY} />
+            </motion.div>
 
             {/* Sections 2–7: Stack over the hero */}
-            <div style={{ position: 'relative', zIndex: 2, background: '#050505' }}>
+            <div className="relative z-20 bg-[#050505] mt-[50vh]">
                 {/* Section 2: The Manifesto */}
                 <ManifestoSection />
 
                 {/* Section 2.5: Animated Stats Counters */}
-                <AboutStatsSection />
+                <Stats className="-mt-8 md:-mt-16" />
 
                 {/* Section 2.75: Brands Marquee */}
                 <div className="w-full bg-[#050505] overflow-hidden">
@@ -1198,6 +1115,4 @@ export default function AboutPage() {
                     <Contact />
                 </div>
             </div>
-        </div>
-    );
-}
+        </div>

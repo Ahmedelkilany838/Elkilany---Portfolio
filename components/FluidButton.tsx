@@ -23,8 +23,8 @@ export default function FluidButton({
     const geometry = "rounded-full px-12 py-[22px] md:px-14 md:py-[26px] flex items-center justify-center whitespace-nowrap w-fit shadow-[0_0_40px_rgba(255,255,255,0.05)] hover:scale-105";
 
     // 2. Interaction & Animation
-    // transition-all duration-300 ease-out group relative overflow-hidden cursor-pointer
-    const behavior = "group relative overflow-hidden transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] cursor-pointer";
+    // transition-all duration-300 ease-out group relative overflow-hidden cursor-none
+    const behavior = "group relative overflow-hidden transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] cursor-none";
 
     // 3. Variant Styling
     // Default (Outline): Border 1px solid white/20. Hover: bg-[#ff4d29] border-[#ff4d29].

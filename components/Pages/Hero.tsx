@@ -26,27 +26,27 @@ export default function Hero() {
             </div>
 
             {/* --- Bottom Content Grid (Framer Replica) --- */}
-            <div className="relative z-10 w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-end mb-12 md:mb-0">
+            <div className="relative z-10 w-full max-w-[1800px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-end mb-4 md:mb-0">
 
                 {/* --- LEFT COLUMN: Description & Trust --- */}
                 <motion.div
                     initial={{ opacity: 0, x: -80 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 1.4, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-                    className="flex flex-col items-start gap-8 order-2 md:order-1"
+                    className="flex flex-col items-start gap-6 md:gap-8 order-2 md:order-1"
                 >
                     {/* Description Text */}
-                    <p className="max-w-md text-lg md:text-xl font-medium leading-[1.4] tracking-tight text-white/90">
+                    <p className="max-w-md text-base md:text-xl font-medium leading-[1.4] tracking-tight text-white/90">
                         I shape visual systems, key visuals, and communication-driven designs with <span className="text-white/50">clarity, strategy, and intention.</span>
                     </p>
 
                     {/* Expertise / Focus Areas */}
-                    <div className="flex flex-col gap-4 w-full mt-2">
+                    <div className="flex flex-col gap-3 md:gap-4 w-full mt-2">
                         <span className="text-white/40 text-[10px] md:text-xs font-mono uppercase tracking-[0.2em]">CORE EXPERTISE:</span>
-                        <div className="flex flex-wrap items-center gap-3 text-xs md:text-sm font-['Syne'] font-bold text-white uppercase tracking-[0.05em] mix-blend-difference">
-                            <span className="px-4 py-1.5 border border-white/20 rounded-full hover:bg-white hover:text-black transition-colors cursor-default">Branding</span>
-                            <span className="px-4 py-1.5 border border-white/20 rounded-full hover:bg-white hover:text-black transition-colors cursor-default">Advertising</span>
-                            <span className="px-4 py-1.5 border border-white/20 rounded-full hover:bg-white hover:text-black transition-colors cursor-default">Visual Direction</span>
+                        <div className="flex flex-wrap items-center gap-2 md:gap-3 text-[10px] md:text-sm font-['Syne'] font-bold text-white uppercase tracking-[0.05em] mix-blend-difference">
+                            <span className="px-3 md:px-4 py-1 md:py-1.5 border border-white/20 rounded-full hover:bg-white hover:text-black transition-colors cursor-default">Branding</span>
+                            <span className="px-3 md:px-4 py-1 md:py-1.5 border border-white/20 rounded-full hover:bg-white hover:text-black transition-colors cursor-default">Advertising</span>
+                            <span className="px-3 md:px-4 py-1 md:py-1.5 border border-white/20 rounded-full hover:bg-white hover:text-black transition-colors cursor-default">Visual Direction</span>
                         </div>
                     </div>
                 </motion.div>
@@ -56,10 +56,10 @@ export default function Hero() {
                     initial={{ opacity: 0, x: 80 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 1.4, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                    className="flex flex-col items-start md:items-end text-left md:text-right gap-4 sm:gap-8 order-1 md:order-2 h-full justify-end pb-[80px] sm:pb-[140px] md:pb-[320px]"
+                    className="flex flex-col items-start md:items-end text-left md:text-right gap-2 sm:gap-4 lg:gap-8 order-1 md:order-2 h-full justify-end pb-[2vh] md:pb-[15vh] lg:pb-[20vh]"
                 >
                     {/* Headline */}
-                    <h1 className="font-['Syne'] font-extrabold uppercase text-[clamp(2.2rem,11vw,7.5rem)] sm:text-[clamp(3.5rem,7.5vw,7.5rem)] leading-[0.85] tracking-[-0.04em] flex flex-col items-start md:items-end text-white text-left md:text-right">
+                    <h1 className="font-['Syne'] font-extrabold uppercase text-[clamp(2.5rem,11.5vw,7.5rem)] lg:text-[clamp(4.5rem,7.5vw,7.5rem)] leading-[0.85] tracking-[-0.04em] flex flex-col items-start md:items-end text-white text-left md:text-right w-full overflow-hidden">
                         <span className="block drop-shadow-lg text-white">INTENTIONAL</span>
                         <span className="block drop-shadow-lg">AESTHETICS.</span>
                     </h1>

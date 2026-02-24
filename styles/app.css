@@ -122,14 +122,14 @@ body,
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  cursor: auto;
-  /* Default cursor */
+  cursor: none;
 }
 
 * {
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  cursor: none !important;
 }
 
 h1,
