@@ -1,66 +1,15 @@
 import { Link } from "react-router";
-import { motion, AnimatePresence, useMotionValue, useSpring } from "framer-motion";
-import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
 import { Plus } from "lucide-react";
-import { createPortal } from "react-dom";
 import { services } from "data/services";
-import { getProjectBySlug } from "data/projects";
 
 export default function Services() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-  const [isMounted, setIsMounted] = useState(false);
-
-  const cursorX = useMotionValue(-100);
-  const cursorY = useMotionValue(-100);
-
-  // Smooth the mouse movement
-  const springConfig = { damping: 25, stiffness: 200, mass: 0.5 };
-  const cursorXSpring = useSpring(cursorX, springConfig);
-  const cursorYSpring = useSpring(cursorY, springConfig);
-
-  useEffect(() => {
-    setIsMounted(true);
-    // Only run on non-touch devices
-    if (window.matchMedia("(pointer: coarse)").matches) return;
-
-    const moveCursor = (e: MouseEvent) => {
-      cursorX.set(e.clientX);
-      cursorY.set(e.clientY);
-    };
-    window.addEventListener("mousemove", moveCursor);
-    return () => window.removeEventListener("mousemove", moveCursor);
-  }, [cursorX, cursorY]);
 
   return (
     <section id="services" className="relative w-full bg-[#050505] py-[clamp(60px,8vh,140px)] px-[4%] md:px-[6%] lg:px-[8%] border-b border-white/5 overflow-visible transform-gpu">
       <div className="w-full max-w-[1800px] mx-auto flex flex-col">
-
-        {/* Custom Image Cursor (Portal to body to escape transform stacking context) */}
-        {isMounted && typeof document !== "undefined" && createPortal(
-          <motion.div
-            className="fixed top-0 left-0 w-[180px] h-[240px] md:w-[220px] md:h-[290px] rounded-2xl overflow-hidden pointer-events-none z-[99999] hidden md:block border border-white/10 shadow-2xl"
-            style={{
-              x: cursorXSpring,
-              y: cursorYSpring,
-              translateX: "-50%",
-              translateY: "-50%",
-              scale: hoveredIndex !== null ? 1 : 0.8,
-              opacity: hoveredIndex !== null ? 1 : 0,
-            }}
-            transition={{ duration: 0.4, ease: "easeOut" }}
-          >
-            {services.map((srv, idx) => (
-              <img
-                key={idx}
-                src={getProjectBySlug(srv.relatedProjectSlugs[0])?.coverImage ?? "/images/1 v2.webp"}
-                alt={srv.title}
-                className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
-                style={{ opacity: hoveredIndex === idx ? 1 : 0 }}
-              />
-            ))}
-          </motion.div>,
-          document.body
-        )}
 
         {/* Top Grid / Header (Identical structure to Works section) */}
         <motion.div
@@ -83,7 +32,7 @@ export default function Services() {
                     ✲
                   </motion.span>
                 </svg>
-                <div className="flex overflow-hidden whitespace-nowrap opacity-80 w-[200px] md:w-[300px]" style={{ maskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)' }}>
+                <div className="flex overflow-hidden whitespace-nowrap opacity-80 w-[200px] md:w-[300px]" style={{ maskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)' }} aria-hidden="true">
                   <motion.div
                     animate={{ x: ["0%", "-50%"] }}
                     transition={{ repeat: Infinity, ease: "linear", duration: 15 }}
@@ -96,8 +45,8 @@ export default function Services() {
               </div>
 
               <h2 className="font-['Syne'] font-extrabold text-[clamp(2.8rem,10vw,11rem)] leading-[0.85] tracking-[-0.04em] uppercase">
-                <span className="text-white block whitespace-nowrap">Creative</span>
-                <span className="text-[#666] block whitespace-nowrap">Solutions</span>
+                <span className="text-white block whitespace-nowrap">Design</span>
+                <span className="text-[#666] block whitespace-nowrap">Services</span>
               </h2>
             </div>
 
@@ -124,10 +73,9 @@ export default function Services() {
           {services.map((service, index) => (
             <div
               key={index}
-              data-hide-cursor="true"
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
-              className="group flex flex-col w-full py-8 md:py-12 border-b border-white/10 cursor-none transition-colors hover:bg-[#111] active:bg-[#111] duration-500 px-4 md:px-6 -mx-4 md:-mx-6 transform-gpu"
+              className="group flex flex-col w-full py-8 md:py-12 border-b border-white/10 cursor-pointer transition-colors hover:bg-[#111] active:bg-[#111] duration-500 px-4 md:px-6 -mx-4 md:-mx-6 transform-gpu"
             >
               {/* Top Row: Title + Icon */}
               <div className="flex items-center justify-between w-full">

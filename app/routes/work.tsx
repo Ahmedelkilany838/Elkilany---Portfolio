@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import ProjectCard from "components/ProjectCard";
 import FooterSection from "components/FooterSection";
 import { projects, workCategories, type WorkCategory } from "data/projects";
-import { siteProfile } from "data/site";
 import { DEFAULT_CONFIG } from "lib/siteConfig";
 
 export function meta({ }: Route.MetaArgs) {
@@ -41,13 +40,13 @@ export default function Work() {
                     className="relative z-10 w-full max-w-[1800px] mx-auto"
                 >
                     <p className="mb-5 text-[10px] md:text-xs font-mono uppercase tracking-[0.25em] text-white/45">
-                        Selected work / visual systems / campaign craft
+                        Selected work / brand systems / campaign visuals
                     </p>
                     <h1 className="font-['Syne'] font-extrabold text-[clamp(3.2rem,13vw,14rem)] leading-[0.85] tracking-[-0.04em] uppercase text-white">
                         Work
                     </h1>
                     <p className="mt-8 max-w-2xl text-white/60 text-base md:text-xl leading-relaxed">
-                        A concise selection of branding, advertising, key visual, AI visual, retouching, packaging, and social media work by {siteProfile.name}.
+                        A focused view of my work across brand identity, advertising design, key visuals, AI-powered production, retouching, packaging, and social campaign systems.
                     </p>
                 </motion.div>
             </section>
@@ -57,14 +56,14 @@ export default function Work() {
                     <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between mb-12">
                         <div>
                             <p className="text-[10px] font-mono uppercase tracking-[0.25em] text-white/35 mb-3">
-                                Filter projects
+                                Choose a focus
                             </p>
                             <h2 className="font-['Syne'] text-3xl md:text-5xl font-extrabold uppercase tracking-[-0.03em]">
-                                Explore by focus
+                                Work by discipline
                             </h2>
                         </div>
                         <p className="text-white/45 text-sm md:text-base max-w-md leading-relaxed">
-                            These are baseline case studies using temporary covers. Final project assets can replace them without changing the structure.
+                            Use the filters to scan the kind of visual problem each project is built around, from identity systems to campaign production.
                         </p>
                     </div>
 

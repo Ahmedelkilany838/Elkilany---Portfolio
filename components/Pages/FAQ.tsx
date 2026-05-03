@@ -11,7 +11,7 @@ export default function FAQ() {
         <section className="relative w-full bg-[#050505] py-[60px] md:py-[100px] lg:py-[140px] px-[4%] md:px-[6%] lg:px-[8%] border-b border-white/5">
             <div className="w-full max-w-[1800px] mx-auto flex flex-col">
 
-                {/* Header: Template Snippet Layout */}
+                {/* Header */}
                 <motion.div
                     initial={{ y: 120, opacity: 0 }}
                     whileInView={{ y: 0, opacity: 1 }}
@@ -31,7 +31,7 @@ export default function FAQ() {
                                     ✲
                                 </motion.span>
                             </svg>
-                            <div className="flex overflow-hidden whitespace-nowrap opacity-80 w-[200px] md:w-[300px]" style={{ maskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)' }}>
+                            <div className="flex overflow-hidden whitespace-nowrap opacity-80 w-[200px] md:w-[300px]" style={{ maskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)' }} aria-hidden="true">
                                 <motion.div
                                     animate={{ x: ["0%", "-50%"] }}
                                     transition={{ repeat: Infinity, ease: "linear", duration: 15 }}
@@ -44,8 +44,8 @@ export default function FAQ() {
                         </div>
 
                         <h2 className="font-['Syne'] font-extrabold text-[clamp(2.8rem,10vw,11rem)] leading-[0.85] tracking-[-0.04em] uppercase">
-                            <span className="text-white block">General</span>
-                            <span className="text-[#666] block">Questions</span>
+                                <span className="text-white block">Project</span>
+                                <span className="text-[#666] block">Questions</span>
                         </h2>
                     </div>
 
@@ -53,7 +53,7 @@ export default function FAQ() {
                     <div className="flex flex-col md:items-end">
                         <div className="max-w-md text-left flex flex-col items-start">
                             <p className="text-white/60 text-lg md:text-xl leading-[1.6] mb-8 md:mb-12">
-                                Explore helpful answers to frequent questions about my services and working approach.
+                                Quick answers about scope, AI use, collaboration, and how a new brief usually starts.
                             </p>
 
                             <Link to="/contact" className="inline-flex items-center gap-2 text-base md:text-lg font-['Syne'] font-bold uppercase tracking-[0.05em] group mt-2 md:mt-4">

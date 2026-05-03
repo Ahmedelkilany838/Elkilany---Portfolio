@@ -1,16 +1,14 @@
-import React, { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect, useState } from 'react';
+import type { ReactNode } from 'react';
 import { Link } from 'react-router';
 import {
     motion,
     useScroll,
     useTransform,
-    MotionValue,
-    useMotionValue,
     useSpring,
-    useInView,
-    animate,
     AnimatePresence
 } from 'framer-motion';
+import type { MotionValue } from 'framer-motion';
 import Stats from "components/Pages/Stats";
 import FAQ from "components/Pages/FAQ";
 import FinalCTA from "components/Pages/FinalCTA";
@@ -110,7 +108,7 @@ function PillButton({ to, label, wide = false }: { to: string; label: string; wi
 // ─────────────────────────────────────────────────────────────────────────────
 // SOCIAL ICONS
 // ─────────────────────────────────────────────────────────────────────────────
-const SocialCircle = ({ href, children }: { href: string; children: React.ReactNode }) => (
+const SocialCircle = ({ href, children }: { href: string; children: ReactNode }) => (
     <a
         href={href}
         className="w-10 h-10 md:w-11 md:h-11 bg-[#161616] border border-white/5 rounded-full flex items-center justify-center text-white/60 hover:text-white hover:border-white/20 hover:bg-[#202020] transition-all duration-300"
@@ -124,7 +122,7 @@ const SocialCircle = ({ href, children }: { href: string; children: React.ReactN
 // ─────────────────────────────────────────────────────────────────────────────
 const VerticalMarquee = () => {
     return (
-        <div className="h-[20px] overflow-hidden relative flex flex-col justify-start items-start w-[115px] md:w-[180px]">
+        <div className="h-[20px] overflow-hidden relative flex flex-col justify-start items-start w-[115px] md:w-[180px]" aria-hidden="true">
             <motion.div
                 animate={{ y: ['0%', '-80%'] }}
                 transition={{
@@ -135,7 +133,7 @@ const VerticalMarquee = () => {
                 className="flex flex-col"
             >
                 {/* 5 items = 4 real + 1 clone for loop */}
-                {["Brand Strategy", "Website Design", "Visual Identity", "Motion Design", "Brand Strategy"].map((text, i) => (
+                {["Brand Identity", "Key Visuals", "AI Visuals", "Retouching", "Brand Identity"].map((text, i) => (
                     <div key={i} className="h-[20px] flex items-center">
                         <span className={`${FONT_LABEL} text-white/50 tracking-[0.1em] text-[10px] md:text-xs uppercase whitespace-nowrap`}>
                             {text}
@@ -148,7 +146,7 @@ const VerticalMarquee = () => {
 };
 
 // ─────────────────────────────────────────────────────────────────────────────
-// SECTION 1 — THE IDENTITY HERO (HTML Template Match)
+// SECTION 1 — THE IDENTITY HERO
 // ─────────────────────────────────────────────────────────────────────────────
 function HeroSection({ scrollY, heroImage }: { scrollY: any; heroImage: string }) {
     const scale = useTransform(scrollY, [0, 1000], [1.15, 1]); // Zoom out effect
@@ -213,7 +211,7 @@ function HeroSection({ scrollY, heroImage }: { scrollY: any; heroImage: string }
                         className="max-w-[320px] md:max-w-xl mx-auto"
                     >
                         <p className="font-['Mona_Sans',sans-serif] tracking-wide text-white/70 text-sm md:text-[17px] font-medium leading-[1.6]">
-                            I build brand systems that express identity with confidence and consistency — helping businesses connect with their audience in a meaningful and memorable way.
+                            I combine brand identity, advertising design, AI-assisted visual production, and finishing craft to make communication feel clear and visually sharp.
                         </p>
                     </motion.div>
                 </div>
@@ -280,9 +278,9 @@ function HeroSection({ scrollY, heroImage }: { scrollY: any; heroImage: string }
 // SECTION 2 — WHO I AM (Manifesto Match)
 // Scroll-triggered word-by-word paint reveal mimicking Home Page About Section
 // ─────────────────────────────────────────────────────────────────────────────
-const MANIFESTO_HEADING = "MY JOURNEY BEGAN WITH A SIMPLE BELIEF: STRONG BRANDS ARE BUILT THROUGH CLARITY, INTENTION, AND THOUGHTFUL DESIGN.".split(" ");
+const MANIFESTO_HEADING = "I BUILD CLEAR VISUAL SYSTEMS FOR BRANDS, CAMPAIGNS, AND COMMERCIAL STORIES THAT NEED TO BE UNDERSTOOD QUICKLY.".split(" ");
 
-function ManifestoWord({ children, range, progress }: { children: React.ReactNode, range: [number, number], progress: MotionValue<number> }) {
+function ManifestoWord({ children, range, progress }: { children: ReactNode, range: [number, number], progress: MotionValue<number> }) {
     const opacity = useTransform(progress, range, [0.2, 1]);
 
     return (
@@ -307,7 +305,7 @@ function ManifestoSection() {
             {/* Sticky container to lock the view while scrolling through */}
             <div className="sticky top-[10%] md:top-[15%] w-full py-[80px] md:py-[140px] px-[4%] md:px-[6%] lg:px-[8%] flex flex-col md:flex-row items-start justify-center gap-8 xl:gap-16">
 
-                {/* 1. Left Column: Label (Now Empty to maintain grid alignment if needed, or we can just keep the space) */}
+                {/* 1. Left Column: Label spacer for grid alignment */}
                 <div className="hidden lg:flex w-[200px] xl:w-[220px] shrink-0 mt-[12px] justify-start xl:justify-end xl:pr-6">
                 </div>
 
@@ -325,7 +323,7 @@ function ManifestoSection() {
                                 ✲
                             </motion.span>
                         </svg>
-                        <div className="flex overflow-hidden whitespace-nowrap opacity-80 w-[200px] md:w-[300px]" style={{ maskImage: 'linear-gradient(to right, black 60%, transparent)' }}>
+                        <div className="flex overflow-hidden whitespace-nowrap opacity-80 w-[200px] md:w-[300px]" style={{ maskImage: 'linear-gradient(to right, black 60%, transparent)' }} aria-hidden="true">
                             <motion.div
                                 animate={{ x: ["0%", "-50%"] }}
                                 transition={{ repeat: Infinity, ease: "linear", duration: 15 }}
@@ -361,10 +359,10 @@ function ManifestoSection() {
                         {/* Top Texts Container (Stacked) */}
                         <div className="flex flex-col gap-6 md:gap-8 w-full">
                             <p className="text-white/60 text-base md:text-xl lg:text-2xl font-['Syne'] leading-[1.6] md:leading-[1.7] font-medium max-w-3xl">
-                                What began as a passion for meaningful visual identities evolved into a strategic and consistent brand process.
+                                My work started with brand identity, then expanded into advertising visuals, campaign systems, retouching, packaging, and AI-enhanced production workflows.
                             </p>
                             <p className="text-white/60 text-base md:text-xl lg:text-2xl font-['Syne'] leading-[1.6] md:leading-[1.7] font-medium max-w-3xl">
-                                Over time, I combined creativity and method to help brands communicate with clarity and confidence.
+                                I care about the point where strategy becomes visible: the logo, the campaign key visual, the social layout, the product image, and the final artwork people actually see.
                             </p>
                         </div>
 
@@ -454,8 +452,8 @@ const TIMELINE = [
         role: 'Senior Graphic Designer',
         note: 'Remote - Saudi Arabia',
         tasks: [
-            "Collaborated with clients across real estate, health, and digital sectors to deliver targeted and impactful visual content.",
-            "Produced complete campaigns, social visuals, and branded deliverables, leveraging AI-enhanced workflows for speed and clarity."
+            "Created brand, campaign, and social visuals for clients across real estate, health, and digital sectors.",
+            "Used AI-enhanced workflows where useful to accelerate concepting, image direction, and production clarity."
         ]
     },
     {
@@ -464,8 +462,8 @@ const TIMELINE = [
         role: 'Graphic Designer',
         note: 'Remote - Egypt & GCC',
         tasks: [
-            "Led branding, social media, and print design for various clients across different industries.",
-            "Built tailored design systems focused on speed, clarity, strategy, and market relevance."
+            "Designed brand identities, social media systems, advertising visuals, and print assets for different client needs.",
+            "Built practical design systems focused on clarity, speed, strategy, and market relevance."
         ]
     },
     {
@@ -474,7 +472,7 @@ const TIMELINE = [
         role: 'Graphic Designer',
         note: 'Banha, Egypt',
         tasks: [
-            "Created digital and print marketing materials for Egyptian brands."
+            "Created digital and print marketing materials with clear hierarchy and consistent brand presentation."
         ]
     },
     {
@@ -483,7 +481,7 @@ const TIMELINE = [
         role: 'Graphic Designer',
         note: 'Zagazig, Egypt',
         tasks: [
-            "Designed brand visuals, social campaigns, and offline materials for local businesses."
+            "Designed brand visuals, social campaigns, and offline materials for local business communication."
         ]
     },
 ];
@@ -613,7 +611,7 @@ function TimelineSection() {
                                 ✲
                             </motion.span>
                         </svg>
-                        <div className="flex overflow-hidden whitespace-nowrap w-[200px] md:w-[300px]" style={{ maskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)' }}>
+                        <div className="flex overflow-hidden whitespace-nowrap w-[200px] md:w-[300px]" style={{ maskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)' }} aria-hidden="true">
                             <motion.div
                                 animate={{ x: ["0%", "-50%"] }}
                                 transition={{ repeat: Infinity, ease: "linear", duration: 15 }}
@@ -647,7 +645,7 @@ function TimelineSection() {
 // SECTION 3.5 — PARALLAX IMAGE BREAK
 // ─────────────────────────────────────────────────────────────────────────────
 // Helper to animate words from gray to white based on scroll progress
-function ParallaxWord({ children, range, progress }: { children: React.ReactNode, range: [number, number], progress: MotionValue<number> }) {
+function ParallaxWord({ children, range, progress }: { children: ReactNode, range: [number, number], progress: MotionValue<number> }) {
     // Map the scroll progress over the character's range to a bright white color, otherwise keep it grey #808080
     const color = useTransform(progress, range, ["#808080", "#ffffff"]);
     return (
@@ -682,10 +680,10 @@ function ParallaxImageBreak({ parallaxImage }: { parallaxImage: string }) {
     );
 
     // Words to animate sequentially
-    const wordsLine1 = "I CREATE VISUALS".split(" ");
-    const wordsLine2 = "THAT LET PEOPLE FEEL".split(" ");
-    const wordsLine3 = "WHAT BRANDS ARE".split(" ");
-    const wordsLine4 = "TRYING TO SAY.".split(" ");
+    const wordsLine1 = "I DESIGN VISUALS".split(" ");
+    const wordsLine2 = "THAT MAKE BRANDS".split(" ");
+    const wordsLine3 = "EASIER TO READ".split(" ");
+    const wordsLine4 = "AND REMEMBER.".split(" ");
 
     const totalWords = wordsLine1.length + wordsLine2.length + wordsLine3.length + wordsLine4.length;
 
@@ -792,17 +790,17 @@ const METHODOLOGY = [
     {
         num: '01',
         title: 'STRATEGY',
-        desc: 'Deep research, brand positioning, audience mapping, and intent architecture. Every project begins with an obsessive understanding of the brand\'s purpose and competitive landscape.',
+        desc: 'Clear brief reading, brand context, audience needs, and communication goals before the visual direction starts.',
     },
     {
         num: '02',
         title: 'CRAFT',
-        desc: 'Visual identity systems, technical typographic precision, color science, and scalable design architecture. The execution is as deliberate as the strategy behind it.',
+        desc: 'Identity, typography, layout, color, image direction, and AI-supported exploration refined into practical assets.',
     },
     {
         num: '03',
         title: 'IMPACT',
-        desc: 'Launching visual legacies, motion strategy, and long-term brand evolution. The goal is never just delivery — it\'s designing systems that grow and outlive every trend.',
+        desc: 'Final visuals shaped for real use across brand, campaign, print, social, packaging, and production touchpoints.',
     },
 ];
 
@@ -873,7 +871,7 @@ function MethodologySection() {
                         viewport={{ once: true }}
                         className={`${FONT_HEADLINE} text-[clamp(2.5rem,5vw,5.5rem)] max-w-2xl`}
                     >
-                        HOW GREAT<br />WORK HAPPENS.
+                        HOW CLEAR<br />WORK HAPPENS.
                     </motion.h2>
                 </div>
 
@@ -895,28 +893,28 @@ function MethodologySection() {
 const CAPABILITIES = [
     {
         index: '01',
-        title: 'Brand Strategy',
-        desc: 'Defining the core narrative, positioning, and voice that makes a brand impossible to ignore.',
+        title: 'Brand Identity',
+        desc: 'Building clear visual systems for logos, color, typography, and brand applications.',
     },
     {
         index: '02',
-        title: 'Digital Architecture',
-        desc: 'Building comprehensive visual systems — logos, color, typography — that scale from screen to print.',
+        title: 'Advertising Visuals',
+        desc: 'Designing campaign layouts and key visuals with strong hierarchy and message clarity.',
     },
     {
         index: '03',
-        title: 'Motion Design',
-        desc: 'Breathing life into static brands through micro-animations, transitions, and full motion identity.',
+        title: 'AI Visuals',
+        desc: 'Using AI as a controlled creative direction tool for visual exploration and production support.',
     },
     {
         index: '04',
-        title: 'UI/UX Systems',
-        desc: 'Architecting digital experiences with clarity, hierarchy, and purposeful interaction design.',
+        title: 'Retouching',
+        desc: 'Refining images, composites, and final artwork for polished campaign-ready use.',
     },
     {
         index: '05',
-        title: 'Art Direction',
-        desc: 'Orchestrating campaigns, key visuals, and editorial pieces that command space and attention.',
+        title: 'Creative Production',
+        desc: 'Shaping campaigns, key visuals, and production assets with clear art direction and practical rollout in mind.',
     },
 ];
 
@@ -1003,7 +1001,7 @@ function CapabilitiesSection() {
 
 // ─────────────────────────────────────────────────────────────────────────────
 // SECTION 7 — THE CLOSING CTA
-// "READY TO ARCHITECT YOUR BRAND?" — centered, massive, pill CTA
+// Centered closing CTA
 // ─────────────────────────────────────────────────────────────────────────────
 function ClosingCTA() {
     return (
@@ -1039,7 +1037,7 @@ function ClosingCTA() {
                     className={`${FONT_HEADLINE} text-[clamp(2.8rem,7.5vw,9rem)] max-w-5xl`}
                 >
                     READY TO<br />
-                    ARCHITECT<br />
+                    SHAPE<br />
                     <span style={{ color: 'transparent', WebkitTextStroke: '1.5px rgba(255,255,255,0.3)' }}>
                         YOUR BRAND?
                     </span>
@@ -1136,7 +1134,7 @@ export default function AboutPage() {
                 {otherSecs.map(sec => {
                     const el = renderSection(sec);
                     // If it's a section that should be above the Parallax effect (FAQ/CTA/Contact), 
-                    // we wrap it in high z-index if needed, but it's handled by natural flow.
+                    // Natural flow handles stacking here.
                     return el;
                 })}
             </div>

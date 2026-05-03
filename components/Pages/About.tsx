@@ -1,9 +1,9 @@
 import { useRef } from 'react';
-import { useScroll, useTransform, motion, MotionValue } from 'framer-motion';
+import { useScroll, useTransform, motion } from 'framer-motion';
 import { Link } from 'react-router';
 import { DEFAULT_CONFIG } from 'lib/siteConfig';
 
-// We keep the original text but we will force it to uppercase in the UI to match the design.
+// Keep the original content shape and force it to uppercase in the UI to match the design.
 export default function Hero({ content }: { content?: any }) {
   const containerRef = useRef<HTMLElement>(null);
   const { scrollY } = useScroll();
@@ -60,7 +60,7 @@ export default function Hero({ content }: { content?: any }) {
                 ✲
               </motion.span>
             </svg>
-            <div className="flex overflow-hidden whitespace-nowrap opacity-80 w-[200px] md:w-[300px]" style={{ maskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)' }}>
+            <div className="flex overflow-hidden whitespace-nowrap opacity-80 w-[200px] md:w-[300px]" style={{ maskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)' }} aria-hidden="true">
               <motion.div
                 animate={{ x: ["0%", "-50%"] }}
                 transition={{ repeat: Infinity, ease: "linear", duration: 15 }}
@@ -178,7 +178,7 @@ export default function Hero({ content }: { content?: any }) {
             {/* Right Sub-Column */}
             <div className="md:w-[50%] flex flex-col justify-center">
               <p className="text-white/70 text-lg md:text-xl lg:text-2xl font-['Syne'] leading-[1.6] font-medium">
-                {content?.subtitle2 || "Approaching every project with a mix of strategic thinking and visual sensitivity, I create cohesive design systems that help brands speak clearly — solving communication challenges through meaningful, human-centered design."}
+                {content?.subtitle2 || "My work sits between brand identity, advertising design, and production craft — turning ideas into visual systems, key visuals, and campaign assets that are clear enough to use."}
               </p>
             </div>
 

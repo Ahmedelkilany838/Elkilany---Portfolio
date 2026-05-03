@@ -4,23 +4,23 @@ import { Link } from "react-router";
 const steps = [
     {
         id: "1",
-        title: "Discovery & Strategy",
-        description: "Understanding your vision, business goals, and target audience to build a solid foundation.",
+        title: "Brief & Context",
+        description: "Understanding the brand, audience, message, format, and commercial goal before visual work begins.",
     },
     {
         id: "2",
-        title: "Concept & Design",
-        description: "Crafting wireframes, exploring visual directions, and creating pixel-perfect high fidelity designs.",
+        title: "Direction & Design",
+        description: "Exploring visual routes, hierarchy, composition, and image style until the strongest direction is clear.",
     },
     {
         id: "3",
-        title: "Production & Build",
-        description: "Preparing production-ready files and assets optimized for every touchpoint — print, digital, and social.",
+        title: "Production & Assets",
+        description: "Developing the selected direction into usable artwork for social, print, packaging, campaign, or digital use.",
     },
     {
         id: "4",
-        title: "Refine & Launch",
-        description: "Refining the final direction and preparing the assets for confident launch and handoff.",
+        title: "Refine & Handoff",
+        description: "Polishing the final visuals, checking consistency, and preparing files for confident delivery.",
     },
 ];
 
@@ -41,7 +41,7 @@ export default function Process() {
                                 ✲
                             </motion.span>
                         </svg>
-                        <div className="flex overflow-hidden whitespace-nowrap opacity-80 w-[200px]" style={{ maskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)' }}>
+                        <div className="flex overflow-hidden whitespace-nowrap opacity-80 w-[200px]" style={{ maskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)' }} aria-hidden="true">
                             <motion.div
                                 animate={{ x: ["0%", "-50%"] }}
                                 transition={{ repeat: Infinity, ease: "linear", duration: 15 }}
@@ -61,7 +61,7 @@ export default function Process() {
                     </h2>
 
                     <p className="mt-12 md:mt-20 lg:mt-24 text-white/50 text-base md:text-lg lg:text-xl xl:text-2xl leading-[1.6] max-w-full lg:max-w-[600px] xl:max-w-[700px] font-medium pr-4">
-                        A focused path from initial brief to polished visual direction, crafted with clarity and practical production in mind.
+                        A practical path from brief to final artwork, built to keep the visual idea clear through every format.
                     </p>
 
                     <div className="mt-4 md:mt-6 lg:mt-10">

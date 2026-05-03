@@ -56,7 +56,7 @@ export default function Navbar() {
                 <div className="hidden md:block origin-right">
                     <Link
                         to="/contact"
-                        className="font-['Syne'] flex items-center justify-center rounded-full px-7 py-3 text-xs md:text-sm font-bold uppercase tracking-widest transition-all duration-300 active:scale-95 backdrop-blur-sm cursor-none"
+                        className="font-['Syne'] flex items-center justify-center rounded-full px-7 py-3 text-xs md:text-sm font-bold uppercase tracking-widest transition-all duration-300 active:scale-95 backdrop-blur-sm"
                         style={{
                             color: 'var(--site-text-primary, #ffffff)',
                             border: '1px solid var(--site-button-border, rgba(255,255,255,0.2))',
@@ -78,7 +78,7 @@ export default function Navbar() {
                 {/* Hamburger toggle */}
                 <button
                     onClick={() => setMenuOpen(!menuOpen)}
-                    className="group relative w-[48px] h-[48px] flex items-center justify-center rounded-full transition-all duration-300 active:scale-95 backdrop-blur-sm cursor-none"
+                    className="group relative w-[48px] h-[48px] flex items-center justify-center rounded-full transition-all duration-300 active:scale-95 backdrop-blur-sm"
                     style={{
                         color: 'var(--site-text-primary, #ffffff)',
                         border: '1px solid var(--site-button-border, rgba(255,255,255,0.2))',

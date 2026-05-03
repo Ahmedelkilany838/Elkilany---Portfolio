@@ -24,13 +24,13 @@ export default function ServicesPage() {
                     className="max-w-[1800px] mx-auto"
                 >
                     <p className="mb-5 text-[10px] md:text-xs font-mono uppercase tracking-[0.25em] text-white/45">
-                        Services / strategic visual craft
+                        Services / focused creative support
                     </p>
                     <h1 className="font-['Syne'] font-extrabold text-[clamp(3rem,12vw,13rem)] leading-[0.85] tracking-[-0.04em] uppercase text-white">
                         Services
                     </h1>
                     <p className="mt-8 max-w-2xl text-white/60 text-base md:text-xl leading-relaxed">
-                        I help brands shape clearer identities, stronger campaign visuals, and polished production assets.
+                        I support brands, agencies, and marketing teams with clear design direction, campaign visuals, and production-ready assets.
                     </p>
                 </motion.div>
             </section>

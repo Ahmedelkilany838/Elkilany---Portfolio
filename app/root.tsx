@@ -3,7 +3,6 @@ import {
   Links,
   Meta,
   Scripts,
-  ScrollRestoration,
   useOutlet,
 } from "react-router";
 
@@ -24,8 +23,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
         {/* Open Graph */}
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="KILANY" />
-        <meta property="og:title" content="Kilany | Senior Brand & Advertising Specialist" />
-        <meta property="og:description" content="I build brand systems that express identity with confidence and consistency — helping businesses connect with their audience in a meaningful and memorable way." />
+        <meta property="og:title" content="Kilany | Brand, Advertising & AI Visual Production" />
+        <meta property="og:description" content="Ahmed ElKilany designs brand identities, advertising visuals, AI-powered production assets, retouching, packaging, and social campaign systems." />
         <meta property="og:url" content="https://elkilany-portfolio.vercel.app" />
         <meta property="og:image" content="https://elkilany-portfolio.vercel.app/images/hero.png" />
         <meta property="og:image:width" content="1200" />
@@ -33,8 +32,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Kilany | Senior Brand & Advertising Specialist" />
-        <meta name="twitter:description" content="I build brand systems that express identity with confidence and consistency — helping businesses connect with their audience in a meaningful and memorable way." />
+        <meta name="twitter:title" content="Kilany | Brand, Advertising & AI Visual Production" />
+        <meta name="twitter:description" content="Ahmed ElKilany designs brand identities, advertising visuals, AI-powered production assets, retouching, packaging, and social campaign systems." />
         <meta name="twitter:image" content="https://elkilany-portfolio.vercel.app/images/hero.png" />
 
         <Meta />
@@ -49,54 +48,24 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 import SmoothScroll from "components/SmoothScroll";
-import GlobalCursor from "components/Animation/GlobalCursor";
 import Navbar from "components/Navbar";
-import { AnimatePresence, motion, useIsPresent } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import { useLocation } from "react-router";
-import { useRef, useLayoutEffect } from "react";
 
 import Preloader from "components/Preloader";
 import { useState } from "react";
 
-// Heavy premium ease
-const premiumEase: [number, number, number, number] = [0.76, 0, 0.24, 1];
-
-// Page wrapper for overlapping transition
 function RouteWrapper({ children, locationKey }: { children: React.ReactNode, locationKey: string }) {
-  const isPresent = useIsPresent();
-  const exitTopRef = useRef<number>(0);
-
-  if (!isPresent && exitTopRef.current === 0 && typeof window !== "undefined") {
-    exitTopRef.current = window.scrollY;
-  }
-
-  useLayoutEffect(() => {
-    if (!isPresent) {
-      window.scrollTo(0, 0);
-    }
-  }, [isPresent]);
-
   return (
-    <motion.div
+    <div
       key={locationKey}
-      initial={{ y: "100vh", zIndex: 50, opacity: 1 }}
-      animate={{ y: 0, zIndex: 50, opacity: 1 }}
-      exit={{ y: "-10vh", opacity: 0, filter: "brightness(0.2)", zIndex: 10 }}
-      transition={{ duration: 1.4, ease: premiumEase }}
       style={{
-        position: isPresent ? "relative" : "fixed",
-        top: isPresent ? 0 : -exitTopRef.current,
-        left: 0,
-        right: 0,
         backgroundColor: "var(--site-page-bg, #050505)",
-        pointerEvents: isPresent ? "auto" : "none",
-        transformOrigin: "center top",
-        willChange: "transform, opacity",
       }}
       className="w-full min-h-screen"
     >
       {children}
-    </motion.div>
+    </div>
   );
 }
 
@@ -110,7 +79,6 @@ export default function App() {
       <AnimatePresence>
         {loading && <Preloader onComplete={() => setLoading(false)} />}
       </AnimatePresence>
-      <GlobalCursor />
       <Navbar />
 
       <SmoothScroll>

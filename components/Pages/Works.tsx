@@ -49,14 +49,14 @@ export default function Works() {
                         >
                             ✲
                         </motion.span>
-                        <div className="flex overflow-hidden whitespace-nowrap opacity-80 w-[200px] md:w-[300px]" style={{ maskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)' }}>
+                        <div className="flex overflow-hidden whitespace-nowrap opacity-80 w-[200px] md:w-[300px]" style={{ maskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)' }} aria-hidden="true">
                             <motion.div
                                 animate={{ x: ["0%", "-50%"] }}
                                 transition={{ repeat: Infinity, ease: "linear", duration: 15 }}
                                 className="flex"
                             >
-                                <span className="mr-4">MY PORTFOLIO — MY PORTFOLIO — MY PORTFOLIO — </span>
-                                <span className="mr-4">MY PORTFOLIO — MY PORTFOLIO — MY PORTFOLIO — </span>
+                                <span className="mr-4">SELECTED WORK — SELECTED WORK — SELECTED WORK — </span>
+                                <span className="mr-4">SELECTED WORK — SELECTED WORK — SELECTED WORK — </span>
                             </motion.div>
                         </div>
                     </div>
@@ -122,7 +122,7 @@ export default function Works() {
                         }}
                     >
                         <span className="font-['Syne'] font-extrabold uppercase tracking-[0.05em] text-sm md:text-lg relative z-10 w-full text-center">
-                            View All Projects
+                            View All Work
                         </span>
                         <div className="relative w-5 h-5 overflow-hidden flex items-center justify-center z-10">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="absolute m-auto inset-0 w-full h-full transition-transform duration-[600ms] ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:translate-x-full group-hover:-translate-y-full">

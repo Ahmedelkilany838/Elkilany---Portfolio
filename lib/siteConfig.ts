@@ -147,15 +147,15 @@ export const DEFAULT_CONFIG: SiteConfig = {
         project6Image: '/images/visual_legacy_background.webp',
     },
     content: {
-        heroHeadline: 'INTENTIONAL AESTHETICS.',
-        heroDescription: 'I shape visual systems, key visuals, and communication-driven designs with clarity, strategy, and intention.',
-        heroExpertiseTags: ['Branding', 'Advertising', 'Visual Direction'],
+        heroHeadline: 'BRAND VISUALS. BUILT TO COMMUNICATE.',
+        heroDescription: 'I design brand identities, advertising visuals, and AI-powered visual production for brands that need clarity, presence, and polished execution.',
+        heroExpertiseTags: ['Branding', 'Advertising', 'AI Visual Production', 'Retouching'],
         aboutTitle: 'About Me',
-        aboutSubtitle: 'I build brand systems that express identity with confidence and consistency — helping businesses connect with their audience in a meaningful and memorable way.',
+        aboutSubtitle: 'I combine strategic design thinking with practical production craft across branding, advertising, key visuals, retouching, packaging, and social campaign design.',
         worksTitle: 'Selected Work',
         worksYearRange: '2024 — 2026',
         siteTitle: 'Kilany | Senior Brand & Advertising Specialist',
-        siteTagline: 'Building visual legacies for visionary brands.',
+        siteTagline: 'Brand identity, advertising design, and AI-powered visual production.',
         showNavHome: true,
         showNavAbout: true,
         showNavWorks: true,
@@ -167,9 +167,9 @@ export const DEFAULT_CONFIG: SiteConfig = {
             sections: [
                 {
                     id: 'hero', name: 'Hero Section', visible: true, content: {
-                        headline: 'INTENTIONAL AESTHETICS.',
-                        description: 'I shape visual systems, key visuals, and communication-driven designs with clarity, strategy, and intention.',
-                        tags: ['Branding', 'Advertising', 'Visual Direction'],
+                        headline: 'BRAND VISUALS. BUILT TO COMMUNICATE.',
+                        description: 'I design brand identities, advertising visuals, and AI-powered visual production for brands that need clarity, presence, and polished execution.',
+                        tags: ['Branding', 'Advertising', 'AI Visual Production', 'Retouching'],
                         image: '/images/hero.png',
                         animSpeed: 1.4
                     }
@@ -177,7 +177,7 @@ export const DEFAULT_CONFIG: SiteConfig = {
                 {
                     id: 'about', name: 'About (Intro)', visible: true, content: {
                         title: 'About Me',
-                        subtitle: 'I build brand systems that express identity with confidence and consistency — helping businesses connect with their audience in a meaningful and memorable way.'
+                        subtitle: 'I combine strategic design thinking with practical production craft across branding, advertising, key visuals, retouching, packaging, and social campaign design.'
                     }
                 },
                 {
@@ -200,8 +200,8 @@ export const DEFAULT_CONFIG: SiteConfig = {
                 },
                 {
                     id: 'services', name: 'Services Accordion', visible: true, content: {
-                        title: 'Specialized Services',
-                        description: 'Tailored solutions for modern brands.'
+                        title: 'Creative Services',
+                        description: 'Focused design support for brand, campaign, and production needs.'
                     }
                 },
                 {
@@ -223,7 +223,7 @@ export const DEFAULT_CONFIG: SiteConfig = {
                 },
                 {
                     id: 'cta', name: 'Final CTA', visible: true, content: {
-                        headline: 'Ready to build?',
+                        headline: 'Ready to shape the next visual direction?',
                         buttonText: 'Let\'s Talk'
                     }
                 },
@@ -245,7 +245,7 @@ export const DEFAULT_CONFIG: SiteConfig = {
                 },
                 {
                     id: 'manifesto', name: 'Manifesto', visible: true, content: {
-                        text: 'MY JOURNEY BEGAN WITH A SIMPLE BELIEF: STRONG BRANDS ARE BUILT THROUGH CLARITY, INTENTION, AND THOUGHTFUL DESIGN.'
+                        text: 'I BUILD CLEAR VISUAL SYSTEMS FOR BRANDS, CAMPAIGNS, AND COMMERCIAL STORIES THAT NEED TO BE UNDERSTOOD QUICKLY.'
                     }
                 },
                 { id: 'timeline', name: 'Experience Timeline', visible: true, content: {} },

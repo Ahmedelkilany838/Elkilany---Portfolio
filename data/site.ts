@@ -18,7 +18,7 @@ export const siteProfile = {
     name: "Ahmed ElKilany",
     displayName: "KILANY",
     role: "Senior Brand & Advertising Specialist",
-    tagline: "I shape visual systems, key visuals, and communication-driven designs with clarity, strategy, and intention.",
+    tagline: "I design brand identities, advertising visuals, and AI-powered production assets with clarity and control.",
     email: "ahmed.elkilany11111@gmail.com",
     location: "Cairo, Egypt",
     availability: "Available for selected branding, advertising, and visual production projects.",
@@ -27,7 +27,7 @@ export const siteProfile = {
         label: "WhatsApp",
         href: null,
         available: false,
-        note: "WhatsApp contact will be added soon.",
+        note: "WhatsApp will be added soon.",
     } satisfies WhatsAppContact,
 };
 

@@ -156,10 +156,11 @@ export function ContactForm() {
 
             {/* Name */}
             <motion.div custom={0} variants={fieldVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}>
-                <label className="block text-[10px] font-mono uppercase tracking-[0.2em] text-white/40 mb-2">
+                <label htmlFor="contact-name" className="block text-[10px] font-mono uppercase tracking-[0.2em] text-white/40 mb-2">
                     Name
                 </label>
                 <input
+                    id="contact-name"
                     type="text"
                     placeholder="Your name"
                     value={data.name}
@@ -173,10 +174,11 @@ export function ContactForm() {
 
             {/* Email */}
             <motion.div custom={1} variants={fieldVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}>
-                <label className="block text-[10px] font-mono uppercase tracking-[0.2em] text-white/40 mb-2">
+                <label htmlFor="contact-email" className="block text-[10px] font-mono uppercase tracking-[0.2em] text-white/40 mb-2">
                     Email
                 </label>
                 <input
+                    id="contact-email"
                     type="email"
                     placeholder="Your email"
                     value={data.email}
@@ -190,16 +192,17 @@ export function ContactForm() {
 
             {/* Project Type */}
             <motion.div custom={2} variants={fieldVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}>
-                <label className="block text-[10px] font-mono uppercase tracking-[0.2em] text-white/40 mb-2">
+                <label htmlFor="contact-project-type" className="block text-[10px] font-mono uppercase tracking-[0.2em] text-white/40 mb-2">
                     Project Type
                 </label>
                 <select
+                    id="contact-project-type"
                     value={data.projectType}
                     onChange={(e) => setField('projectType', e.target.value)}
                     disabled={isSending}
                     className={`${inputBase} cursor-pointer appearance-none bg-[#0d0d0d] pr-8`}
                 >
-                    <option value="" disabled>Select a project type</option>
+                    <option value="" disabled>Select the main project need</option>
                     {services.map((service) => (
                         <option key={service.slug} value={service.title}>
                             {service.title}
@@ -213,12 +216,13 @@ export function ContactForm() {
 
             {/* Message */}
             <motion.div custom={3} variants={fieldVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}>
-                <label className="block text-[10px] font-mono uppercase tracking-[0.2em] text-white/40 mb-2">
+                <label htmlFor="contact-message" className="block text-[10px] font-mono uppercase tracking-[0.2em] text-white/40 mb-2">
                     Message
                 </label>
                 <textarea
+                    id="contact-message"
                     rows={5}
-                    placeholder="Describe your project or challenge"
+                    placeholder="Describe the goal, audience, timeline, and what needs to be designed"
                     value={data.message}
                     onChange={(e) => setField('message', e.target.value)}
                     disabled={isSending}
@@ -250,7 +254,7 @@ export function ContactForm() {
                     <div className="absolute inset-0 bg-[#ff4d29] scale-y-0 origin-bottom transition-transform duration-[600ms] ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:scale-y-100 rounded-full" />
 
                     <span className="relative z-10 font-['Syne'] font-bold text-sm md:text-base tracking-[0.08em] uppercase">
-                        {isSending ? 'Sending…' : 'Send Message'}
+                        {isSending ? 'Sending…' : 'Send Brief'}
                     </span>
 
                     {/* Arrow icon */}

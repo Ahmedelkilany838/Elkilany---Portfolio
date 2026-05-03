@@ -28,16 +28,16 @@ export default function FinalCTA() {
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="shrink-0 text-white/80">
                         <path d="M12 2v20M2 12h20M4.93 4.93l14.14 14.14M4.93 19.07L19.07 4.93" />
                     </svg>
-                    <div className="flex overflow-hidden whitespace-nowrap opacity-80 w-[200px] md:w-[300px]" style={{ maskImage: 'linear-gradient(to right, black 60%, transparent)' }}>
+                    <div className="flex overflow-hidden whitespace-nowrap opacity-80 w-[200px] md:w-[300px]" style={{ maskImage: 'linear-gradient(to right, black 60%, transparent)' }} aria-hidden="true">
                         <motion.div
                             animate={{ x: ["0%", "-50%"] }}
                             transition={{ repeat: Infinity, ease: "linear", duration: 15 }}
                             className="flex"
                         >
-                            <span className="mr-8">BRING IDEAS TO LIFE — </span>
-                            <span className="mr-8">BRING IDEAS TO LIFE — </span>
-                            <span className="mr-8">BRING IDEAS TO LIFE — </span>
-                            <span className="mr-8">BRING IDEAS TO LIFE — </span>
+                            <span className="mr-8">BRING CLARITY TO THE BRIEF — </span>
+                            <span className="mr-8">BRING CLARITY TO THE BRIEF — </span>
+                            <span className="mr-8">BRING CLARITY TO THE BRIEF — </span>
+                            <span className="mr-8">BRING CLARITY TO THE BRIEF — </span>
                         </motion.div>
                     </div>
                 </div>
@@ -45,10 +45,10 @@ export default function FinalCTA() {
                 {/* Massive Typography - All White & Larger */}
                 <h2 className="font-['Syne'] font-extrabold text-[clamp(2rem,11vw,14rem)] leading-[0.85] tracking-[-0.04em] uppercase flex flex-col items-center">
                     <span className="text-white block drop-shadow-2xl whitespace-nowrap">
-                        LET'S BUILD
+                        LET'S SHAPE
                     </span>
                     <span className="text-white block drop-shadow-2xl text-center whitespace-nowrap">
-                        YOUR BRAND
+                        THE VISUAL
                     </span>
                 </h2>
 
@@ -58,7 +58,7 @@ export default function FinalCTA() {
                         <div className="absolute inset-0 w-full h-full bg-[#ff4d29] scale-y-0 origin-bottom transition-transform duration-[600ms] ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:scale-y-100 rounded-full"></div>
 
                         <span className="relative z-10 flex overflow-hidden font-['Syne'] font-bold text-base md:text-lg tracking-[0.05em] uppercase">
-                            {"GET IN TOUCH".split('').map((char, i) => (
+                            {"START A BRIEF".split('').map((char, i) => (
                                 <span key={i} className="relative inline-block leading-none">
                                     <span className="block transition-transform duration-[600ms] ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:-translate-y-full text-black" style={{ transitionDelay: `${i * 10}ms` }}>
                                         {char === ' ' ? '\u00A0' : char}

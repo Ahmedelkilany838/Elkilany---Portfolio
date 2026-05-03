@@ -16,7 +16,7 @@ export default function ProjectCard({ project, compact = false }: ProjectCardPro
     return (
         <Link
             to={`/works/${project.slug}`}
-            className="case-study-link block group w-full h-full cursor-none transform-gpu active:scale-[0.98] transition-transform duration-300"
+            className="case-study-link block group w-full h-full cursor-pointer transform-gpu active:scale-[0.98] transition-transform duration-300"
             data-cursor-view="true"
             aria-label={`View ${project.title} case study`}
         >

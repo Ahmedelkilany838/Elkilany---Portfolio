@@ -61,6 +61,7 @@ export default function ContactPage() {
                     {...fadeUp(0)}
                     className="flex items-center gap-3 mb-10 text-[#555] text-[10px] font-mono uppercase tracking-[0.2em] overflow-hidden w-full max-w-[280px]"
                     style={{ maskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)' }}
+                    aria-hidden="true"
                 >
                     <motion.div
                         animate={{ x: ['0%', '-50%'] }}
@@ -88,8 +89,8 @@ export default function ContactPage() {
                     {...fadeUp(0.1)}
                     className="font-['Syne'] font-extrabold text-[clamp(2.4rem,7vw,8rem)] leading-[0.88] tracking-[-0.04em] uppercase text-white max-w-5xl"
                 >
-                    Let's Build Something<br />
-                    <span className="text-white/40">Worth Remembering</span>
+                    Let's Shape The<br />
+                    <span className="text-white/40">Visual Direction</span>
                 </motion.h1>
 
                 {/* Sub-headline */}
@@ -97,8 +98,8 @@ export default function ContactPage() {
                     {...fadeUp(0.18)}
                     className="mt-8 text-white/50 text-base md:text-lg font-['Syne'] font-medium leading-relaxed max-w-xl"
                 >
-                    Tell me about your brand challenge.{' '}
-                    <span className="text-white/70">I'll tell you how I'd approach it.</span>
+                    Share the goal, audience, and timeline.{' '}
+                    <span className="text-white/70">I will help you find the clearest visual route.</span>
                 </motion.p>
             </section>
 
@@ -116,10 +117,10 @@ export default function ContactPage() {
                             className="mb-10"
                         >
                             <p className="text-[10px] font-mono uppercase tracking-[0.25em] text-white/30 mb-3">
-                                Start a project
+                                Start with clarity
                             </p>
                             <h2 className="font-['Syne'] font-extrabold text-[clamp(1.8rem,4vw,3.5rem)] leading-[0.9] tracking-[-0.03em] uppercase text-white">
-                                Drop Me a Line
+                                Send the brief
                             </h2>
                         </motion.div>
 
@@ -235,12 +236,12 @@ export default function ContactPage() {
                             ].join(', '),
                         }}
                     >
-                        GET IN TOUCH
+                    START A BRIEF
                     </h2>
                 </motion.div>
 
                 {/* Scrolling marquee band */}
-                <div className="w-full bg-[#ff4d29] overflow-hidden select-none">
+                <div className="w-full bg-[#ff4d29] overflow-hidden select-none" aria-hidden="true">
                     <div
                         className="flex items-center whitespace-nowrap min-w-max py-5"
                         style={{ animation: 'contact-marquee 24s linear infinite' }}

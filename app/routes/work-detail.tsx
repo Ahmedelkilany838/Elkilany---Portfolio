@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import FooterSection from "components/FooterSection";
 import { getNextProject, getProjectBySlug } from "data/projects";
-import { siteProfile } from "data/site";
 
 export function meta({ params }: Route.MetaArgs) {
     const project = params.slug ? getProjectBySlug(params.slug) : undefined;
@@ -66,7 +65,7 @@ export default function WorkDetail() {
                 <div className="max-w-[1800px] mx-auto grid grid-cols-1 lg:grid-cols-[0.78fr_1.22fr] gap-14 lg:gap-24">
                     <aside className="lg:sticky lg:top-[120px] self-start">
                         <p className="text-[10px] font-mono uppercase tracking-[0.25em] text-white/35 mb-6">
-                            Project details
+                            Case study details
                         </p>
                         <dl className="space-y-6">
                             <div className="border-b border-white/10 pb-5">
@@ -78,7 +77,7 @@ export default function WorkDetail() {
                                 <dd className="font-['Syne'] text-white/80">{project.services.join(", ")}</dd>
                             </div>
                             <div className="border-b border-white/10 pb-5">
-                                <dt className="text-white/35 text-[10px] font-mono uppercase tracking-[0.2em] mb-2">Scope</dt>
+                                <dt className="text-white/35 text-[10px] font-mono uppercase tracking-[0.2em] mb-2">Scope / Deliverables</dt>
                                 <dd className="flex flex-wrap gap-2">
                                     {project.deliverables.map((item) => (
                                         <span key={item} className="rounded-full border border-white/10 px-3 py-1 text-xs text-white/60">
@@ -114,7 +113,7 @@ export default function WorkDetail() {
 
             <section className="px-[4%] md:px-[6%] lg:px-[8%] py-[60px] md:py-[100px] border-b border-white/5">
                 <div className="max-w-[1800px] mx-auto">
-                    <p className="text-[10px] font-mono uppercase tracking-[0.25em] text-white/35 mb-8">Gallery</p>
+                    <p className="text-[10px] font-mono uppercase tracking-[0.25em] text-white/35 mb-8">Visual gallery</p>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
                         {project.gallery.map((image, index) => (
                             <div key={`${image}-${index}`} className="relative rounded-[24px] overflow-hidden border border-white/10 bg-white/[0.03] aspect-[4/3]">
@@ -128,16 +127,16 @@ export default function WorkDetail() {
             <section className="px-[4%] md:px-[6%] lg:px-[8%] py-[60px] md:py-[100px] border-b border-white/5">
                 <div className="max-w-[1800px] mx-auto flex flex-col md:flex-row gap-8 md:items-center md:justify-between">
                     <div>
-                        <p className="text-[10px] font-mono uppercase tracking-[0.25em] text-white/35 mb-3">Start a project</p>
+                        <p className="text-[10px] font-mono uppercase tracking-[0.25em] text-white/35 mb-3">Next brief</p>
                         <h2 className="font-['Syne'] text-3xl md:text-6xl font-extrabold uppercase tracking-[-0.03em]">
-                            Have a similar brief?
+                            Need this kind of clarity?
                         </h2>
                         <p className="mt-5 text-white/55 max-w-xl leading-relaxed">
-                            Send me the context, goal, and timeline. I will suggest the clearest way to shape the visual direction.
+                            Send me the goal, audience, and timeline. I will help shape the visual route before production starts.
                         </p>
                     </div>
                     <Link to="/contact" className="inline-flex items-center justify-center rounded-full bg-white text-black px-8 py-5 font-['Syne'] font-bold uppercase tracking-[0.08em] hover:bg-[#ff4d29] hover:text-white transition-colors">
-                        Contact {siteProfile.displayName}
+                        Start a project
                     </Link>
                 </div>
             </section>

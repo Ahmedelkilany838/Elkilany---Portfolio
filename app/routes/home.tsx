@@ -1,5 +1,6 @@
 import type { Route } from "./+types/home";
-import React, { useRef } from "react";
+import { useRef } from "react";
+import type { ComponentType } from "react";
 import { useScroll, useTransform, motion } from "framer-motion";
 import Hero from "components/Pages/Hero";
 import BrandsMarquee from "components/BrandsMarquee";
@@ -15,7 +16,7 @@ import Contact from "components/Pages/Contact";
 import { DEFAULT_CONFIG } from "lib/siteConfig";
 import Testimonials from "components/Pages/Testimonials";
 
-const COMPONENT_MAP: Record<string, React.ComponentType<any>> = {
+const COMPONENT_MAP: Record<string, ComponentType<any>> = {
   hero: Hero,
   about: About,
   brands: BrandsMarquee,
@@ -30,7 +31,7 @@ const COMPONENT_MAP: Record<string, React.ComponentType<any>> = {
 };
 
 export function meta({ }: Route.MetaArgs) {
-  return [{ title: "Kilany | Senior Brand & Advertising Specialist" }, { name: "description", content: "Building visual legacies for visionary brands." }];
+  return [{ title: "Kilany | Brand, Advertising & AI Visual Production" }, { name: "description", content: "Ahmed ElKilany designs brand identities, advertising visuals, AI-powered production assets, retouching, packaging, and social campaign systems." }];
 }
 
 export default function Home() {

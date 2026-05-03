@@ -14,10 +14,10 @@ export default function Testimonials() {
                     Client notes
                 </p>
                 <h2 className="font-['Syne'] font-extrabold text-[clamp(2.5rem,8vw,6rem)] leading-[0.95] tracking-[-0.03em] uppercase text-white max-w-4xl">
-                    Verified testimonials can be added here later.
+                    Client feedback can be added after approval.
                 </h2>
                 <p className="mt-8 text-white/55 max-w-xl leading-relaxed">
-                    This baseline avoids placeholder testimonials and only keeps space for approved client feedback.
+                    This section stays neutral until approved client quotes are ready.
                 </p>
             </motion.div>
         </section>

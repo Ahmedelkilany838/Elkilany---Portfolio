@@ -5,7 +5,24 @@ import ProjectCard from "components/ProjectCard";
 import FooterSection from "components/FooterSection";
 import { aiLabProjects } from "data/projects";
 
-const aiCategories = ["AI Visual Direction", "Key Visual Exploration", "Retouching Support", "Creative Production"];
+const aiCategories = [
+    {
+        title: "Concept Routes",
+        description: "Testing campaign moods, worlds, and visual angles before committing to one direction.",
+    },
+    {
+        title: "Key Visual Exploration",
+        description: "Building hero-image options with controlled composition, lighting, and production intent.",
+    },
+    {
+        title: "Retouching Support",
+        description: "Using AI carefully for cleanup, extension, and detail support before manual finishing.",
+    },
+    {
+        title: "Production Acceleration",
+        description: "Helping early visual decisions move faster without replacing creative judgment.",
+    },
+];
 
 export function meta({ }: Route.MetaArgs) {
     return [
@@ -25,13 +42,13 @@ export default function AiLabPage() {
                     className="max-w-[1800px] mx-auto"
                 >
                     <p className="mb-5 text-[10px] md:text-xs font-mono uppercase tracking-[0.25em] text-white/45">
-                        AI Lab / directed visual production
+                        AI Lab / commercial visual exploration
                     </p>
                     <h1 className="font-['Syne'] font-extrabold text-[clamp(3rem,12vw,13rem)] leading-[0.85] tracking-[-0.04em] uppercase text-white">
                         AI Lab
                     </h1>
                     <p className="mt-8 max-w-2xl text-white/60 text-base md:text-xl leading-relaxed">
-                        I use AI as part of creative direction and visual production: exploring moods, testing compositions, and refining campaign-ready imagery with intention.
+                        I use AI as part of a commercial creative workflow: to explore directions, test visual ideas, and support production before the strongest route is refined by hand.
                     </p>
                 </motion.div>
             </section>
@@ -40,9 +57,12 @@ export default function AiLabPage() {
                 <div className="max-w-[1800px] mx-auto">
                     <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-16">
                         {aiCategories.map((category) => (
-                            <div key={category} className="rounded-[22px] border border-white/10 bg-white/[0.03] p-5">
+                            <div key={category.title} className="rounded-[22px] border border-white/10 bg-white/[0.03] p-5">
                                 <p className="font-['Syne'] font-bold uppercase tracking-[-0.02em] text-white/80">
-                                    {category}
+                                    {category.title}
+                                </p>
+                                <p className="mt-4 text-sm leading-relaxed text-white/45">
+                                    {category.description}
                                 </p>
                             </div>
                         ))}
@@ -51,14 +71,14 @@ export default function AiLabPage() {
                     <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10">
                         <div>
                             <p className="text-[10px] font-mono uppercase tracking-[0.25em] text-white/35 mb-3">
-                                Selected studies
+                                Selected AI-supported work
                             </p>
                             <h2 className="font-['Syne'] text-3xl md:text-5xl font-extrabold uppercase tracking-[-0.03em]">
-                                Directed, not random
+                                Direction before generation
                             </h2>
                         </div>
                         <p className="text-white/45 text-sm md:text-base max-w-md leading-relaxed">
-                            These projects are shown because they include AI visuals, key visuals, retouching, or creative production.
+                            These projects connect AI exploration with advertising, key visual design, retouching, or production workflow.
                         </p>
                     </div>
 
@@ -83,10 +103,10 @@ export default function AiLabPage() {
                     <div>
                         <p className="text-[10px] font-mono uppercase tracking-[0.25em] text-white/35 mb-3">Process teaser</p>
                         <h2 className="font-['Syne'] text-3xl md:text-6xl font-extrabold uppercase tracking-[-0.03em]">
-                            Direction first. Tools second.
+                            Clear brief first. Tools second.
                         </h2>
                         <p className="mt-5 text-white/55 max-w-2xl leading-relaxed">
-                            I start with the brief, mood, composition, and use case. AI helps explore routes, then the strongest visuals are refined for real communication.
+                            I start with the brief, audience, mood, and use case. AI helps widen the options, but the final value comes from selection, art direction, and finishing.
                         </p>
                     </div>
                     <div className="flex flex-wrap gap-3">

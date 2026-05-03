@@ -16,7 +16,7 @@ export default function FooterSection() {
             {/* Email CTA Strip */}
             <div className="w-full pt-0 pb-[40px] md:pb-[60px] flex flex-col items-center justify-center text-center px-[4%]">
                 <p className="text-white/40 text-[10px] md:text-xs font-mono uppercase tracking-[0.15em] md:tracking-[0.25em] mb-2 md:mb-0 leading-normal md:leading-none max-w-[80%] mx-auto">
-                    Reach out if you're ready to make something amazing together.
+                    Have a brand, campaign, or visual production brief that needs a clearer direction?
                 </p>
                 <a
                     href={`mailto:${siteProfile.email}`}
@@ -70,10 +70,10 @@ export default function FooterSection() {
                         ))}
                     </div>
 
-                    {/* Col 3 — Newsletter */}
+                    {/* Col 3 — Project CTA */}
                     <div className="flex flex-col gap-6">
                         <p className="text-white/50 text-sm font-sans leading-relaxed max-w-xs">
-                            Have a brief in mind? Send the project context and I will suggest the clearest next step.
+                            Send the project context and I will suggest the clearest next step for the visual direction.
                         </p>
                         <a
                             href="/contact"
@@ -114,14 +114,14 @@ export default function FooterSection() {
                     </div>
 
                     <div className="order-1 md:order-3">
-                        Designed &amp; Developed by{" "}
+                        Personal portfolio of{" "}
                         <span className="text-white font-bold font-['Syne'] whitespace-nowrap">{siteProfile.name}</span>
                     </div>
                 </div>
             </div>
 
             {/* ─── Footer Bottom Marquee ─── */}
-            <div className="w-full bg-[#ff4d29] overflow-hidden select-none">
+            <div className="w-full bg-[#ff4d29] overflow-hidden select-none" aria-hidden="true">
                 <div
                     className="flex items-center whitespace-nowrap min-w-max py-8"
                     style={{ animation: "footer-marquee 32s linear infinite" }}
@@ -130,7 +130,7 @@ export default function FooterSection() {
                         <span key={i} className="flex items-center gap-[3vw] font-['Syne'] font-black uppercase text-white text-[6vw] leading-none tracking-[-0.03em] pr-[4vw]">
                             {siteProfile.displayName}
                             <StarSVG />
-                            PORTFOLIO
+                            VISUAL WORK
                             <StarSVG />
                             {siteProfile.displayName}
                             <StarSVG />

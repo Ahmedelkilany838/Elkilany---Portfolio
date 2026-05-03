@@ -58,7 +58,7 @@ export default function WorkShowcase() {
         }
 
         // Apply Offset
-        // We move the container, but we also need to calc rotation per card based on screen position
+        // Move the container and calculate rotation per card based on screen position.
         containerRef.current.style.transform = `translateX(${offsetRef.current}px)`;
 
         const viewportCenter = winW / 2;
