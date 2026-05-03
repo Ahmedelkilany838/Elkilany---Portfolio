@@ -3,33 +3,8 @@ import { motion, AnimatePresence, useMotionValue, useSpring } from "framer-motio
 import { useState, useEffect } from "react";
 import { Plus } from "lucide-react";
 import { createPortal } from "react-dom";
-
-const services = [
-  {
-    title: "BRANDING",
-    description: "Building distinctive, memorable, and cohesive visual identities that resonate with your target audience.",
-    subServices: ["Logo Design", "Visual Systems", "Brand Guidelines", "Art Direction"],
-    image: "/images/1 v2.jpg"
-  },
-  {
-    title: "ADVERTISING",
-    description: "Strategic campaigns that capture attention and drive real engagement across all mediums.",
-    subServices: ["Social Media Content", "Paid Ads", "Campaign Strategy", "Motion Graphics"],
-    image: "/images/3.png"
-  },
-  {
-    title: "PRINT DESIGN",
-    description: "Tangible assets designed with precision, ensuring your brand feels as premium in hand as it looks on screen.",
-    subServices: ["Packaging Design", "Editorial & Books", "Stationery", "Merchandise"],
-    image: "/images/Artboard 1 copy 4-100.jpg"
-  },
-  {
-    title: "STRATEGY",
-    description: "Data-driven insights and roadmaps defining your brand's voice and path to long-term growth.",
-    subServices: ["Market Research", "Brand Positioning", "Content Strategy", "Consultation"],
-    image: "/images/Artboard 7-100.jpg"
-  }
-];
+import { services } from "data/services";
+import { getProjectBySlug } from "data/projects";
 
 export default function Services() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
@@ -77,7 +52,7 @@ export default function Services() {
             {services.map((srv, idx) => (
               <img
                 key={idx}
-                src={srv.image}
+                src={getProjectBySlug(srv.relatedProjectSlugs[0])?.coverImage ?? "/images/1 v2.webp"}
                 alt={srv.title}
                 className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
                 style={{ opacity: hoveredIndex === idx ? 1 : 0 }}
@@ -183,7 +158,7 @@ export default function Services() {
                       </p>
 
                       <div className="flex flex-wrap items-center gap-x-8 gap-y-4 pt-8 pb-2">
-                        {service.subServices.map((sub, i) => (
+                        {service.deliverables.map((sub, i) => (
                           <div key={i} className="flex items-center gap-3">
                             <span className="text-[#ff4d29] text-xl font-light leading-none mt-[-2px]">+</span>
                             <span className="text-white text-sm md:text-base font-medium tracking-wide">

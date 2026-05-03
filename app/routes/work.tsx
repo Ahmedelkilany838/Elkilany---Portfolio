@@ -1,83 +1,109 @@
 import type { Route } from "./+types/work";
-import { useEffect } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { useState } from "react";
+import { motion } from "framer-motion";
+import ProjectCard from "components/ProjectCard";
 import FooterSection from "components/FooterSection";
+import { projects, workCategories, type WorkCategory } from "data/projects";
+import { siteProfile } from "data/site";
+import { DEFAULT_CONFIG } from "lib/siteConfig";
 
 export function meta({ }: Route.MetaArgs) {
     return [
-        { title: "Projects | Kilany" },
-        { name: "description", content: "Projects by Kilany - Graphic Designer" },
+        { title: "Work | Kilany" },
+        { name: "description", content: "Selected branding, advertising, key visual, AI visual, retouching, packaging, and social media work by Ahmed ElKilany." },
     ];
 }
 
 export default function Work() {
-    useEffect(() => {
-        // Handled by root transition
-    }, []);
-
-    const { scrollY } = useScroll();
-    const scale = useTransform(scrollY, [0, 1000], [1.15, 1]); // Zoom out effect
+    const config = DEFAULT_CONFIG;
+    const [activeCategory, setActiveCategory] = useState<WorkCategory>("All");
+    const filteredProjects = activeCategory === "All"
+        ? projects
+        : projects.filter((project) => project.categories.includes(activeCategory));
 
     return (
-        <div className="relative bg-[#050505] min-h-screen">
+        <main className="relative bg-[#050505] min-h-screen text-white overflow-x-hidden">
+            <section className="relative w-full min-h-[76vh] bg-[#050505] overflow-hidden flex flex-col justify-end px-[4%] md:px-[6%] lg:px-[8%] pt-[18vh] pb-[8vh] border-b border-white/5">
+                <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+                    <img
+                        src={config.images.worksHeroImage}
+                        alt=""
+                        className="w-full h-full object-cover object-[center_30%] opacity-45"
+                    />
+                    <div className="absolute inset-0 bg-black/70" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-black/60 to-transparent" />
+                </div>
 
-            {/* 1. Hero Cluster: Sticky (Hero) */}
-            <motion.div
-                style={{ opacity: useTransform(scrollY, [400, 1000], [1, 0]) }}
-                className="sticky top-0 z-0 w-full flex flex-col items-center justify-start min-h-screen"
-            >
-                <section className="relative w-full h-[100dvh] bg-[#050505] overflow-hidden flex flex-col items-center justify-center px-6 md:px-12">
-                    {/* BACKGROUND IMAGE & OVERLAY */}
-                    <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-                        <div className="relative w-full h-full">
-                            <motion.img
-                                style={{ scale }}
-                                src="/images/1 v2.jpg"
-                                alt="Works Hero"
-                                className="w-full h-full object-cover object-[center_30%]"
-                            />
-                            <div className="absolute inset-0 bg-black/70 mix-blend-multiply" />
-                            <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-black/50 to-transparent" />
-                            <div className="absolute inset-0 bg-gradient-to-b from-[#050505]/50 to-transparent" />
+                <motion.div
+                    initial={{ opacity: 0, y: 48 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                    className="relative z-10 w-full max-w-[1800px] mx-auto"
+                >
+                    <p className="mb-5 text-[10px] md:text-xs font-mono uppercase tracking-[0.25em] text-white/45">
+                        Selected work / visual systems / campaign craft
+                    </p>
+                    <h1 className="font-['Syne'] font-extrabold text-[clamp(3.2rem,13vw,14rem)] leading-[0.85] tracking-[-0.04em] uppercase text-white">
+                        Work
+                    </h1>
+                    <p className="mt-8 max-w-2xl text-white/60 text-base md:text-xl leading-relaxed">
+                        A concise selection of branding, advertising, key visual, AI visual, retouching, packaging, and social media work by {siteProfile.name}.
+                    </p>
+                </motion.div>
+            </section>
+
+            <section className="relative w-full px-[4%] md:px-[6%] lg:px-[8%] py-[60px] md:py-[100px] border-b border-white/5">
+                <div className="w-full max-w-[1800px] mx-auto">
+                    <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between mb-12">
+                        <div>
+                            <p className="text-[10px] font-mono uppercase tracking-[0.25em] text-white/35 mb-3">
+                                Filter projects
+                            </p>
+                            <h2 className="font-['Syne'] text-3xl md:text-5xl font-extrabold uppercase tracking-[-0.03em]">
+                                Explore by focus
+                            </h2>
                         </div>
+                        <p className="text-white/45 text-sm md:text-base max-w-md leading-relaxed">
+                            These are baseline case studies using temporary covers. Final project assets can replace them without changing the structure.
+                        </p>
                     </div>
 
-                    <div className="relative z-10 flex flex-col items-center">
-                        {/* Big Editorial Title */}
-                        <motion.h1
-                            initial={{ opacity: 0, y: 60, scale: 0.95 }}
-                            animate={{ opacity: 1, y: 0, scale: 1 }}
-                            transition={{ duration: 1.2, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-                            className="text-[20vw] md:text-[15vw] font-black uppercase text-white leading-none tracking-tighter text-center"
-                        >
-                            Projects
-                        </motion.h1>
-
-                        {/* Coming Soon Subtitle */}
-                        <motion.p
-                            initial={{ opacity: 0, y: 30 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 1, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                            className="mt-8 text-white/50 text-sm md:text-base uppercase tracking-[0.3em] font-medium"
-                        >
-                            Coming Soon
-                        </motion.p>
-
-                        {/* Decorative Line */}
-                        <motion.div
-                            initial={{ scaleX: 0 }}
-                            animate={{ scaleX: 1 }}
-                            transition={{ duration: 0.8, delay: 0.8, ease: [0.22, 1, 0.36, 1] }}
-                            className="mt-12 w-24 h-[2px] bg-white/20 origin-center"
-                        />
+                    <div className="flex flex-wrap gap-3 mb-12">
+                        {workCategories.map((category) => {
+                            const active = activeCategory === category;
+                            return (
+                                <button
+                                    key={category}
+                                    type="button"
+                                    onClick={() => setActiveCategory(category)}
+                                    className={`rounded-full border px-4 py-2 text-[11px] md:text-xs font-['Syne'] font-bold uppercase tracking-[0.12em] transition-all duration-300 ${active
+                                        ? "bg-[#ff4d29] border-[#ff4d29] text-white"
+                                        : "bg-white/0 border-white/10 text-white/55 hover:text-white hover:border-white/30"
+                                        }`}
+                                >
+                                    {category}
+                                </button>
+                            );
+                        })}
                     </div>
-                </section>
-            </motion.div>
 
-            {/* Rest of the Site: Rising Cover Layer */}
-            <div className="relative z-20 bg-[#050505] mt-[50vh]">
-                <FooterSection />
-            </div>
-        </div>
+                    <motion.div
+                        initial={{ opacity: 0, y: 40 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                        viewport={{ once: true, margin: "-80px" }}
+                        className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 md:gap-8"
+                    >
+                        {filteredProjects.map((project) => (
+                            <div key={project.slug} className="h-[520px] md:h-[560px]">
+                                <ProjectCard project={project} />
+                            </div>
+                        ))}
+                    </motion.div>
+                </div>
+            </section>
+
+            <FooterSection />
+        </main>
     );
 }

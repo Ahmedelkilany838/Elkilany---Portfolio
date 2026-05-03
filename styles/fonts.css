@@ -1,11 +1,17 @@
+/* ─────────────────────────────────────────────────────────────────────────── */
+/* MONA SANS — Only the 5 weights used by the site                             */
+/* ─────────────────────────────────────────────────────────────────────────── */
+
+/* Weight 400 — Regular body text */
 @font-face {
     font-family: 'Mona Sans';
-    src: url('/mona-sans/TTF/Mona-Sans-Medium.ttf') format('truetype');
+    src: url('/mona-sans/TTF/Mona-Sans-Regular.ttf') format('truetype');
     font-weight: 400;
     font-style: normal;
     font-display: swap;
 }
 
+/* Weight 500 — Medium (default body weight) */
 @font-face {
     font-family: 'Mona Sans';
     src: url('/mona-sans/TTF/Mona-Sans-Medium.ttf') format('truetype');
@@ -14,14 +20,16 @@
     font-display: swap;
 }
 
+/* Weight 600 — SemiBold */
 @font-face {
     font-family: 'Mona Sans';
-    src: url('/mona-sans/TTF/Mona-Sans-Bold.ttf') format('truetype');
+    src: url('/mona-sans/TTF/Mona-Sans-SemiBold.ttf') format('truetype');
     font-weight: 600;
     font-style: normal;
     font-display: swap;
 }
 
+/* Weight 700 — Bold */
 @font-face {
     font-family: 'Mona Sans';
     src: url('/mona-sans/TTF/Mona-Sans-Bold.ttf') format('truetype');
@@ -30,6 +38,7 @@
     font-display: swap;
 }
 
+/* Weight 800 — ExtraBoldWide (headings: extrabold, uppercase, display) */
 @font-face {
     font-family: 'Mona Sans';
     src: url('/mona-sans/TTF/Mona-Sans-ExtraBoldWide.ttf') format('truetype');
@@ -38,6 +47,7 @@
     font-display: swap;
 }
 
+/* Weight 900 — alias to ExtraBoldWide (black headlines) */
 @font-face {
     font-family: 'Mona Sans';
     src: url('/mona-sans/TTF/Mona-Sans-ExtraBoldWide.ttf') format('truetype');
@@ -46,10 +56,14 @@
     font-display: swap;
 }
 
-/* Redefine 'Syne' to point to Mona Sans so existing classes immediately inherit the new font without needing to alter every file */
+/* ─────────────────────────────────────────────────────────────────────────── */
+/* SYNE — Aliased to Mona Sans so all font-['Syne'] classes use the new font  */
+/* without needing to update every component file.                             */
+/* ─────────────────────────────────────────────────────────────────────────── */
+
 @font-face {
     font-family: 'Syne';
-    src: url('/mona-sans/TTF/Mona-Sans-Medium.ttf') format('truetype');
+    src: url('/mona-sans/TTF/Mona-Sans-Regular.ttf') format('truetype');
     font-weight: 400;
     font-style: normal;
     font-display: swap;
@@ -75,6 +89,14 @@
     font-family: 'Syne';
     src: url('/mona-sans/TTF/Mona-Sans-ExtraBoldWide.ttf') format('truetype');
     font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Syne';
+    src: url('/mona-sans/TTF/Mona-Sans-ExtraBoldWide.ttf') format('truetype');
+    font-weight: 900;
     font-style: normal;
     font-display: swap;
 }

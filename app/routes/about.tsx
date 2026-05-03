@@ -1,6 +1,5 @@
 import type { Route } from "./+types/about";
 import { useEffect } from "react";
-import Navbar from "components/Navbar";
 import AboutPage from "components/Pages/AboutPage";
 
 export function meta({ }: Route.MetaArgs) {

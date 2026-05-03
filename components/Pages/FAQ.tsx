@@ -2,25 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Plus, Minus } from "lucide-react";
 import { Link } from "react-router";
-
-const faqs = [
-    {
-        question: "What is your typical project timeline?",
-        answer: "Timelines depend on the scope, but a complete brand identity usually takes 4-6 weeks. Web projects range from 3-8 weeks. I prioritize quality and strategic depth, ensuring every delivery is market-ready."
-    },
-    {
-        question: "Do you use AI in your workflow?",
-        answer: "Yes, I leverage AI for research, rapid prototyping, and workflow optimization. However, the core strategy, creative direction, and final polish are 100% human-crafted to ensure uniqueness and emotional resonance."
-    },
-    {
-        question: "What exactly do I get at the end?",
-        answer: "You receive a comprehensive brand system: Logo suites, typography, color palettes, usage guidelines, and ready-to-use assets for print and digital. For web, a fully deployed, high-performance site."
-    },
-    {
-        question: "Do you work with agencies or directly with clients?",
-        answer: "Both. I partner with agencies as a specialized senior creative lead for high-stakes pitches, and I work directly with visionary founders who want to build legacy brands."
-    }
-];
+import { faqItems } from "data/faq";
 
 export default function FAQ() {
     const [openIndex, setOpenIndex] = useState<number | null>(0);
@@ -123,7 +105,7 @@ export default function FAQ() {
                     viewport={{ once: true, margin: "-100px" }}
                     className="w-full flex flex-col"
                 >
-                    {faqs.map((faq, index) => (
+                    {faqItems.map((faq, index) => (
                         <div
                             key={index}
                             className="border-b border-white/10"

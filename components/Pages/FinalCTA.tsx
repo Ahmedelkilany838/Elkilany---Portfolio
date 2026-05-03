@@ -7,7 +7,7 @@ export default function FinalCTA() {
             {/* Background Image */}
             <div
                 className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
-                style={{ backgroundImage: "url('/images/bg-card.avif')" }}
+                style={{ backgroundImage: "url('/images/bg-card.webp')" }}
             >
                 {/* Dark overlay to ensure text is readable */}
                 <div className="absolute inset-0 bg-black/40"></div>

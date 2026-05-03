@@ -1,28 +1,24 @@
 import { useRef } from 'react';
 import { useScroll, useTransform, motion, MotionValue } from 'framer-motion';
 import { Link } from 'react-router';
+import { DEFAULT_CONFIG } from 'lib/siteConfig';
 
 // We keep the original text but we will force it to uppercase in the UI to match the design.
-const sentence = "I shape concepts into communication-driven designs that help brands speak clearly and connect with people in meaningful ways".split(" ");
-
-function Word({ children, range, progress }: { children: React.ReactNode, range: [number, number], progress: MotionValue<number> }) {
-  // Map the scroll progress over the character's range to a bright white color, otherwise keep it a dark grey #222222
-  const color = useTransform(progress, range, ["#222222", "#ffffff"]);
-
-  return (
-    <span className="relative inline-block mb-[0.1em] mr-[0.2em]">
-      <motion.span style={{ color }} className="select-none inline-block will-change-[color] transform-gpu">
-        {children}
-      </motion.span>
-    </span>
-  );
-}
-
-export default function About() {
+export default function Hero({ content }: { content?: any }) {
   const containerRef = useRef<HTMLElement>(null);
+  const { scrollY } = useScroll();
+  const scale = useTransform(scrollY, [0, 1000], [1.15, 1]);
+
+  const config = DEFAULT_CONFIG;
+
+  // Use passed content (from deep editing) or fall back to global content
+  const heroImage = content?.image || config.images.heroImage;
+  const headline = content?.headline || config.content.heroHeadline;
+  const description = content?.description || config.content.heroDescription;
+  const tags = (content?.tags as string[]) || config.content.heroExpertiseTags;
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    // Start fading when top of container hits the center, finish when bottom of container hits the bottom
     offset: ["start center", "end end"]
   });
 
@@ -78,33 +74,8 @@ export default function About() {
 
           {/* Header Area with Scrolling Reveal Text */}
           <h2 className="font-['Syne'] text-left flex flex-wrap items-center content-start uppercase">
-
-            {/* Word-by-Word Scroll Engine */}
-            {sentence.map((word, i) => {
-              // We map the word indices to fractions between 0 and 0.8 so the whole phrase completes
-              // well before the user finishes scrolling past the container.
-              const completionPoint = 0.8;
-              const step = completionPoint / sentence.length;
-              const start = i * step;
-              const end = start + step;
-
-              return (
-                <Word key={i} range={[start, end]} progress={scrollYProgress}>
-                  <span className="text-[36px] md:text-[52px] lg:text-[72px] font-bold tracking-[-0.02em] leading-[1.1]">
-                    {word}
-                  </span>
-                </Word>
-              );
-            })}
-
-            {/* Period / Stop Mark Animation */}
-            <span className="inline-block relative">
-              <motion.span
-                style={{ color: useTransform(scrollYProgress, [0.8, 0.85], ["#222222", "#ffffff"]) }}
-                className="text-[36px] md:text-[52px] lg:text-[72px] font-bold tracking-[-0.02em] leading-[1.1]"
-              >
-                .
-              </motion.span>
+            <span className="text-[36px] md:text-[52px] lg:text-[72px] font-bold tracking-[-0.02em] leading-[1.1] text-white">
+              {headline}
             </span>
           </h2>
 
@@ -120,8 +91,23 @@ export default function About() {
             {/* Left Sub-Column */}
             <div className="flex flex-col gap-10 md:w-[55%] lg:w-[60%]">
               <p className="text-white/60 text-base md:text-lg font-['Syne'] leading-relaxed font-medium max-w-xl">
-                Approaching every project with a mix of strategic thinking and visual sensitivity, I create cohesive design systems that
+                {description}
               </p>
+
+              {/* Tags */}
+              <div className="flex flex-wrap gap-3 mt-2">
+                {tags.map((tag: string, i: number) => (
+                  <span
+                    key={i}
+                    className="px-3 md:px-4 py-1 md:py-1.5 rounded-full transition-colors cursor-default"
+                    style={{
+                      border: '1px solid var(--site-button-border, rgba(255,255,255,0.2))',
+                    }}
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
 
               {/* Buttons */}
               <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 md:gap-8 mt-2 w-full sm:w-auto">
@@ -132,10 +118,10 @@ export default function About() {
                   <span className="relative z-10 flex overflow-hidden font-['Syne'] font-bold text-sm md:text-base lg:text-lg tracking-[0.05em] uppercase">
                     {"MORE ABOUT ME".split('').map((char, i) => (
                       <span key={i} className="relative inline-block leading-none">
-                        <span className="block transition-transform duration-[600ms] ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:-translate-y-full text-black" style={{ transitionDelay: `${i * 10}ms` }}>
+                        <span className="block transition-transform duration-[600ms] ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:-translate-y-full text-black" style={{ transitionDelay: `${i * 10} ms` }}>
                           {char === ' ' ? '\u00A0' : char}
                         </span>
-                        <span className="absolute top-0 left-0 block transition-transform duration-[600ms] ease-[cubic-bezier(0.76,0,0.24,1)] translate-y-full group-hover:translate-y-0 text-white" style={{ transitionDelay: `${i * 10}ms` }}>
+                        <span className="absolute top-0 left-0 block transition-transform duration-[600ms] ease-[cubic-bezier(0.76,0,0.24,1)] translate-y-full group-hover:translate-y-0 text-white" style={{ transitionDelay: `${i * 10} ms` }}>
                           {char === ' ' ? '\u00A0' : char}
                         </span>
                       </span>
@@ -156,13 +142,13 @@ export default function About() {
                         <span key={i} className="relative inline-block leading-none">
                           <span
                             className="block transition-transform duration-[600ms] ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:-translate-y-full text-white"
-                            style={{ transitionDelay: `${i * 15}ms` }}
+                            style={{ transitionDelay: `${i * 15} ms` }}
                           >
                             {char === ' ' ? '\u00A0' : char}
                           </span>
                           <span
                             className="absolute top-0 left-0 block transition-transform duration-[600ms] ease-[cubic-bezier(0.76,0,0.24,1)] translate-y-full group-hover:translate-y-0 text-[#ff4d29]"
-                            style={{ transitionDelay: `${i * 15}ms` }}
+                            style={{ transitionDelay: `${i * 15} ms` }}
                           >
                             {char === ' ' ? '\u00A0' : char}
                           </span>
@@ -190,9 +176,9 @@ export default function About() {
             </div>
 
             {/* Right Sub-Column */}
-            <div className="md:w-[45%] lg:w-[40%]">
-              <p className="text-white/60 text-base md:text-lg font-['Syne'] leading-relaxed font-medium">
-                help brands speak clearly, solving communication challenges through meaningful and human-centered design.
+            <div className="md:w-[50%] flex flex-col justify-center">
+              <p className="text-white/70 text-lg md:text-xl lg:text-2xl font-['Syne'] leading-[1.6] font-medium">
+                {content?.subtitle2 || "Approaching every project with a mix of strategic thinking and visual sensitivity, I create cohesive design systems that help brands speak clearly — solving communication challenges through meaningful, human-centered design."}
               </p>
             </div>
 

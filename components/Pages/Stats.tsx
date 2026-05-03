@@ -20,71 +20,32 @@ export function AnimatedSlideUpStat({ value, suffix = "", delay = 0 }: { value: 
 }
 
 export default function Stats({ className }: { className?: string }) {
+    const notes = [
+        { title: "Brand Systems", text: "Identity foundations built for consistent use." },
+        { title: "Campaign Visuals", text: "Key visuals shaped for clear communication." },
+        { title: "Production Craft", text: "Retouching, finishing, and format-ready artwork." },
+    ];
+
     return (
         <section className={`w-full bg-[#050505] py-[clamp(60px,8vh,140px)] relative z-10 border-b border-white/5 transform-gpu ${PX} ${className || ""}`}>
-            <div className="w-full max-w-[1400px] mx-auto flex flex-col md:flex-row items-center justify-between gap-12 md:gap-0">
-
-                {/* 1. Years of Experience */}
-                <div className="flex flex-col items-center justify-center text-center group">
-                    <div className="text-white font-['Mona_Sans','Syne',sans-serif] font-bold text-[6rem] md:text-[9.5rem] lg:text-[11.5rem] leading-none tracking-tight mb-2 md:mb-4">
-                        <AnimatedSlideUpStat value="13" suffix="+" delay={0} />
-                    </div>
+            <div className="w-full max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+                {notes.map((note, index) => (
                     <motion.div
-                        initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ duration: 1, delay: 0.6 }} viewport={{ once: true }}
-                        className={`${FONT_LABEL} text-white/50 text-sm md:text-base tracking-[0.08em] uppercase`}
+                        key={note.title}
+                        initial={{ opacity: 0, y: 36 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, delay: index * 0.12, ease: [0.22, 1, 0.36, 1] }}
+                        viewport={{ once: true, margin: "-100px" }}
+                        className="rounded-[24px] border border-white/10 bg-white/[0.03] p-6 md:p-8"
                     >
-                        Years of Experience
+                        <div className="text-white font-['Syne'] font-extrabold text-3xl md:text-5xl leading-none tracking-[-0.03em] mb-5 uppercase">
+                            {note.title}
+                        </div>
+                        <div className={`${FONT_LABEL} text-white/50 text-sm md:text-base tracking-[0.08em] uppercase`}>
+                            {note.text}
+                        </div>
                     </motion.div>
-                </div>
-
-                {/* Divider 1 */}
-                <motion.div
-                    initial={{ opacity: 0, scale: 0.5 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 0.8, delay: 0.3 }} viewport={{ once: true }}
-                    className="hidden md:flex items-center justify-center text-white/20"
-                >
-                    <svg width="32" height="32" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
-                        <path d="M14.75 7.74854L0.75 7.74853" />
-                        <path d="M7.74805 0.75L7.74805 14.75" />
-                    </svg>
-                </motion.div>
-
-                {/* 2. Completed Projects */}
-                <div className="flex flex-col items-center justify-center text-center group">
-                    <div className="text-white font-['Mona_Sans','Syne',sans-serif] font-bold text-[6rem] md:text-[9.5rem] lg:text-[11.5rem] leading-none tracking-tight mb-2 md:mb-4">
-                        <AnimatedSlideUpStat value="290" suffix="+" delay={0.15} />
-                    </div>
-                    <motion.div
-                        initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ duration: 1, delay: 0.75 }} viewport={{ once: true }}
-                        className={`${FONT_LABEL} text-white/50 text-sm md:text-base tracking-[0.08em] uppercase`}
-                    >
-                        Completed Projects
-                    </motion.div>
-                </div>
-
-                {/* Divider 2 */}
-                <motion.div
-                    initial={{ opacity: 0, scale: 0.5 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 0.8, delay: 0.45 }} viewport={{ once: true }}
-                    className="hidden md:flex items-center justify-center text-white/20"
-                >
-                    <svg width="32" height="32" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
-                        <path d="M14.75 7.74854L0.75 7.74853" />
-                        <path d="M7.74805 0.75L7.74805 14.75" />
-                    </svg>
-                </motion.div>
-
-                {/* 3. Award Winner -> Used to be Award Winner, I'll update to Brands scale or similar later if asked, but the prompt says 3 elements */}
-                <div className="flex flex-col items-center justify-center text-center group">
-                    <div className="text-white font-['Mona_Sans','Syne',sans-serif] font-bold text-[6rem] md:text-[9.5rem] lg:text-[11.5rem] leading-none tracking-tight mb-2 md:mb-4">
-                        <AnimatedSlideUpStat value="60" suffix="+" delay={0.3} />
-                    </div>
-                    <motion.div
-                        initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ duration: 1, delay: 0.9 }} viewport={{ once: true }}
-                        className={`${FONT_LABEL} text-white/50 text-sm md:text-base tracking-[0.08em] uppercase`}
-                    >
-                        Companies trusted us
-                    </motion.div>
-                </div>
-
+                ))}
             </div>
         </section>
     );

@@ -14,13 +14,13 @@ const steps = [
     },
     {
         id: "3",
-        title: "Development & Build",
-        description: "Translating the design into clean, scalable, and highly performant code architectures.",
+        title: "Production & Build",
+        description: "Preparing production-ready files and assets optimized for every touchpoint — print, digital, and social.",
     },
     {
         id: "4",
         title: "Refine & Launch",
-        description: "Rigorous testing, optimization, and seamless deployment of your brand's new digital experience.",
+        description: "Refining the final direction and preparing the assets for confident launch and handoff.",
     },
 ];
 
@@ -61,7 +61,7 @@ export default function Process() {
                     </h2>
 
                     <p className="mt-12 md:mt-20 lg:mt-24 text-white/50 text-base md:text-lg lg:text-xl xl:text-2xl leading-[1.6] max-w-full lg:max-w-[600px] xl:max-w-[700px] font-medium pr-4">
-                        A seamless journey from initial concept to a polished digital reality, crafted with absolute precision.
+                        A focused path from initial brief to polished visual direction, crafted with clarity and practical production in mind.
                     </p>
 
                     <div className="mt-4 md:mt-6 lg:mt-10">

@@ -16,6 +16,27 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        {/* Primary Meta */}
+        <meta name="author" content="Ahmed Elkilany" />
+        <meta name="theme-color" content="#050505" />
+
+        {/* Open Graph */}
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="KILANY" />
+        <meta property="og:title" content="Kilany | Senior Brand & Advertising Specialist" />
+        <meta property="og:description" content="I build brand systems that express identity with confidence and consistency — helping businesses connect with their audience in a meaningful and memorable way." />
+        <meta property="og:url" content="https://elkilany-portfolio.vercel.app" />
+        <meta property="og:image" content="https://elkilany-portfolio.vercel.app/images/hero.png" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Kilany | Senior Brand & Advertising Specialist" />
+        <meta name="twitter:description" content="I build brand systems that express identity with confidence and consistency — helping businesses connect with their audience in a meaningful and memorable way." />
+        <meta name="twitter:image" content="https://elkilany-portfolio.vercel.app/images/hero.png" />
+
         <Meta />
         <Links />
       </head>
@@ -45,12 +66,10 @@ function RouteWrapper({ children, locationKey }: { children: React.ReactNode, lo
   const isPresent = useIsPresent();
   const exitTopRef = useRef<number>(0);
 
-  // Capture current scroll ONLY once when it starts exiting
   if (!isPresent && exitTopRef.current === 0 && typeof window !== "undefined") {
     exitTopRef.current = window.scrollY;
   }
 
-  // Ensure window goes to top synchronously before paint
   useLayoutEffect(() => {
     if (!isPresent) {
       window.scrollTo(0, 0);
@@ -69,7 +88,7 @@ function RouteWrapper({ children, locationKey }: { children: React.ReactNode, lo
         top: isPresent ? 0 : -exitTopRef.current,
         left: 0,
         right: 0,
-        backgroundColor: "#050505",
+        backgroundColor: "var(--site-page-bg, #050505)",
         pointerEvents: isPresent ? "auto" : "none",
         transformOrigin: "center top",
         willChange: "transform, opacity",
@@ -85,8 +104,6 @@ export default function App() {
   const location = useLocation();
   const outlet = useOutlet();
   const [loading, setLoading] = useState(true);
-
-
 
   return (
     <>

@@ -148,9 +148,9 @@ input,
 textarea,
 select,
 button {
-  font-family: var(--font-primary);
-  font-size: 1rem;
-  font-weight: 500;
+  font-family: var(--site-font-primary, 'Mona Sans', sans-serif);
+  font-size: var(--site-font-size-base, 1rem);
+  font-weight: var(--site-body-weight, 500);
   color: rgba(255, 255, 255, 0.8);
   letter-spacing: normal;
   font-stretch: normal;
@@ -158,12 +158,13 @@ button {
 }
 
 h1,
-h2 {
-  font-weight: 800;
+h2,
+h3 {
+  font-family: var(--site-font-heading, 'Syne', sans-serif);
+  font-weight: var(--site-heading-weight, 800);
   letter-spacing: -0.02em;
+  line-height: var(--site-heading-line-height, 0.9);
 }
-
-/* Removed Custom Scrollbar */
 
 .nav-link {
   position: relative;
@@ -174,51 +175,27 @@ h2 {
   opacity: 1 !important;
 }
 
-
-/* --- Elite-Level Responsive Overrides --- */
-
-/* 1. Advanced Fluid Typography - Refined for Mobile "KILANY" fit */
+/* ─────────────────────────────────────────────────────────── */
+/* FLUID TYPOGRAPHY SCALE                                      */
+/* ─────────────────────────────────────────────────────────── */
 :root {
   --fs-hero: clamp(1.7rem, 6.8vw, 6.375rem);
-  /* Reduced by 15% */
   --fs-h1: clamp(1.7rem, 4.25vw + 0.85rem, 5.1rem);
-  /* Section Titles reduced */
   --fs-h2: clamp(1.5rem, 3.4vw + 0.85rem, 3.825rem);
-  /* Sub-headings reduced */
   --fs-h3: clamp(1.06rem, 2.55vw + 0.425rem, 2.55rem);
-  /* Card Titles reduced */
   --fs-body: clamp(0.74rem, 0.85vw + 0.425rem, 0.95rem);
-  /* Body Text reduced */
 }
 
-/* Apply Fluid sizes */
-.text-fluid-hero {
-  font-size: var(--fs-hero);
-  line-height: 0.9;
-}
+.text-fluid-hero { font-size: var(--fs-hero); line-height: 0.9; }
+.text-fluid-h1   { font-size: var(--fs-h1);   line-height: 1.1; }
+.text-fluid-h2   { font-size: var(--fs-h2);   line-height: 1.1; }
+.text-fluid-h3   { font-size: var(--fs-h3);   line-height: 1.2; }
 
-.text-fluid-h1 {
-  font-size: var(--fs-h1);
-  line-height: 1.1;
-}
-
-.text-fluid-h2 {
-  font-size: var(--fs-h2);
-  line-height: 1.1;
-}
-
-.text-fluid-h3 {
-  font-size: var(--fs-h3);
-  line-height: 1.2;
-}
-
-/* 2. Vertical Rhythm & Safe Areas */
 .section-padding {
   padding-top: clamp(4rem, 10vh, 10rem);
   padding-bottom: clamp(4rem, 10vh, 10rem);
 }
 
-/* Global DVH Fix */
 .min-h-screen {
   min-height: 100vh;
   min-height: 100dvh;
@@ -229,13 +206,51 @@ h2 {
   height: 100dvh;
 }
 
-
-/* 4. Utilities */
-/* Zero Horizontal Scroll Fix */
 body {
   overflow-x: hidden;
   width: 100%;
   position: relative;
-  background-color: #050505;
-  /* Seamless background */
+  background-color: var(--site-page-bg, #050505);
 }
+
+/* ─────────────────────────────────────────────────────────── */
+/* SITE CONFIG CSS VARIABLES — Applied by the Dashboard        */
+/* ─────────────────────────────────────────────────────────── */
+:root {
+  --site-page-bg: #050505;
+  --site-section-bg: #050505;
+  --site-card-bg: #0a0a0a;
+  --site-nav-bg: transparent;
+  --site-loader-bg: #000000;
+  --site-menu-overlay-bg: rgba(0, 0, 0, 0.95);
+  --site-text-primary: #ffffff;
+  --site-text-secondary: rgba(255, 255, 255, 0.6);
+  --site-text-muted: rgba(255, 255, 255, 0.4);
+  --site-accent: #ff4d29;
+  --site-accent-hover: #ff6347;
+  --site-button-border: rgba(255, 255, 255, 0.2);
+  --site-border: rgba(255, 255, 255, 0.05);
+  --site-font-primary: 'Mona Sans', sans-serif;
+  --site-font-heading: 'Syne', sans-serif;
+  --site-font-size-base: 16px;
+  --site-heading-weight: 800;
+  --site-body-weight: 500;
+  --site-heading-line-height: 0.9;
+  --site-body-line-height: 1.6;
+  --site-h1-scale: 4.5;
+  --site-h2-scale: 2.5;
+  --site-h3-scale: 1.75;
+  --site-body-font-size: 16px;
+  --site-letter-spacing: 0em;
+}
+
+/* Headline second line — always white/80, never gray */
+.headline-secondary {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+[data-site-controlled] .accent-color,
+[data-site-controlled] .bg-\[var\(--site-accent\)\] {
+  color: var(--site-accent);
+}
+
